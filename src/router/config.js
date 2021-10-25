@@ -1,8 +1,7 @@
 import React from "react";
-import { Redirect, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Route } from "react-router-dom";
 
-import Login from "../pages/Authentication/Login";
+import Login from "../pages/Authentication/Login/Login";
 
 export const routeConfig = [
   {
@@ -14,26 +13,12 @@ export const routeConfig = [
   { path: "*", component: Error },
 ];
 
-const PrivateRoute = (privateProps) => {
-  const { user } = useSelector((state) => state.user);
-
-  if (user) return <privateProps.component {...privateProps} />;
-
-  return <Redirect to="/login" />;
-};
-
 export const RouteWithSubRoutes = (route) => {
   return (
     <Route
       path={route.path}
       exact={route.exact}
-      render={(props) =>
-        route.isPrivate ? (
-          <PrivateRoute {...route} />
-        ) : (
-          <route.component {...props} />
-        )
-      }
+      render={(props) => <route.component {...props} />}
     />
   );
 };

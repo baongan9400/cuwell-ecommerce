@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
+import "./assets/scss/index.scss";
+import Toast from "components/Toast";
+import { routeConfig, RouteWithSubRoutes } from "router/config";
+
+import Login from "./pages/Authentication/Login/Login";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="content-wrapper">
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={Login} />
+          {routeConfig.map((route, i) => (
+            <RouteWithSubRoutes key={i} {...route} />
+          ))}
+        </Switch>
+      </BrowserRouter>
+      <Toast />
     </div>
   );
 }
