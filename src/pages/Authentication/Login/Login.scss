@@ -1,6 +1,6 @@
 @import "../../../assets/scss/app.scss";
 .login-bgr {
-  background-color: #022873 !important;
+  background-color: $color_primary !important;
   background-image: url(../../../assets/images/bottom-bg.png);
   background-repeat: no-repeat, repeat;
   background-position: right;
@@ -58,7 +58,7 @@
             appearance: none;
             border-radius: 4px;
             outline: none;
-            background-color: $color_orange !important;
+            background-color: $color_primary !important;
             cursor: pointer;
             margin-right: 8px;
           }

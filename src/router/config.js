@@ -1,3 +1,4 @@
+import SignUp from "pages/Authentication/SignUp/SignUp";
 import React from "react";
 import { Route } from "react-router-dom";
 
@@ -9,6 +10,12 @@ export const routeConfig = [
     isPrivate: false,
     exact: true,
     component: Login,
+  },
+  {
+    path: "/signup",
+    isPrivate: false,
+    exact: true,
+    component: SignUp,
   },
   { path: "*", component: Error },
 ];
