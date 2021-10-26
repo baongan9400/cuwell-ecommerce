@@ -1,3 +1,4 @@
+import NavBar from "components/NavBar/NavBar";
 import SignUp from "pages/Authentication/SignUp/SignUp";
 import React from "react";
 import { Route } from "react-router-dom";
@@ -17,6 +18,13 @@ export const routeConfig = [
     exact: true,
     component: SignUp,
   },
+  {
+    path: "/navbar",
+    isPrivate: false,
+    exact: true,
+    component: NavBar,
+  },
+
   { path: "*", component: Error },
 ];
 
