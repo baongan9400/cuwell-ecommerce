@@ -1,0 +1,127 @@
+@import "../../../assets/scss/app.scss";
+.signup-bgr {
+  background-color: $color_white !important;
+  background-image: url(../../../assets/images/bottom-bg-signup.png);
+  background-repeat: no-repeat, repeat;
+  background-position: right;
+  background-size: contain;
+  height: 100vh;
+  scroll-behavior: smooth;
+  .signup-wrapper {
+    background: #ffffff;
+    box-shadow: -10px -20px 10px rgba(7, 80, 222, 0.08),
+      inset -5px -5px 10px rgba(95, 101, 255, 0.14);
+    border-radius: 20px;
+    position: fixed;
+    top: 10%;
+    width: 470px;
+    height: 670px;
+    margin-left: 120px;
+    &-title {
+      margin-left: 48px;
+      padding-top: 40px;
+    }
+    .signup {
+      &-title {
+        font-size: 30px;
+        font-weight: 900;
+        line-height: 48px;
+      }
+      &-title {
+        margin-bottom: 6px;
+      }
+    }
+    .label-form,
+    .label-comfirm {
+      font-weight: 600;
+      font-size: 12px;
+      color: #282830;
+      margin-bottom: 4px;
+    }
+    .label-form {
+      margin-top: 21px;
+    }
+    .label-comfirm {
+      margin-top: 31px;
+    }
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+      font-size: 14px;
+      background-color: $bg_gray_input;
+      border-radius: 2px;
+      border: none;
+    }
+    .form-wrapper {
+      margin: 0 auto;
+      max-width: 380px;
+    }
+    .form-group {
+      margin-bottom: 0;
+    }
+    button[type="submit"] {
+      background: $color_button_submit;
+      border-radius: 8px;
+      color: $color_white;
+      font-style: normal;
+      font-size: 13px;
+      border: solid;
+      padding: 8px 0;
+    }
+    button[type="submit"]:hover {
+      color: $color_white;
+      opacity: 0.5;
+    }
+    .text-muted-2,
+    .text-muted-1 {
+      font-size: 14px;
+      color: #666666;
+      margin-top: 37px;
+    }
+    .text-muted-1 {
+      span {
+        color: $color_blue;
+        font-weight: bold;
+      }
+    }
+    .text-muted-2 {
+      font-size: 14px;
+      margin-left: 15%;
+      margin-top: 37px;
+      a {
+        color: $color_blue;
+        font-weight: bold;
+      }
+    }
+
+    a:link {
+      text-decoration: none;
+    }
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="email"]:focus {
+      outline: 0 none;
+    }
+    .errors {
+      color: $color_error;
+      font-size: 12px;
+      margin: 4px 0 0 0;
+    }
+    .btn-signup {
+      margin-top: 42px;
+
+      button {
+        width: 100%;
+      }
+    }
+    .input-group-text {
+      width: 40px;
+      background-color: $bg_gray_input;
+      font-size: 12px;
+      height: 100%;
+    }
+    .input-group-text {
+      border: none;
+    }
+  }
+}
