@@ -1,0 +1,122 @@
+.product-item {
+  margin-bottom: 30px;
+  transition: transform 0.2s;
+  /* Animation */
+  background: #ffffff;
+  box-shadow: 0px 10px 10px #86befda1;
+  border-radius: 20px;
+}
+
+.price {
+  font-weight: 900;
+  line-height: 40px;
+  color: #2a5f9e;
+  font-size: 15px !important;
+}
+
+.product-item {
+  &:hover {
+    transform: scale(1.1);
+
+    /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
+  &-description {
+    font-weight: 100;
+    font-size: 12px !important;
+    line-height: 24px;
+  }
+
+  .down-content {
+    padding: 20px 25px 15px 25px;
+    position: relative;
+  }
+
+  img {
+    width: 60%;
+    height: 20%;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  .down-content {
+    h4 {
+      font-weight: bold;
+      margin-bottom: 5px;
+      font-size: 15px;
+      color: #021718;
+    }
+
+    h6 {
+      position: absolute;
+      top: 10px;
+      right: 30px;
+
+      /* font-size: 13px; */
+      color: #be1e09;
+    }
+
+    p {
+      margin-bottom: 20px;
+      font-size: 13px;
+    }
+
+    ul li {
+      display: inline-block;
+
+      i {
+        color: #f33f3f;
+        font-size: 14px;
+      }
+    }
+
+    span {
+      position: absolute;
+      right: 30px;
+      bottom: 30px;
+      font-size: 13px;
+      color: #f33f3f;
+      font-weight: 500;
+    }
+  }
+}
+
+.text-break {
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 16px;
+
+  /* fallback */
+  max-height: 50px;
+
+  /* fallback */
+  -webkit-line-clamp: 2;
+
+  /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+.text-break-head {
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  /* display: -webkit-box; */
+  line-height: 1.5em;
+
+  /* max-height: 32px;  */
+  -webkit-line-clamp: 1;
+
+  /* number of lines to show */
+  -webkit-box-orient: vertical;
+  height: 43px;
+
+  /* height is 2x line-height, so two lines will display */
+}
+
+.col-half-offset {
+  margin-left: 4.166666667%;
+}

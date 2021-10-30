@@ -33,7 +33,8 @@ $pc_page_sidebar_padding: 40px;
 //  color
 $color_primary: #022873;
 $color_error: #ff1f00;
-
+$color_blue_light: rgba(4, 13, 225, 1);
+$color_blue_heading: rgba(5, 100, 212, 1);
 $color_font_base: #282830;
 
 $color_gray_border: #cecfd0;
@@ -41,23 +42,13 @@ $color_gray_border: #cecfd0;
 $color_bg_content: #eee;
 $color_white: #fff;
 $color_black: #000;
-$color_border: #a7a7a7;
 $color_gray: #5a5a5f;
-$color_main: #f4f4f4;
-$color_yellow: #ffd800;
-$color_cream: #ddd7634d;
-$color_light_orange: #eacfa8;
-$bg_cream: #ddd7634d;
-$bg_green: #0943;
-$bg_orange: #fe84024d;
-$color_light_green: #84cb45;
 $bg_dark_gray: #606060;
 $color_light_gray: #e5e5e5;
 $bg_gray: #bebebe;
 $color_gray_plus: #bdbdbd;
 $color_border_header: #d9d9d9;
 $bg_light_gray: #d2d2d2;
-$bg_progress: #5c5b57;
 $color_black_title: #282830;
 $color_border_creator: #adadb0;
 $color_bg_progress: #d5d5d5;
@@ -66,15 +57,9 @@ $color_job: #8b8b8b;
 $color_blue: #00b4ff;
 $color_light_blue: #00b4ff33;
 $color_button_submit: #0564d5;
-$color_blue_dark: rgba(1, 20, 52, 1);
+$color_blue_dark: rgba(1, 20, 52, 0.79);
 $color_blue_active: #00b4ff80;
-$color_scroll: #e8e8e8;
 
-// profile color
-$color_text_brown: #666666;
-$color_text_brown_bright: #afafaf;
-$color_cross_time: #dfdfdf;
-$color_bg_button_bottom: #eff0f0;
 // project color
 $bg_gray_input: #e7e7e7;
 $bg_gray_text: #6a6b70;
