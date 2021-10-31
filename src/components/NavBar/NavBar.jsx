@@ -115,7 +115,7 @@ const NavBar = () => {
         </div>
       </div>
       <nav
-        className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
+        className="navbar navbar-expand-lg ftco_navbar ftco-navbar-light"
         id="ftco-navbar"
       >
         <div className="container-fluid">
@@ -133,23 +133,21 @@ const NavBar = () => {
           <div className="collapse navbar-collapse" id="ftco-nav">
             <ul className="navbar-nav m-auto">
               <li className="nav-item active">
-                <a href="#" className="nav-link">
+                <a href="/" className="nav-link">
                   Home
                 </a>
               </li>
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
-                  href="#"
-                  id="dropdown04"
+                  href="/"
                   data-bs-toggle="dropdown"
-                  aria-haspopup="true"
                   aria-expanded="false"
                 >
                   Category
                 </a>
                 <div className="dropdown-menu" aria-labelledby="dropdown04">
-                  <a className="dropdown-item" href="#">
+                  <a className="dropdown-item" href="/">
                     Category 1
                   </a>
                   <a className="dropdown-item" href="#">

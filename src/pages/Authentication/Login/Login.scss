@@ -7,18 +7,19 @@
   background-size: contain;
   height: 100vh;
   scroll-behavior: smooth;
+  overflow-y: scroll;
   .login-wrapper {
     background: #ffffff;
     box-shadow: inset -10px -10px 10px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
     position: fixed;
     top: 5%;
-    width: 470px;
-    height: 670px;
+    width: 450px;
+    height: 600px;
     margin-left: 120px;
     &-title {
       margin-left: 48px;
-      padding-top: 40px;
+      padding-top: 25px;
     }
     .login {
       &-title {
@@ -168,7 +169,7 @@
           }
         }
         &-submit {
-          margin-top: 77px;
+          margin-top: 42px;
           &-btn {
             padding: 8px 0;
             width: 100%;
@@ -195,7 +196,7 @@
     }
     .directional-signup {
       margin: 0 auto;
-      margin-top: 80px;
+      margin-top: 65px;
       max-width: 380px;
       display: flex;
       justify-content: center;

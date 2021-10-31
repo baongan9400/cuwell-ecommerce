@@ -1,5 +1,6 @@
 import NavBar from "components/NavBar/NavBar";
 import SignUp from "pages/Authentication/SignUp/SignUp";
+import Home from "pages/Home";
 import React from "react";
 import { Route } from "react-router-dom";
 
@@ -24,7 +25,12 @@ export const routeConfig = [
     exact: true,
     component: NavBar,
   },
-
+  {
+    path: "/home",
+    isPrivate: false,
+    exact: true,
+    component: Home,
+  },
   { path: "*", component: Error },
 ];
 

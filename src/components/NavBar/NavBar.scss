@@ -1,11 +1,11 @@
 @import "../../assets/scss/app.scss";
 .ftco-section {
-  padding: 7em 0;
+  // padding: 7em 0;
   padding-top: 30px;
 
   .heading-section {
     font-size: 28px;
-    color: #000;
+    color: $color_blue_dark;
   }
 
   .img {
@@ -15,9 +15,10 @@
   }
 
   .ftco-navbar-light {
-    background: $color_blue_dark !important;
+    background: rgba(1, 20, 52, 0.79);
+    box-sizing: border-box;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
     z-index: 3;
-    opacity: 0.8;
     padding: 0;
 
     .navbar-nav > .nav-item {

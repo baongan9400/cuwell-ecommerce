@@ -1,0 +1,80 @@
+.popup-sm-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.popup-sm-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.popup-sm-img {
+  margin-left: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.popup-sm-user {
+  margin-left: 60px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 40px;
+}
+
+.popup-sm-username {
+  color: rgb(1, 22, 70);
+  width: 160px;
+  font-weight: 700;
+    word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 16px; /* fallback */
+    max-height: 32px; /* fallback */
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+.popup-sm-user-price {
+  color: rgb(255, 94, 0);
+  font-weight: 400;
+  left: 60px; 
+  font-weight: 400;
+  display: flex;
+}
+
+.popup-sm-button {
+  margin-left: auto;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 10px;
+  padding: 7px 10px;
+  background-color: #eeeef7;
+  color: #555;
+  cursor: pointer;
+}
+
+.popup-sm-icon {
+  font-size: 16px !important;
+  margin-right: 10px;
+  color: rgb(241, 62, 7);
+}
+hr.solid{
+ height:1px;
+ width:100%;
+ border-top: 1px solid rgba(250, 134, 2, 0.199);
+}
+.li-list-wrapper:hover {
+  background: rgb(231, 229, 229);
+  border-radius: 10px;
+}

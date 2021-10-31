@@ -1,0 +1,48 @@
+@import "../../../assets/scss/app.scss";
+.banner-wrapper {
+  .carousel-caption {
+    top: 20%;
+    transform: translateX(0%);
+  }
+
+  .carousel-caption h2,
+  .carousel-caption h5 {
+    color: $color_blue_heading;
+    border-radius: 60px;
+    font-weight: 900;
+  }
+  .carousel-caption h5 {
+    color: $color_blue_dark;
+    padding-top: 12px;
+  }
+  .phone {
+    top: 10%;
+    transform: translateX(-30%);
+    h2 {
+      font-size: 50px;
+      font-weight: bolder;
+      line-height: 70px;
+    }
+  }
+  .phone {
+    animation: blinker 1s linear infinite;
+  }
+
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+    70% {
+      opacity: 0.5;
+    }
+  }
+  .carousel .carousel-item-banner {
+    height: 550px !important;
+  }
+  .banner-book {
+    h2,
+    h5 {
+      color: bisque;
+    }
+  }
+}
