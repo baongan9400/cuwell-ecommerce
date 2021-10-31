@@ -7,51 +7,83 @@ import "./Footer.scss";
 function Footer(props) {
   return (
     <div className="footer-wrapper">
-      <section className="footer py-3">
-        <div className="container py-5">
+      <footer className="footer">
+        <div className="container">
           <div className="row">
-            <div className="col-lg-11 m-auto  ">
-              <div className="row">
-                <div className="col-lg-3 py-5">
-                  <h5 className="footer-h5">Get to Know Us</h5>
-                  <p>Careers</p>
-                  <p>Blog</p>
-                  <p>About Cuwell</p>
-                </div>
-                <div className="col-lg-3 py-5">
-                  <h5 className="footer-h5">Make Money with Us</h5>
-                  <p>Sell products on Cuwell</p>
-                  <p>Sell on Amazon Business</p>
-                  <p>Sell apps on Amazon</p>
-                </div>
-                <div className="col-lg-3 py-5">
-                  <h5 className="footer-h5">Payment Products</h5>
-                  <p>Cuwell Business Card</p>
-                  <p>Shop with Points</p>
-                  <p>Reload Your Balance</p>
-                </div>
-                <div className="col-lg-3 py-5">
-                  <h5 className="pb-3 footer-h5">CUSTOMER CARE</h5>
-                  <span>
-                    <i className="fab fa-facebook fa-size"></i>
-                  </span>
-                  <span>
-                    <i className="fab fa-instagram fa-size"></i>
-                  </span>
-                  <span>
-                    <i className="fab fa-twitter fa-size"></i>
-                  </span>
-                  <span>
-                    <i className="fab fa-google-plus fa-size"></i>
-                  </span>
-                </div>
+            <div className="footer-col">
+              <h4>company</h4>
+              <ul>
+                <li>
+                  <a href="#">about us</a>
+                </li>
+                <li>
+                  <a href="#">our services</a>
+                </li>
+                <li>
+                  <a href="#">privacy policy</a>
+                </li>
+                <li>
+                  <a href="#">affiliate program</a>
+                </li>
+              </ul>
+            </div>
+            <div className="footer-col">
+              <h4>get help</h4>
+              <ul>
+                <li>
+                  <a href="#">FAQ</a>
+                </li>
+                <li>
+                  <a href="#">shipping</a>
+                </li>
+                <li>
+                  <a href="#">returns</a>
+                </li>
+                <li>
+                  <a href="#">order status</a>
+                </li>
+                <li>
+                  <a href="#">payment options</a>
+                </li>
+              </ul>
+            </div>
+            <div className="footer-col">
+              <h4>online shop</h4>
+              <ul>
+                <li>
+                  <a href="#">watch</a>
+                </li>
+                <li>
+                  <a href="#">bag</a>
+                </li>
+                <li>
+                  <a href="#">shoes</a>
+                </li>
+                <li>
+                  <a href="#">dress</a>
+                </li>
+              </ul>
+            </div>
+            <div className="footer-col">
+              <h4>follow us</h4>
+              <div className="social-links">
+                <a href="#">
+                  <i className="fab fa-facebook-f"></i>
+                </a>
+                <a href="#">
+                  <i className="fab fa-twitter"></i>
+                </a>
+                <a href="#">
+                  <i className="fab fa-instagram"></i>
+                </a>
+                <a href="#">
+                  <i className="fab fa-linkedin-in"></i>
+                </a>
               </div>
             </div>
           </div>
-          <hr />
-          <p className="text-center">Copy right @2021 All rights reserved</p>
         </div>
-      </section>
+      </footer>
     </div>
   );
 }
