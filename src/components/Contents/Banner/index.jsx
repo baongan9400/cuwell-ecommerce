@@ -64,13 +64,12 @@ function Banner(props) {
             data-bs-interval="2000"
           >
             <img
-              src="https://images.pexels.com/photos/3747518/pexels-photo-3747518.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+              src="https://images.pexels.com/photos/5634667/pexels-photo-5634667.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
               className="d-block w-100"
               alt="..."
             />
             <div className="carousel-caption d-none d-md-block banner-book">
-              <h2>Buy Cheap Books Online at Cuwell</h2>
-              <h5>Cheap prices on high quality gently used books </h5>
+              {/* <h2>Buy Cheap Books Online at Cuwell</h2> */}
             </div>
           </div>
         </div>

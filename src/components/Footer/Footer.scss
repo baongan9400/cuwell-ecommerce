@@ -1,8 +1,8 @@
 @import "../../assets/scss/app.scss";
 .footer-wrapper {
   .footer {
-    background-color: $color_blue_dark;
-    color: white;
+    background-color: white;
+    color: $color_blue_dark;
   }
 
   .btn2 {
@@ -27,7 +27,7 @@
 
     p {
       margin: 0;
-      color: $color_light_gray;
+      color: $color_blue_dark;
     }
   }
 
