@@ -4,6 +4,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./Login.scss";
 
+import bgImage from "assets/images/bottom-bg.png";
+
 const Login = () => {
   const [isShowPassword, setIsShowPassword] = React.useState(false);
 
@@ -28,6 +30,7 @@ const Login = () => {
 
   return (
     <div className="login-bgr">
+      <img src={bgImage} alt="bgImage" className="bgImage" />
       <div className="login-wrapper">
         <div className="login-wrapper-title">
           <h2 className="login-title">Log In</h2>

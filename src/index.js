@@ -8,7 +8,7 @@ import store from "./store/store";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
-
+import "./core/react-i18n";
 ReactDOM.render(
   <Provider store={store}>
     <App />

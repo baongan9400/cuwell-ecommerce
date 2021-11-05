@@ -25,9 +25,10 @@
   }
   .slide {
     img {
-      width: 11rem;
-      height: 14rem;
+      width: 10rem;
+      height: 11rem;
       margin: 0 auto;
+      border-radius: 10px;
     }
 
     transform: scale(0.4);

@@ -1,4 +1,5 @@
 import NavBar from "components/NavBar/NavBar";
+import PostDetail from "components/PostDetail";
 import SignUp from "pages/Authentication/SignUp/SignUp";
 import Home from "pages/Home";
 import React from "react";
@@ -31,6 +32,13 @@ export const routeConfig = [
     exact: true,
     component: Home,
   },
+  {
+    path: "/post/:post_id",
+    component: PostDetail,
+    isPrivate: false,
+    exact: true,
+  },
+
   { path: "*", component: Error },
 ];
 
