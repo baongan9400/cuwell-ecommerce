@@ -1,0 +1,207 @@
+@import "../../assets/scss/app.scss";
+.createPost-bgr {
+  // background-color: $color_primary !important;
+  // background-image: url(../../../assets/images/bottom-bg.png);
+  // background-repeat: no-repeat, repeat;
+  // background-position: right;
+  // background-size: cover;
+  padding: 70px;
+  position: relative;
+  height: 100vh;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+
+  display: flex;
+  align-items: center;
+  input {
+    background-color: #e8f0fe !important;
+  }
+  .bgImage {
+    position: absolute;
+    object-fit: cover;
+    height: 100%;
+    top: 0;
+    right: 0;
+  }
+
+  .createPost-wrapper {
+    z-index: 9999;
+    background: #ffffff;
+    box-shadow: -10px -20px 10px rgba(7, 80, 222, 0.08),
+      inset -5px -5px 10px rgba(95, 101, 255, 0.14);
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1227px;
+    height: fit-content;
+    button{
+      padding: 8px 0;
+      width: 100%;
+      background: #0564d5;
+      filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+                  font-size: 14px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+    }
+    &-title {
+      margin-left: 48px;
+      padding-top: 70px;
+    }
+    .createPost {
+      &-title {
+        font-size: 30px;
+        font-weight: 900;
+        line-height: 48px;
+      }
+      &-title {
+        margin-bottom: 6px;
+      }
+      > p {
+        font-size: 16px;
+        font-weight: 400;
+      }
+      &-form {
+        margin: 0 auto;
+        margin-top: 40px;
+        margin-bottom: 60px;
+        padding: 0 80px;
+        .group-editor {
+          padding-right: 100px;
+        }
+        &-group {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+        }
+        &-group {
+          margin-top: 31px;
+          > label {
+            font-size: 16px;
+            font-weight: 900;
+            margin-bottom: 4px;
+          }
+          > input {
+            border: none;
+            padding: 6px 16px;
+            background-color: $bg_gray_input;
+          }
+          > textarea {
+            min-height: 200px;
+          }
+        }
+        &-submit {
+          margin-top: 42px;
+          &-btn {
+            padding: 8px 0;
+            width: 100%;
+            background: $color_button_submit;
+            filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            color: $color_white;
+            border: none;
+            border-radius: 4px;
+          }
+          &-btn:hover {
+            opacity: 0.5;
+          }
+        }
+        .quantity-control {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: auto;
+          background: #e8f0fe;
+          padding: 0.6rem 0.4rem;
+        }
+
+        .quantity-btn {
+          background: transparent;
+          border: none;
+          outline: none;
+          margin: 0;
+          padding: 0px 8px;
+          cursor: pointer;
+        }
+        .quantity-btn svg {
+          width: 15px;
+          height: 15px;
+        }
+        .quantity-input {
+          outline: none;
+          user-select: none;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: transparent;
+          border: none;
+        }
+        .quantity-input::-webkit-inner-spin-button,
+        .quantity-input::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        .upload-img-wrapper {
+          img {
+            border-radius: 20px;
+          }
+          .btn-upload {
+            background-color: #28a2b59c;
+            margin: 0 auto;
+            margin-top: 22px;
+            max-width: 200px;
+          }
+        }
+        .btn-create{
+          margin: 50px auto;
+          width: 300px;
+        }
+      }
+    }
+
+    .directional-signup {
+      margin: 0 auto;
+      margin-top: 65px;
+      max-width: 380px;
+      display: flex;
+      justify-content: center;
+      p {
+        font-size: 14px;
+        font-weight: 400;
+        color: $bg_gray_text;
+      }
+      &-link {
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none !important;
+        color: $color_blue !important;
+        margin-left: 5px;
+      }
+    }
+    .input-password {
+      position: relative;
+      padding-right: 32px !important;
+    }
+    .show-password {
+      position: absolute;
+      top: 28px;
+      right: 8px;
+      z-index: 10;
+      opacity: 50%;
+    }
+    .show-password:hover {
+      cursor: pointer;
+      opacity: 100%;
+    }
+    .errors {
+      color: $color_error;
+      font-size: 12px;
+      margin: 4px 0 0 0;
+    }
+  }
+}
