@@ -1,9 +1,10 @@
 import NavBar from "components/NavBar/NavBar";
+import PostDetail from "components/PostDetail";
 import SignUp from "pages/Authentication/SignUp/SignUp";
+import ErrorPage from "pages/Error/ErrorPage";
 import Home from "pages/Home";
 import React from "react";
 import { Route } from "react-router-dom";
-
 import Login from "../pages/Authentication/Login/Login";
 
 export const routeConfig = [
@@ -31,7 +32,14 @@ export const routeConfig = [
     exact: true,
     component: Home,
   },
-  { path: "*", component: Error },
+  {
+    path: "/post/:post_id",
+    component: PostDetail,
+    isPrivate: false,
+    exact: true,
+  },
+
+  { path: "*", component: ErrorPage },
 ];
 
 export const RouteWithSubRoutes = (route) => {

@@ -1,19 +1,33 @@
 @import "../../../assets/scss/app.scss";
 .login-bgr {
   background-color: $color_primary !important;
-  background-image: url(../../../assets/images/bottom-bg.png);
-  background-repeat: no-repeat, repeat;
-  background-position: right;
-  background-size: contain;
+  // background-image: url(../../../assets/images/bottom-bg.png);
+  // background-repeat: no-repeat, repeat;
+  // background-position: right;
+  // background-size: cover;
+  position: relative;
   height: 100vh;
   scroll-behavior: smooth;
   overflow-y: scroll;
+
+  display: flex;
+  align-items: center;
+
+  .bgImage {
+    position: absolute;
+    object-fit: cover;
+    height: 100%;
+    top: 0;
+    right: 0;
+  }
+
   .login-wrapper {
+    z-index: 9999;
     background: #ffffff;
     box-shadow: inset -10px -10px 10px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
-    position: fixed;
-    top: 5%;
+    // position: fixed;
+    // top: 5%;
     width: 450px;
     height: 600px;
     margin-left: 120px;
