@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -8,7 +8,7 @@ import bgImage from "assets/images/bg-create-post.png";
 import uploadImage from "assets/images/upload-img.png";
 
 const CreatePost = () => {
-  const [isShowPassword, setIsShowPassword] = React.useState(false);
+  const [image, setImage] = useState(null);
 
   const formik = useFormik({
     initialValues: {
@@ -28,7 +28,11 @@ const CreatePost = () => {
   const touched = formik.touched;
   const error = formik.errors;
   const values = formik.values;
-
+  const handleChange = (event) => {
+    if (event.target.files[0] !== undefined) {
+      setImage(event.target.files[0]);
+    }
+  };
   return (
     <div className="createPost-bgr">
       <img src={bgImage} alt="bgImage" className="bgImage" />
@@ -110,7 +114,14 @@ const CreatePost = () => {
             </div>
             <div className="col-6 upload-img-wrapper">
               <div className="img-display">
-                <img src={uploadImage}></img>
+                <img
+                  src={
+                    image === null ? uploadImage : URL.createObjectURL(image)
+                  }
+                  alt="preview"
+                  style={{ height: "250px" }}
+
+                />
               </div>
               <label htmlFor="file" className="btn-upload">
                 {/* <button className="btn-upload" type="button"> */}
@@ -129,11 +140,11 @@ const CreatePost = () => {
                 </svg>
                 <span className="ms-4">Upload image</span>
                 <input
-            type="file"
-            id="file"
-            style={{ display: "none" }}
-            // onChange={(event) => handleChange(event)}
-          />
+                  type="file"
+                  id="file"
+                  style={{ display: "none" }}
+                  onChange={(event) => handleChange(event)}
+                />
               </label>
               <div className="img-display-group row mt-5">
                 <img className="col-4" src={uploadImage}></img>
