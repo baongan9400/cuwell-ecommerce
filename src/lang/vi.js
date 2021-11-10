@@ -13,7 +13,13 @@ export default {
         list_user: "danh sách",
         home: "trang chủ",
         post: "bài đăng",
-        category: "danh mục",
+        category: "Danh mục",
+        search: "Tìm kiếm sản phẩm",
+        all: {
+          food: "Đồ ăn",
+          book: "Sách",
+        },
+        books: "Sách và VPP",
       },
       lang: {
         en: "tiếng anh",

@@ -1,3 +1,5 @@
+@import "../../assets/scss/app.scss";
+
 .postStatusSeller {
   width: 100%;
   box-sizing: border-box;
@@ -34,8 +36,35 @@
         font-weight: 600;
         font-size: 18px;
         line-height: 22px;
-        /* identical to box height */
+        display: flex;
+        justify-content: center;
+        align-items: center;
         color: #011434;
+        .buyer-img {
+          border: 1px solid #fffffa;
+          box-sizing: border-box;
+          border-radius: 180px;
+          width: 55px;
+          height: 50px;
+          margin-left: -7px;
+        }
+        .user_name {
+          font-weight: 600;
+          font-size: 18px;
+          letter-spacing: 0.07rem;
+        }
+        .user_info {
+          font-weight: 300;
+          font-size: 18px;
+          letter-spacing: 0.07rem;
+        }
+        i {
+          font-size: 40px;
+          color: $color_blue_active;
+        }
+        .fa-map-marker-alt {
+          color: $color_error;
+        }
       }
 
       &__number {
@@ -51,15 +80,6 @@
         min-width: 132px;
         .stars {
           color: rgb(255, 217, 0);
-        }
-      }
-
-      .numberCustom {
-        &_sale {
-          background: #5062b9 !important;
-        }
-        &_stock {
-          background: #9db0ee !important;
         }
       }
     }

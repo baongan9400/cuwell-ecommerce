@@ -5,8 +5,6 @@ import logo from "assets/images/logo.png";
 import { useTranslation } from "react-i18next";
 
 const NavBar = () => {
-  const [dropdownValue, setDropdown] = useState("All");
-
   // const { t, handleChangeLang, trans } = props;
   const { t, i18n } = useTranslation();
 
@@ -39,6 +37,9 @@ const NavBar = () => {
       setTrans("en");
     }
   };
+  const dropdownSearchValue = t("header.all.food");
+  const [dropdownValue, setDropdown] = useState(dropdownSearchValue);
+
   return (
     <div className="NavBar">
       <section className="ftco-section">
@@ -70,21 +71,21 @@ const NavBar = () => {
                         >
                           <li
                             className="dropdown-item"
-                            onClick={() => setDropdown("All")}
+                            onClick={() => setDropdown(dropdownValue)}
                           >
-                            All
+                            {dropdownValue}
                           </li>
                           <li
                             className="dropdown-item"
-                            onClick={() => setDropdown("Cars")}
+                            onClick={() => setDropdown(t("header.all.food"))}
                           >
-                            Cars
+                            {t("header.all.food")}
                           </li>
                           <li
                             className="dropdown-item"
                             onClick={() => setDropdown("Food")}
                           >
-                            Food
+                            Plants
                           </li>
                           <li
                             className="dropdown-item"
@@ -99,7 +100,7 @@ const NavBar = () => {
                         <input
                           type="text"
                           className="input"
-                          placeholder="Search"
+                          placeholder={t("header.search")}
                         />
                         <i className="fas fa fa-search" />
                       </div>
@@ -227,7 +228,7 @@ const NavBar = () => {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a href="/home" className="nav-link">
+                  <a href="/login" className="nav-link">
                     {t("header.login")}
                   </a>
                 </li>

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Error.scss";
 
-const Error = () => {
+const ErrorPage = () => {
   return (
     <div id="notfound">
       <div className="notfound">
@@ -14,10 +14,10 @@ const Error = () => {
           The page you are looking for might have been removed had its name
           changed or is temporarily unavailable.
         </p>
-        <a href="/">home page</a>
+        <a href="/home">home page</a>
       </div>
     </div>
   );
 };
 
-export default Error;
+export default ErrorPage;

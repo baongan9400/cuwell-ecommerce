@@ -5,6 +5,7 @@ import PostStatusQuantity from "components/PostStatus/PostStatusQuantity";
 import "./PostDetail.scss";
 import NavBar from "components/NavBar/NavBar";
 import PostStatusSeller from "components/PostStatus/PostStatusSeller";
+import FooterWave from "components/FooterWave/FooterWave";
 
 export function PostDetails() {
   const location = useLocation();
@@ -14,7 +15,11 @@ export function PostDetails() {
   const [nav2, setNav2] = useState(null);
   const slider1 = useRef(null);
   const slider2 = useRef(null);
-
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
   useEffect(() => {
     setNav1(slider1.current);
     setNav2(slider2.current);
@@ -126,7 +131,7 @@ export function PostDetails() {
               <div className="table-status-quantity col-5">
                 <PostStatusQuantity />
               </div>
-              <div className="col"></div>
+              <div className="col-md"></div>
               <div className="col-5">
                 <PostStatusSeller />
               </div>
@@ -134,6 +139,7 @@ export function PostDetails() {
           </div>
         </div>
       </div>
+      <FooterWave />
     </div>
   );
 }

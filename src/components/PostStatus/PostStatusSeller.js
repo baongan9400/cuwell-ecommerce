@@ -10,7 +10,14 @@ const PostStatusSeller = () => {
       </div>
       <div className="postStatusSeller__points">
         <div className="myPoints myPoints_user d-flex items-center justify-content-between">
-          <div className="myPoints__text capitalize">Total</div>
+          <div className="myPoints__text">
+            <img
+              src={"https://i.pravatar.cc/150?u=0904"}
+              className="buyer-img"
+              alt="..."
+            />
+            <div className="user_name ms-3">Taylor Swift</div>
+          </div>
           <div className="myPoints__number cursor-pointer">
             <div className="stars">
               <span className="fa fa-star checked"></span>
@@ -22,15 +29,17 @@ const PostStatusSeller = () => {
           </div>
         </div>
         <div className="myPoints d-flex items-center justify-content-between">
-          <div className="myPoints__text capitalize">Stock</div>
-          <div className="myPoints__number ml-2 numberCustom_stock cursor-pointer">
-            5
+          <div className="myPoints__text capitalize">
+            <i className="fas fa-phone-square-alt"></i>
+            <div className="user_info ms-3">012345678989</div>
           </div>
         </div>
         <div className="myPoints givePointsBottom d-flex items-center justify-content-between">
-          <div className="myPoints__text capitalize">Sale</div>
-          <div className="myPoints__number numberCustom_sale cursor-pointer">
-            7
+          <div className="myPoints__text capitalize">
+            <i className="fas fa-map-marker-alt"></i>
+            <div className="user_info ms-3">
+              123 Nguyen Luong Bang, Hoa Khanh, Lien Chieu, Da Nang
+            </div>
           </div>
         </div>
       </div>

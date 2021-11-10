@@ -16,6 +16,12 @@ export default {
         home: "home",
         post: "my post",
         category: "category",
+        search: "Search",
+        all: {
+          food: "Food",
+          book: "Books",
+        },
+        book: "Books",
       },
       lang: {
         en: "english",
