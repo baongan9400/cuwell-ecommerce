@@ -8,6 +8,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import Login from "../pages/Authentication/Login/Login";
 import CreatePost from "pages/CreatePost/CreatePost";
+import profile from "pages/Profile/profile";
 export const routeConfig = [
   {
     path: "/login",
@@ -45,7 +46,12 @@ export const routeConfig = [
     isPrivate: false,
     exact: true,
   },
-
+  {
+    path: "/profile",
+    component: profile,
+    isPrivate: false,
+    exact: true,
+  },
   { path: "*", component: ErrorPage },
 ];
 

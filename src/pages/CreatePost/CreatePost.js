@@ -14,12 +14,9 @@ const CreatePost = () => {
     initialValues: {
       email: "",
       password: "",
+      description: ""
     },
     validationSchema: Yup.object({
-      email: Yup.string().email("Invalid email format").required("Required!"),
-      password: Yup.string()
-        .min(5, "Minimum 5 characters")
-        .required("Required!"),
     }),
     onSubmit: (values) => {
       console.log("values: ", values);
@@ -28,7 +25,7 @@ const CreatePost = () => {
   const touched = formik.touched;
   const error = formik.errors;
   const values = formik.values;
-  const handleChange = (event) => {
+  const handleImgChange = (event) => {
     if (event.target.files[0] !== undefined) {
       setImage(event.target.files[0]);
     }
@@ -100,11 +97,10 @@ const CreatePost = () => {
               <div className="form-group createPost-form-group">
                 <label>Description</label>
                 <textarea
-                  type="email"
                   className="form-control"
                   placeholder="Enter your email"
                   name="email"
-                  value={values.email}
+                  value={values.description}
                   onChange={formik.handleChange}
                 />
                 {error.email && touched.email && (
@@ -143,7 +139,7 @@ const CreatePost = () => {
                   type="file"
                   id="file"
                   style={{ display: "none" }}
-                  onChange={(event) => handleChange(event)}
+                  onChange={(event) => handleImgChange(event)}
                 />
               </label>
               <div className="img-display-group row mt-5">

@@ -21,7 +21,7 @@ const CardPost = (props) => {
             </div>
           </Link>
           <div className="row d-flex justify-content-between mt-3">
-            <p className="price col-md-8 mr-2">{VNDformat(price)}</p>
+            <p className="price col-md-8 me-2">{VNDformat(price)}</p>
             <div className="ml-3 col-md-4 ">
               <AddToCart item={props.post} />
             </div>

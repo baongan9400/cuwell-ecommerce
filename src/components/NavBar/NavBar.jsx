@@ -223,7 +223,7 @@ const NavBar = () => {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a href="/home" className="nav-link">
+                  <a href="/profile" className="nav-link">
                     {t("header.profile")}
                   </a>
                 </li>
