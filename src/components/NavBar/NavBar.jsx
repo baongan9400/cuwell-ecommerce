@@ -218,7 +218,7 @@ const NavBar = () => {
                   </div>
                 </li>
                 <li className="nav-item">
-                  <a href="/home" className="nav-link">
+                  <a href="/create-post" className="nav-link">
                     {t("header.post")}
                   </a>
                 </li>

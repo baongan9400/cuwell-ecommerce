@@ -1,3 +1,4 @@
+import { Create } from "@material-ui/icons";
 import NavBar from "components/NavBar/NavBar";
 import PostDetail from "components/PostDetail";
 import SignUp from "pages/Authentication/SignUp/SignUp";
@@ -6,7 +7,7 @@ import Home from "pages/Home";
 import React from "react";
 import { Route } from "react-router-dom";
 import Login from "../pages/Authentication/Login/Login";
-
+import CreatePost from "pages/CreatePost/CreatePost";
 export const routeConfig = [
   {
     path: "/login",
@@ -31,6 +32,12 @@ export const routeConfig = [
     isPrivate: false,
     exact: true,
     component: Home,
+  },
+  {
+    path: "/create-post",
+    isPrivate: false,
+    exact: true,
+    component: CreatePost,
   },
   {
     path: "/post/:post_id",
