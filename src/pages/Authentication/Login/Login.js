@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./Login.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import bgImage from "assets/images/bottom-bg.png";
 import { loginUserAction } from "redux/actions/login/authAction";
 
 const Login = (props) => {
   const dispatch = useDispatch();
+  const {check} = useSelector(state => state.userReducer);
   const [isShowPassword, setIsShowPassword] = React.useState(false);
 
   const formik = useFormik({
@@ -33,6 +34,9 @@ const Login = (props) => {
 
   return (
     <div className="login-bgr">
+       <div className={check ? "loading-bg" : "loading-bg d-none"}>
+        <img src="https://cutewallpaper.org/21/loading-gif-transparent-background/Free-Content-Discovery-Influencer-Marketing-Tool-Buzzsumo-.gif" alt="Loading..." />
+      </div>
       <img src={bgImage} alt="bgImage" className="bgImage" />
       <div className="login-wrapper">
         <div className="login-wrapper-title">

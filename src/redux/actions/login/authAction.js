@@ -1,14 +1,12 @@
 import * as types from "../../constants";
 
 export const loginUserAction = (email, password) => {
-  console.log("action");
   return {
     type: types.LOGIN_USER,
     email,
     password,
   };
 };
-
 /**
  *
  * @param {email, token} user

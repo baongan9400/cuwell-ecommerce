@@ -227,6 +227,7 @@ const NavBar = () => {
                     {t("header.profile")}
                   </a>
                 </li>
+
                 <li className="nav-item">
                   <a href="/login" className="nav-link">
                     {t("header.login")}
