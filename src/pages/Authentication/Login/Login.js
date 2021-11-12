@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./Login.scss";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import bgImage from "assets/images/bottom-bg.png";
 import { loginUserAction } from "redux/actions/login/authAction";
 
 const Login = (props) => {
+  const { login } = props;
+  const dispatch = useDispatch();
   const [isShowPassword, setIsShowPassword] = React.useState(false);
 
   const formik = useFormik({
@@ -23,7 +25,7 @@ const Login = (props) => {
     }),
     onSubmit: (values) => {
       console.log(values.email, values.password);
-      props.login(values.email, values.password);
+      dispatch(loginUserAction(values.email, values.password));
     },
   });
   const touched = formik.touched;
@@ -112,11 +114,12 @@ const Login = (props) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    login: (email, password) => {
-      dispatch(loginUserAction(email, password));
-    },
-  };
-};
-export default connect(mapDispatchToProps)(Login);
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     login: (email, password) => {
+//       dispatch(loginUserAction(email, password));
+//     },
+//   };
+// };
+// export default connect(mapDispatchToProps)(Login);
+export default Login;

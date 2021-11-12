@@ -2,7 +2,7 @@ import axios from "axios";
 import queryString from "query-string";
 
 const axiosManagement = axios.create({
-  baseURL: process.env.REACT_APP_LOCAL_API_URL,
+  baseURL: process.env.REACT_APP_AUTH_API_URL,
   headers: {
     "content-type": "application/json",
   },
@@ -10,11 +10,12 @@ const axiosManagement = axios.create({
 });
 
 axiosManagement.interceptors.request.use(async (config) => {
+  console.log(config);
   const token = JSON.parse(localStorage.getItem("token"));
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
     return config;
-  } else return null;
+  } else return config;
 });
 
 axiosManagement.interceptors.response.use(
@@ -27,7 +28,7 @@ axiosManagement.interceptors.response.use(
   (error) => {
     // handle error
     throw error;
-  }
+  },
 );
 
 export default axiosManagement;
