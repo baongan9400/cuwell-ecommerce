@@ -1,8 +1,12 @@
 import React from "react";
+import ReactPaginate from "react-paginate";
 import CardPost from "../Post/CardPost";
 import * as Loader from "../Post/CardPostLoading";
+import "./PostList.scss";
+import { useDispatch} from "react-redux";
+import {searchLoading} from "redux/actions/posts/search.action"
+function ListCardPost(props) {
 
-function Posts(props) {
   const { posts, load, size } = props;
   if (load === true) return <Loader.PostListLoading size={size ? size : 18} />;
   else
@@ -13,12 +17,39 @@ function Posts(props) {
       </>
     );
 }
-
 function PostList(props) {
   const { posts, load, size } = props;
+  const dispatch = useDispatch();
+  const searchParams = (selectNumber) =>{
+    const params = {
+      search: '',
+      category: '',
+      page: selectNumber.selected,
+      page_size: 18,
+  }
+    dispatch(searchLoading(params));
+  }
   return (
     <>
-      <Posts load={load} posts={posts} size={size} />
+      <ListCardPost load={load} posts={posts} size={size} />
+      <div className="pagination-custom">
+        <nav aria-label="Page navigation example">
+          <ReactPaginate
+          pageCount={40}
+          pageRange={1}
+          marginPagesDisplayed={1}
+          onPageChange={searchParams}
+          containerClassName={"pagination"}
+          previousLinkClassName={"page-link"}
+          breakLinkClassName={"page-link page-item"}
+          nextLinkClassName={"page-link"}
+          pageLinkClassName={"page-link"}
+          disabledClassName={""}
+          activeLinkClassName={"page-link"}
+        />
+        </nav>
+        
+      </div>
     </>
   );
 }

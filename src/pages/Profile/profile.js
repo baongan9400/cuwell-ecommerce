@@ -215,11 +215,11 @@ function Profile(props) {
 
 }
 
-// function mapStateToProps(state) {
-//   const { user } = state.userReducer;
-//   return {
-//     user
-//   };
-// }
+function mapStateToProps(state) {
+  const { user } = state.userReducer;
+  return {
+    user
+  };
+}
 
 export default Profile;
