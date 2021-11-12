@@ -49,7 +49,7 @@ const NavBar = () => {
               <div className="row">
                 <div className="col-md-6 text-center">
                   <a className="navbar-brand-logo" href="/home">
-                    <img classname="logo" src={logo} alt="" />
+                    <img className="logo" src={logo} alt="" />
                   </a>
                 </div>
                 <div className="col-md-6 d-md-flex justify-content-end mb-md-0 mb-3">
@@ -156,7 +156,7 @@ const NavBar = () => {
                           }
                           data-bs-toggle="button"
                           aria-pressed={trans === "en" ? true : false}
-                          autocomplete="off"
+                          autoComplete="off"
                           onClick={() => handleChangeLang()}
                         >
                           <div className="inner-handle"></div>

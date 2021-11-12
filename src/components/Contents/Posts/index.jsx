@@ -14,13 +14,11 @@ function Posts() {
     search: "",
     category: "",
     page: 1,
-    page_size: 18,
+    page_size: 12,
   };
   useEffect(() => {
     dispatch(searchLoading(params));
   }, []);
-  const postList = data;
-
   return (
     <div className="latest-products">
       <div className="container-fluid">
@@ -35,7 +33,7 @@ function Posts() {
               </Link>
             </div>
           </div>
-          <PostList load={load} posts={postList} />
+          <PostList load={load} posts={data.results} />
         </div>
       </div>
     </div>
