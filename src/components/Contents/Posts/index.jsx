@@ -1,6 +1,6 @@
-import React,  { useEffect } from "react";
+import React, { useEffect } from "react";
 import PostList from "../../../components/PostList";
-import { searchLoading } from "redux/actions/posts/search.action"; 
+import { searchLoading } from "redux/actions/posts/search.action";
 
 import "./posts.scss";
 import { Link } from "react-router-dom";
@@ -8,17 +8,17 @@ import { useDispatch, useSelector } from "react-redux";
 
 function Posts() {
   const dispatch = useDispatch();
-  const {load, data} = useSelector(state => state.searchPostsReducer);
+  const { load, data } = useSelector((state) => state.searchPostsReducer);
 
   const params = {
-    search: '',
-    category: '',
-    page: 0,
+    search: "",
+    category: "",
+    page: 1,
     page_size: 18,
-  }
+  };
   useEffect(() => {
     dispatch(searchLoading(params));
-  }, [])
+  }, []);
   const postList = data;
 
   return (
