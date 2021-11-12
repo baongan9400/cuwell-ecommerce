@@ -7,17 +7,16 @@ import { Redirect } from "react-router-dom";
 
 function* login({ email, password }) {
   try {
-    console.log("here");
     const data = yield call(authenApi.login, { email, password });
-    console.log("data login: ", data);
     yield put(actions.userLoggedIn(data));
-
+    if(data && data.payload){
+      localStorage.setItem("token", JSON.stringify(data.payload));
+    }
     if (data.user.roles.includes("ROLE_ADMIN"))
       return <Redirect to="/management" />;
     else return <Redirect to="/profile" />;
   } catch (e) {
-    yield put({ type: types.ERROR, payload: e.response.data });
-    // console.log("error login:", e.response.data)
+    yield put({ type: types.ERROR, payload: e });
   }
 }
 

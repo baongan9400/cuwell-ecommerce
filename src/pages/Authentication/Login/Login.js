@@ -3,12 +3,11 @@ import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./Login.scss";
-import { connect, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import bgImage from "assets/images/bottom-bg.png";
 import { loginUserAction } from "redux/actions/login/authAction";
 
 const Login = (props) => {
-  const { login } = props;
   const dispatch = useDispatch();
   const [isShowPassword, setIsShowPassword] = React.useState(false);
 
@@ -114,12 +113,4 @@ const Login = (props) => {
   );
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     login: (email, password) => {
-//       dispatch(loginUserAction(email, password));
-//     },
-//   };
-// };
-// export default connect(mapDispatchToProps)(Login);
 export default Login;
