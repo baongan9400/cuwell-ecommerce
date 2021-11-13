@@ -1,11 +1,12 @@
 .search-wrapper {
-  position: absolute;
-  top: 24px;
-  right: 30px;
-  z-index: 9;
+  // position: absolute;
+  // top: 24px;
+  // right: 30px;
+  // z-index: 9;
 
   .search_box {
-    width: 32vw;
+    width: 100%;
+    min-width: 340px;
     background: rgb(255, 255, 255);
     border-radius: 5px;
     height: 50px;

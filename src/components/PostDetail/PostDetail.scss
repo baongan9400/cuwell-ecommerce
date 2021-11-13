@@ -5,6 +5,9 @@
   .slick-prev:before {
     color: $color_button_submit;
   }
+  .slick-slide img{
+    height: 400px;
+  }
   margin-top: 40px !important;
   &-img-group {
     margin-left: 30px;

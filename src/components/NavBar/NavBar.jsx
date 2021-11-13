@@ -50,74 +50,10 @@ const NavBar = () => {
     <div className="NavBar">
       <section className="ftco-section">
         <div className="container-fluid px-md-5">
-          <div className="row justify-content-between">
-            <div className="col-md-8 order-md-last">
-              <div className="row">
-                <div className="col-md-6 text-center">
-                  <a className="navbar-brand-logo" href="/home">
-                    <img className="logo" src={logo} alt="" />
-                  </a>
-                </div>
-                <div className="col-md-6 d-md-flex justify-content-end mb-md-0 mb-3">
-                  <div className="search-wrapper">
-                    <div className="search_box">
-                      <div className="dropdown dropdown-search">
-                        <div
-                          className="default_option dropdown-toggle"
-                          id="dropdownMenuButton1"
-                          data-bs-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          {dropdownValue}
-                        </div>
-                        <ul
-                          className="dropdown-menu"
-                          aria-labelledby="dropdownMenuButton1"
-                        >
-                          <li
-                            className="dropdown-item"
-                            onClick={() => setDropdown(dropdownValue)}
-                          >
-                            {dropdownValue}
-                          </li>
-                          <li
-                            className="dropdown-item"
-                            onClick={() => setDropdown(t("header.all.food"))}
-                          >
-                            {t("header.all.food")}
-                          </li>
-                          <li
-                            className="dropdown-item"
-                            onClick={() => setDropdown("Food")}
-                          >
-                            Plants
-                          </li>
-                          <li
-                            className="dropdown-item"
-                            onClick={() => setDropdown("Clothes")}
-                          >
-                            Clothes
-                          </li>
-                        </ul>
-                      </div>
-
-                      <div className="search_field">
-                        <input
-                          type="text"
-                          className="input"
-                          placeholder={t("header.search")}
-                        />
-                        <i className="fas fa fa-search" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4 d-flex">
+          <div className="d-flex flex-wrap justify-content-center justify-content-md-between align-items-center pb-3">
+            <div className="">
               <div className="social-media">
-                <p className="mb-0 d-flex">
+                <p className="d-flex align-items-center">
                   <a
                     href="/home"
                     className="d-flex align-items-center justify-content-center"
@@ -174,6 +110,70 @@ const NavBar = () => {
                 </p>
               </div>
             </div>
+            <div className="">
+              <div className="d-flex">
+                <div className=" text-center">
+                  <a className="navbar-brand-logo" href="/home">
+                    <img className="logo" src={logo} alt="" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="">
+              <div className="search-wrapper">
+                <div className="search_box">
+                  <div className="dropdown dropdown-search">
+                    <div
+                      className="default_option dropdown-toggle"
+                      id="dropdownMenuButton1"
+                      data-bs-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      {dropdownValue}
+                    </div>
+                    <ul
+                      className="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton1"
+                    >
+                      <li
+                        className="dropdown-item"
+                        onClick={() => setDropdown(dropdownValue)}
+                      >
+                        {dropdownValue}
+                      </li>
+                      <li
+                        className="dropdown-item"
+                        onClick={() => setDropdown(t("header.all.food"))}
+                      >
+                        {t("header.all.food")}
+                      </li>
+                      <li
+                        className="dropdown-item"
+                        onClick={() => setDropdown("Food")}
+                      >
+                        Plants
+                      </li>
+                      <li
+                        className="dropdown-item"
+                        onClick={() => setDropdown("Clothes")}
+                      >
+                        Clothes
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="search_field">
+                    <input
+                      type="text"
+                      className="input"
+                      placeholder={t("header.search")}
+                    />
+                    <i className="fas fa fa-search" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <nav
@@ -185,7 +185,7 @@ const NavBar = () => {
               className="navbar-toggler"
               type="button"
               data-bs-toggle="collapse"
-              data-target="/homeftco-nav"
+              data-bs-target="#ftco-nav"
               aria-controls="ftco-nav"
               aria-expanded="false"
               aria-label="Toggle navigation"
@@ -208,10 +208,12 @@ const NavBar = () => {
                   >
                     {t("header.category")}
                   </a>
-                  <div className="dropdown-menu" aria-labelledby="dropdown04">
+                  <div                     
+                  style={{ backgroundColor: "white" }}
+                  className="dropdown-menu" aria-labelledby="dropdown04">
                     {data.length > 0 &&
                       data.map((category) => (
-                        <a className="dropdown-item" href="/">
+                        <a className="dropdown-item" style={{ color: "black" }} href="/">
                           {category.name}
                         </a>
                       ))}
