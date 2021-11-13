@@ -2,7 +2,7 @@
 .NavBar {
   .ftco-section {
     // padding: 7em 0;
-    padding-top: 30px;
+    padding-top: 20px;
 
     .heading-section {
       font-size: 28px;
@@ -181,14 +181,19 @@
 
     .navbar-brand-logo {
       img {
-        height: 80px;
-        margin-top: -20px;
-        margin-bottom: 20px;
+        width: 230px;
+        // margin-top: -20px;
+        // margin-bottom: 20px;
       }
     }
 
     .social-media {
-      display: inline-block;
+      // display: inline-block;
+      display: flex;
+      align-items: center;
+      p {
+        margin-bottom: 0px;
+      }
 
       p a {
         border: 1px solid #e6e6e6;
@@ -220,7 +225,7 @@
 
     @media (max-width: 767.98px) {
       .social-media {
-        margin-bottom: 20px;
+        // margin-bottom: 20px;
       }
     }
 
@@ -293,9 +298,11 @@
     }
   }
   .switch-ctn {
+    margin-left: 50px;
+    margin-right: 50px;
     .jumbotron {
-      border-radius: 0;
-      margin-bottom: 0;
+      // border-radius: 0;
+      // margin-bottom: 0;
     }
 
     .jumbotron.df-bg-primary {
@@ -303,16 +310,14 @@
     }
 
     .df-switch {
-      margin-top: 20px;
       margin-left: 7px;
       text-align: center;
     }
     .btn-toggle {
-      top: 50%;
-      transform: translateY(-50%);
+      // top: 50%;
+      // transform: translateY(-50%);
     }
     .btn-toggle {
-      margin: 0 4rem;
       padding: 0;
       position: relative;
       border: none;

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./SignUp.scss";
+import signupBackground from "../../../assets/images/bottom-bg-signup.png";
 
 const SignUp = () => {
   const [isShow, setIsShow] = useState(false);
@@ -166,6 +167,7 @@ const SignUp = () => {
           </form>
         </div>
       </div>
+      <img src={signupBackground} alt="bgImage" className="bgImage" />
     </div>
   );
 };
