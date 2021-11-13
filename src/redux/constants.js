@@ -18,3 +18,15 @@ export const ERROR = "ERROR";
 // search post by cat
 export const LOAD_POST = 'LOAD_POST'
 export const LOADED_POST = 'LOADED_POST'
+
+//category
+export const GET_ALL_CATEGORIES_REQUEST = 'GET_ALL_CATEGORIES_REQUEST'
+export const GET_ALL_CATEGORIES_COMPLETE = 'GET_ALL_CATEGORIES_COMPLETE'
+
+// get address api
+export const GET_CITY = 'GET_CITY';
+export const GET_DISTRICT = 'GET_DISTRICT';
+export const GET_COMMUTE = 'GET_COMMUTE';
+export const GET_CITY_REQUESTED = 'GET_CITY_REQUESTED';
+export const GET_DISTRICT_REQUESTED = 'GET_DISTRICT_REQUESTED';
+export const GET_COMMUTE_REQUESTED = 'GET_COMMUTE_REQUESTED';

@@ -10,11 +10,12 @@ export default {
       //header component
       header: {
         login: "sign in",
+        logout: "Log out",
         signup: "sign up",
         logout: "log out",
         profile: "profile",
         home: "home",
-        post: "my post",
+        post: "Create Post",
         category: "category",
         search: "Search",
         all: {

@@ -12,7 +12,7 @@ export default {
         profile: "thông tin cá nhân",
         list_user: "danh sách",
         home: "trang chủ",
-        post: "bài đăng",
+        post: "Đăng bài",
         category: "Danh mục",
         search: "Tìm kiếm sản phẩm",
         all: {

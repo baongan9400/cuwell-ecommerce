@@ -3,10 +3,15 @@ import "./NavBar.scss";
 import "./Search.scss";
 import logo from "assets/images/logo.png";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCategoriesRequestAction } from "redux/actions/category/category.action";
 
 const NavBar = () => {
   // const { t, handleChangeLang, trans } = props;
   const { t, i18n } = useTranslation();
+  const dispatch = useDispatch();
+  const { data } = useSelector((state) => state.categoryReducer);
+  const { user, isLoggedIn } = useSelector((state) => state.userReducer);
 
   useEffect(() => {
     const lang = localStorage.getItem("lang");
@@ -20,7 +25,8 @@ const NavBar = () => {
       localStorage.setItem("lang", "en");
       setTrans("en");
     }
-    // 👆 false parameter is required for react project
+
+    dispatch(getAllCategoriesRequestAction());
   }, []);
   const [trans, setTrans] = useState("");
   const handleChangeLang = () => {
@@ -178,7 +184,7 @@ const NavBar = () => {
             <button
               className="navbar-toggler"
               type="button"
-              data-toggle="collapse"
+              data-bs-toggle="collapse"
               data-target="/homeftco-nav"
               aria-controls="ftco-nav"
               aria-expanded="false"
@@ -203,18 +209,12 @@ const NavBar = () => {
                     {t("header.category")}
                   </a>
                   <div className="dropdown-menu" aria-labelledby="dropdown04">
-                    <a className="dropdown-item" href="/">
-                      {t("header.category")} 1
-                    </a>
-                    <a className="dropdown-item" href="/home">
-                      {t("header.category")} 2
-                    </a>
-                    <a className="dropdown-item" href="/home">
-                      {t("header.category")} 3
-                    </a>
-                    <a className="dropdown-item" href="/home">
-                      {t("header.category")} 4
-                    </a>
+                    {data.length > 0 &&
+                      data.map((category) => (
+                        <a className="dropdown-item" href="/">
+                          {category.name}
+                        </a>
+                      ))}
                   </div>
                 </li>
                 <li className="nav-item">
@@ -227,12 +227,20 @@ const NavBar = () => {
                     {t("header.profile")}
                   </a>
                 </li>
-
-                <li className="nav-item">
+                {isLoggedIn ? (
+                  <li className="nav-item">
+                  <a href="/logout" className="nav-link">
+                    {t("header.logout")}
+                  </a>
+                </li>
+                ): (
+                  <li className="nav-item">
                   <a href="/login" className="nav-link">
                     {t("header.login")}
                   </a>
                 </li>
+                )}
+                
               </ul>
             </div>
           </div>
