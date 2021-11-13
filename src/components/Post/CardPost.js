@@ -8,13 +8,22 @@ import PropTypes from "prop-types";
 import { VNDformat } from "../../helper/utils";
 import "./CardPost.scss";
 const CardPost = (props) => {
-  const { id, title, description, price, image } = props.post;
+  const { id, title, description, price, images } = props.post;
+
   return (
     <div className="col-md-2 p-4 mt-3">
       <div className="product-item mb-3">
         <div className="down-content">
           <Link to={{ pathname: `/post/${id}`, state: { post: props.post } }}>
-            <img className="mb-2" src={image[0]} alt="" />
+            <img
+              className="mb-2"
+              src={
+                images[0] && images[0].url
+                  ? images[0].url
+                  : "https://salt.tikicdn.com/cache/280x280/ts/product/29/f0/ad/2d35f5288ea643e3768c8f3361cafa5a.jpg"
+              }
+              alt=""
+            />
             <h4 className="text-break-head">{title.trim()}</h4>
             <div className="text-break">
               <p className="product-item-description">{description.trim()}</p>
