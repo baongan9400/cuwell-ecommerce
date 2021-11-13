@@ -61,7 +61,7 @@ function Categories() {
         {images.map((img, idx) => (
           <div className={idx === imageIndex ? "slide activeSlide" : "slide"}>
             <img src={img} alt={img} />
-            <p>Categories {idx}</p>
+            {/* <p>Categories {idx}</p> */}
           </div>
         ))}
       </Slider>

@@ -3,10 +3,15 @@ import "./NavBar.scss";
 import "./Search.scss";
 import logo from "assets/images/logo.png";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCategoriesRequestAction } from "redux/actions/category/category.action";
 
 const NavBar = () => {
   // const { t, handleChangeLang, trans } = props;
   const { t, i18n } = useTranslation();
+  const dispatch = useDispatch();
+  const { data } = useSelector((state) => state.categoryReducer);
+  const { user, isLoggedIn } = useSelector((state) => state.userReducer);
 
   useEffect(() => {
     const lang = localStorage.getItem("lang");
@@ -20,7 +25,8 @@ const NavBar = () => {
       localStorage.setItem("lang", "en");
       setTrans("en");
     }
-    // 👆 false parameter is required for react project
+
+    dispatch(getAllCategoriesRequestAction());
   }, []);
   const [trans, setTrans] = useState("");
   const handleChangeLang = () => {
@@ -202,39 +208,15 @@ const NavBar = () => {
                   >
                     {t("header.category")}
                   </a>
-                  <div
-                    style={{ backgroundColor: "white" }}
-                    className="dropdown-menu"
-                    aria-labelledby="dropdown04"
-                  >
-                    <a
-                      style={{ color: "black" }}
-                      className="dropdown-item"
-                      href="/"
-                    >
-                      {t("header.category")} 1
-                    </a>
-                    <a
-                      style={{ color: "black" }}
-                      className="dropdown-item"
-                      href="/home"
-                    >
-                      {t("header.category")} 2
-                    </a>
-                    <a
-                      style={{ color: "black" }}
-                      className="dropdown-item"
-                      href="/home"
-                    >
-                      {t("header.category")} 3
-                    </a>
-                    <a
-                      style={{ color: "black" }}
-                      className="dropdown-item"
-                      href="/home"
-                    >
-                      {t("header.category")} 4
-                    </a>
+                  <div                     
+                  style={{ backgroundColor: "white" }}
+                  className="dropdown-menu" aria-labelledby="dropdown04">
+                    {data.length > 0 &&
+                      data.map((category) => (
+                        <a className="dropdown-item" style={{ color: "black" }} href="/">
+                          {category.name}
+                        </a>
+                      ))}
                   </div>
                 </li>
                 <li className="nav-item">
@@ -247,12 +229,20 @@ const NavBar = () => {
                     {t("header.profile")}
                   </a>
                 </li>
-
-                <li className="nav-item">
+                {isLoggedIn ? (
+                  <li className="nav-item">
+                  <a href="/logout" className="nav-link">
+                    {t("header.logout")}
+                  </a>
+                </li>
+                ): (
+                  <li className="nav-item">
                   <a href="/login" className="nav-link">
                     {t("header.login")}
                   </a>
                 </li>
+                )}
+                
               </ul>
             </div>
           </div>
