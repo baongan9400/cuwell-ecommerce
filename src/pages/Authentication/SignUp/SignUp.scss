@@ -1,19 +1,31 @@
 @import "../../../assets/scss/app.scss";
 .signup-bgr {
   background-color: $color_white !important;
-  background-image: url(../../../assets/images/bottom-bg-signup.png);
-  background-repeat: no-repeat, repeat;
-  background-position: right;
-  background-size: contain;
+  // background-image: url(../../../assets/images/bottom-bg-signup.png);
+  // background-repeat: no-repeat, repeat;
+  // background-position: right;
+  // background-size: contain;
   height: 100vh;
   scroll-behavior: smooth;
+
+  display: flex;
+  align-items: center;
+
+  .bgImage {
+    position: absolute;
+    object-fit: cover;
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: 0;
+  }
+
   .signup-wrapper {
+    z-index: 999;
     background: #ffffff;
     box-shadow: -10px -20px 10px rgba(7, 80, 222, 0.08),
       inset -5px -5px 10px rgba(95, 101, 255, 0.14);
     border-radius: 20px;
-    position: fixed;
-    top: 5vh;
     width: 450px;
     height: 630px;
     margin-left: 120px;
