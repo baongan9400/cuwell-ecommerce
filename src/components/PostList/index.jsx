@@ -23,7 +23,7 @@ function PostList(props) {
     const params = {
       search: "",
       category: "",
-      page: selectNumber.selected,
+      page: selectNumber.selected + 1,
       page_size: 12,
     };
     dispatch(searchLoading(params));

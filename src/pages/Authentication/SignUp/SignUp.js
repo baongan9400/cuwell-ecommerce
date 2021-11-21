@@ -180,7 +180,7 @@ const SignUp = () => {
               <div className="form-group">
                 <label className="label-form">City</label>
                 <select
-                  className="form-control rounded border-0 shadow-sm px-4"
+                  className="form-control rounded border-0 shadow-sm px-4 address"
                   style={{ backgroundColor: "#e7e7e7" }}
                   onChange={(e) => {
                     if (cities.length > 0) {
@@ -201,58 +201,57 @@ const SignUp = () => {
                     ))}
                 </select>
               </div>
-              <div className="form-group">
-                <label className="label-form">District</label>
-                <select
-                  className="form-control rborder-0 shadow-sm px-4"
-                  style={{ backgroundColor: "#e7e7e7" }}
-                  onChange={(e) => {
-                    if (districts.length > 0) {
-                      let district_id = findByName(districts, e.target.value);
-                      setCheck({ ...check, checkDistrict: true });
-                      dispatch(getCommute(district_id));
-                    }
-                  }}
-                  // required
-                >
-                  {!check.checkDistrict && (
-                    <option>&#8594;Select district&#8592;</option>
-                  )}
-                  {districts.length > 0 &&
-                    districts.map((value, index) => (
-                      <option value={value.name} key={value.id}>
-                        {value.name}
-                      </option>
-                    ))}
-                </select>
+
+              <div class="row">
+                <div className="col-md-6 form-group">
+                  <label className="label-form">District</label>
+                  <select
+                    className="form-control rborder-0 shadow-sm px-4 address"
+                    style={{ backgroundColor: "#e7e7e7" }}
+                    onChange={(e) => {
+                      if (districts.length > 0) {
+                        let district_id = findByName(districts, e.target.value);
+                        setCheck({ ...check, checkDistrict: true });
+                        dispatch(getCommute(district_id));
+                      }
+                    }}
+                    // required
+                  >
+                    {!check.checkDistrict && (
+                      <option>&#8594;Select district&#8592;</option>
+                    )}
+                    {districts.length > 0 &&
+                      districts.map((value, index) => (
+                        <option value={value.name} key={value.id}>
+                          {value.name}
+                        </option>
+                      ))}
+                  </select>
+                </div>
+                <div className="col-md-6 form-group">
+                  <label className="label-form">Commute</label>
+                  <select
+                    className="form-control border-0 shadow-sm px-4 address"
+                    style={{ backgroundColor: "#e7e7e7" }}
+                    onChange={(e) => {
+                      if (commutes.length > 0) {
+                        setCheck({ ...check, checkCommute: true });
+                      }
+                    }}
+                    required
+                  >
+                    {!check.checkCommute && (
+                      <option>&#8594;Select commute&#8592;</option>
+                    )}
+                    {commutes.length > 0 &&
+                      commutes.map((value, index) => (
+                        <option value={value.name} key={value.id}>
+                          {value.name}
+                        </option>
+                      ))}
+                  </select>
+                </div>
               </div>
-              <div className="form-group">
-                <label className="label-form">Commute</label>
-                <select
-                  className="form-control border-0 shadow-sm px-4"
-                  style={{ backgroundColor: "#e7e7e7" }}
-                  onChange={(e) => {
-                    if (commutes.length > 0) {
-                      setCheck({ ...check, checkCommute: true });
-                    }
-                  }}
-                  required
-                >
-                  {!check.checkCommute && (
-                    <option>&#8594;Select commute&#8592;</option>
-                  )}
-                  {commutes.length > 0 &&
-                    commutes.map((value, index) => (
-                      <option value={value.name} key={value.id}>
-                        {value.name}
-                      </option>
-                    ))}
-                </select>
-              </div>
-              <p className="text-muted-1">
-                By clicking Sign Up, you agree with our{" "}
-                <span className="font-weight-bold">Privacy Policy</span>
-              </p>
               <div className="form-group btn-signup">
                 <button type="submit" className="btn btn-block">
                   {" "}
