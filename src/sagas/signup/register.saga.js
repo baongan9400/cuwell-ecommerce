@@ -7,8 +7,11 @@ import authenApi from "api/authen/authenApi";
 
 function* userRegister(action) {
   try {
-    const data = yield call(authenApi.createUser, action.data);
+    const data = yield call(authenApi.createUser, action);
     yield put({type: type.USER_REGISTER, payload: data});
+    if (data){
+      window.location.href = "/login";
+    }
   } catch (e) {
     console.log(e.messages);
   }

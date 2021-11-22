@@ -19,6 +19,8 @@ const SignUp = () => {
     checkDistrict: false,
     checkCommute: false,
   });
+  const { checkSignup } = useSelector((state) => state.registerReducer);
+
   const formik = useFormik({
     initialValues: {
       first_name: "",
@@ -77,6 +79,12 @@ const SignUp = () => {
 
   return (
     <div className="signup-bgr">
+      <div className={checkSignup ? "loading-bg" : "loading-bg d-none"}>
+        <img
+          src="https://cutewallpaper.org/21/loading-gif-transparent-background/Free-Content-Discovery-Influencer-Marketing-Tool-Buzzsumo-.gif"
+          alt="Loading..."
+        />
+      </div>
       <div className="signup-wrapper">
         <div className="signup-wrapper-title">
           <h2 className="signup-title">Sign Up</h2>

@@ -2,7 +2,6 @@ import { takeLatest, call, put, all } from "redux-saga/effects";
 import authenApi from "api/authen/authenApi";
 import * as types from "redux/constants";
 import * as actions from "redux/actions/login/authAction";
-import history from "../../history";
 import jwt_decode from "jwt-decode";
 
 function* login({ email, password }) {
@@ -32,9 +31,9 @@ function* login({ email, password }) {
 }
 
 function* logout() {
-  yield call(authenApi.logout);
+  localStorage.clear();
   yield put(actions.userLoggedOutAction());
-  history.push("/home");
+  window.location.href = "/login";
 }
 
 function* checkJWT() {

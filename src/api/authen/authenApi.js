@@ -15,7 +15,8 @@ const authenApi = {
     const url = `users/${idUser}`;
     return axiosManagement.get(url);
   },
-  createUser: ({ email, name, phone, city, district, commute }) => {
+  createUser: (data) => {
+    const { email, name, phone, city, district, commute } = data;
     const signupData = {
       newUserData: {
         email: email,

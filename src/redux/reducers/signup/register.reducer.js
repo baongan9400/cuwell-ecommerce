@@ -2,21 +2,21 @@ import * as type from '../../constants'
 
 const initialState = {
   data: {},
-  check: false
+  checkSignup: false
 }
 
-export const  registerReducer = (state = initialState, action) => {
+export const  registerReducer = (state = initialState, action) =>{
   switch (action.type) {
     case type.USER_REGISTER_REQUESTED:
       return {
         ...state,
-        check: true
+        checkSignup: true
       }
     case type.USER_REGISTER:
       return {
         ...state,
         data: action.payload,
-        check: false
+        checkSignup: false
       }
 
     default:
