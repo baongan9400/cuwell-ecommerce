@@ -3,12 +3,14 @@ import categorySaga from "./category/categorySaga";
 import userSaga from "./login/userSaga";
 import searchPostsSaga from "./posts/search.saga";
 import addressSaga from "./signup/address.saga";
+import registerSaga from "./signup/register.saga";
 
 export default function* rootSaga() {
   yield all([
     userSaga(),
     searchPostsSaga(),
     categorySaga(),
-    addressSaga()
+    addressSaga(),
+    registerSaga()
   ]);
 }

@@ -11,22 +11,25 @@ import {
   getCommute,
 } from "redux/actions/signup/address.action";
 import signupBackground from "../../../assets/images/bottom-bg-signup.png";
+import { register } from "redux/actions/signup/register.action";
 
 const SignUp = () => {
-  const [isShow, setIsShow] = useState(false);
-  const [isShowConfirm, setIsShowConfirm] = useState(false);
   const [check, setCheck] = useState({
     checkCity: false,
     checkDistrict: false,
     checkCommute: false,
   });
+  const { checkSignup } = useSelector((state) => state.registerReducer);
+
   const formik = useFormik({
     initialValues: {
       first_name: "",
       last_name: "",
+      phone: "",
       email: "",
-      password: "",
-      confirm_password: "",
+      city: "",
+      district: "",
+      commute: "",
     },
     validationSchema: Yup.object({
       first_name: Yup.string()
@@ -38,15 +41,18 @@ const SignUp = () => {
         .max(15, "Maximum 15 characters")
         .required("Required!"),
       email: Yup.string().email("Invalid email format").required("Required!"),
-      password: Yup.string()
-        .min(5, "Minimum 5 characters")
-        .required("Required!"),
-      confirm_password: Yup.string()
-        .oneOf([Yup.ref("password")], "Password's not match")
-        .required("Required!"),
     }),
     onSubmit: (values) => {
-      console.log("values: ", values);
+      dispatch(
+        register(
+          values.email,
+          values.first_name + " " + values.last_name,
+          values.phone,
+          values.city,
+          values.district,
+          values.commute
+        )
+      );
     },
   });
   const dispatch = useDispatch();
@@ -73,6 +79,12 @@ const SignUp = () => {
 
   return (
     <div className="signup-bgr">
+      <div className={checkSignup ? "loading-bg" : "loading-bg d-none"}>
+        <img
+          src="https://cutewallpaper.org/21/loading-gif-transparent-background/Free-Content-Discovery-Influencer-Marketing-Tool-Buzzsumo-.gif"
+          alt="Loading..."
+        />
+      </div>
       <div className="signup-wrapper">
         <div className="signup-wrapper-title">
           <h2 className="signup-title">Sign Up</h2>
@@ -126,67 +138,34 @@ const SignUp = () => {
               </div>
 
               <div className="form-group">
-                <label className="label-form">Password</label>
+                <label className="label-form">Phone</label>
                 <div className="input-group">
                   <input
+                    type="tel"
                     className="form-control"
-                    type={isShow ? "text" : "password"}
-                    placeholder="Enter your password"
-                    name="password"
-                    value={values.password}
+                    placeholder="Enter your phone number"
+                    pattern="[0]{1}[0-9]{9}"
+                    required
+                    name="phone"
+                    value={values.phone}
                     onChange={formik.handleChange}
                   />
-                  <span className="input-group-append">
-                    <div className="input-group-text">
-                      <i
-                        className={isShow ? "fas fa-eye" : "fa fa-eye-slash"}
-                        onClick={() => setIsShow((prevState) => !prevState)}
-                      />
-                    </div>
-                  </span>
                 </div>
-                {error.password && touched.password && (
-                  <p className="errors">{error.password}</p>
-                )}
-              </div>
-              <div className="form-group">
-                <label className="label-comfirm">Confirm password</label>
-                <div className="input-group">
-                  <input
-                    className="form-control"
-                    type={isShowConfirm ? "text" : "password"}
-                    placeholder="Confirm your password"
-                    name="confirm_password"
-                    value={values.confirm_password}
-                    onChange={formik.handleChange}
-                  />
-                  <span className="input-group-append">
-                    <div className="input-group-text">
-                      <i
-                        className={
-                          isShowConfirm ? "fas fa-eye" : "fa fa-eye-slash"
-                        }
-                        onClick={() =>
-                          setIsShowConfirm((prevState) => !prevState)
-                        }
-                      />
-                    </div>
-                  </span>
-                </div>
-                {error.confirm_password && touched.confirm_password && (
-                  <p className="errors">{error.confirm_password}</p>
+                {error.phone && touched.phone && (
+                  <p className="errors">{error.phone}</p>
                 )}
               </div>
               <div className="form-group">
                 <label className="label-form">City</label>
                 <select
-                  className="form-control rounded border-0 shadow-sm px-4"
+                  className="form-control rounded border-0 shadow-sm px-4 address"
                   style={{ backgroundColor: "#e7e7e7" }}
                   onChange={(e) => {
                     if (cities.length > 0) {
                       let city_id = findByName(cities, e.target.value);
                       setCheck({ ...check, checkCity: true });
                       dispatch(getDistrict(city_id));
+                      formik.setFieldValue("city", e.target.value);
                     }
                   }}
                 >
@@ -201,53 +180,58 @@ const SignUp = () => {
                     ))}
                 </select>
               </div>
-              <div className="form-group">
-                <label className="label-form">District</label>
-                <select
-                  className="form-control rborder-0 shadow-sm px-4"
-                  style={{ backgroundColor: "#e7e7e7" }}
-                  onChange={(e) => {
-                    if (districts.length > 0) {
-                      let district_id = findByName(districts, e.target.value);
-                      setCheck({ ...check, checkDistrict: true });
-                      dispatch(getCommute(district_id));
-                    }
-                  }}
-                  // required
-                >
-                  {!check.checkDistrict && (
-                    <option>&#8594;Select district&#8592;</option>
-                  )}
-                  {districts.length > 0 &&
-                    districts.map((value, index) => (
-                      <option value={value.name} key={value.id}>
-                        {value.name}
-                      </option>
-                    ))}
-                </select>
-              </div>
-              <div className="form-group">
-                <label className="label-form">Commute</label>
-                <select
-                  className="form-control border-0 shadow-sm px-4"
-                  style={{ backgroundColor: "#e7e7e7" }}
-                  onChange={(e) => {
-                    if (commutes.length > 0) {
-                      setCheck({ ...check, checkCommute: true });
-                    }
-                  }}
-                  required
-                >
-                  {!check.checkCommute && (
-                    <option>&#8594;Select commute&#8592;</option>
-                  )}
-                  {commutes.length > 0 &&
-                    commutes.map((value, index) => (
-                      <option value={value.name} key={value.id}>
-                        {value.name}
-                      </option>
-                    ))}
-                </select>
+
+              <div class="row">
+                <div className="col-md-6 form-group">
+                  <label className="label-form">District</label>
+                  <select
+                    className="form-control rborder-0 shadow-sm px-4 address"
+                    style={{ backgroundColor: "#e7e7e7" }}
+                    onChange={(e) => {
+                      if (districts.length > 0) {
+                        let district_id = findByName(districts, e.target.value);
+                        setCheck({ ...check, checkDistrict: true });
+                        dispatch(getCommute(district_id));
+                        formik.setFieldValue("district", e.target.value);
+                      }
+                    }}
+                    // required
+                  >
+                    {!check.checkDistrict && (
+                      <option>&#8594;Select district&#8592;</option>
+                    )}
+                    {districts.length > 0 &&
+                      districts.map((value, index) => (
+                        <option value={value.name} key={value.id}>
+                          {value.name}
+                        </option>
+                      ))}
+                  </select>
+                </div>
+                <div className="col-md-6 form-group">
+                  <label className="label-form">Commute</label>
+                  <select
+                    className="form-control border-0 shadow-sm px-4 address"
+                    style={{ backgroundColor: "#e7e7e7" }}
+                    onChange={(e) => {
+                      if (commutes.length > 0) {
+                        setCheck({ ...check, checkCommute: true });
+                        formik.setFieldValue("commute", e.target.value);
+                      }
+                    }}
+                    required
+                  >
+                    {!check.checkCommute && (
+                      <option>&#8594;Select commute&#8592;</option>
+                    )}
+                    {commutes.length > 0 &&
+                      commutes.map((value, index) => (
+                        <option value={value.name} key={value.id}>
+                          {value.name}
+                        </option>
+                      ))}
+                  </select>
+                </div>
               </div>
               <p className="text-muted-1">
                 By clicking Sign Up, you agree with our{" "}

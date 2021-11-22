@@ -5,6 +5,8 @@ import logo from "assets/images/logo.png";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategoriesRequestAction } from "redux/actions/category/category.action";
+import { Link, useRouteMatch } from "react-router-dom";
+import { logoutUserAction } from "redux/actions/login/authAction";
 
 const NavBar = () => {
   // const { t, handleChangeLang, trans } = props;
@@ -25,7 +27,6 @@ const NavBar = () => {
       localStorage.setItem("lang", "en");
       setTrans("en");
     }
-
     dispatch(getAllCategoriesRequestAction());
   }, []);
   const [trans, setTrans] = useState("");
@@ -45,7 +46,37 @@ const NavBar = () => {
   };
   const dropdownSearchValue = t("header.all.food");
   const [dropdownValue, setDropdown] = useState(dropdownSearchValue);
+  function CustomLink({ label, to, activeOnlyWhenExact }) {
+    let match = useRouteMatch({
+      path: to,
+      exact: activeOnlyWhenExact,
+    });
+  
+    return (
+      <li className={match ? "nav-item active" : "nav-item"}>
+        <Link to={to} className="nav-link w-auto">
+          {label}
+        </Link>
+      </li>
+    );
+  }
+  const CustomLinkHasAction = ({ label, to, activeOnlyWhenExact, handelClick }) => {
+    let match = useRouteMatch({
+      path: to,
+      exact: activeOnlyWhenExact,
+    });
 
+  return (
+    <li className={match ? "nav-item active" : "nav-item"}>
+      <Link to={to} onClick={handelClick} className="nav-link">
+        {label}
+      </Link>
+    </li>
+  );
+}
+const handelLogout = ()=> {
+  dispatch(logoutUserAction());
+}
   return (
     <div className="NavBar">
       <section className="ftco-section">
@@ -195,14 +226,14 @@ const NavBar = () => {
             <div className="collapse navbar-collapse" id="ftco-nav">
               <ul className="navbar-nav m-auto">
                 <li className="nav-item active">
-                  <a href="/home" className="nav-link">
+                  <a href="/" className="nav-link">
                     {t("header.home")}
                   </a>
                 </li>
                 <li className="nav-item dropdown">
                   <a
                     className="nav-link dropdown-toggle"
-                    href="/"
+                    href="/category"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
@@ -230,11 +261,16 @@ const NavBar = () => {
                   </a>
                 </li>
                 {isLoggedIn ? (
-                  <li className="nav-item">
-                  <a href="/logout" className="nav-link">
-                    {t("header.logout")}
-                  </a>
-                </li>
+                //   <li className="nav-item">
+                //   <a href="/logout" className="nav-link">
+                //     {t("header.logout")}
+                //   </a>
+                // </li>
+                <CustomLinkHasAction
+              to="/login"
+              label="Logout"
+              handelClick={handelLogout}
+            />
                 ): (
                   <li className="nav-item">
                   <a href="/login" className="nav-link">
