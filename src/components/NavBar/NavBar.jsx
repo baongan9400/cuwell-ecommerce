@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllCategoriesRequestAction } from "redux/actions/category/category.action";
 import { Link, useRouteMatch } from "react-router-dom";
 import { logoutUserAction } from "redux/actions/login/authAction";
+import SearchForm from "components/SearchFilterForm/SearchForm";
 
 const NavBar = () => {
   // const { t, handleChangeLang, trans } = props;
@@ -50,7 +51,7 @@ const NavBar = () => {
       path: to,
       exact: activeOnlyWhenExact,
     });
-  
+
     return (
       <li className={match ? "nav-item active" : "nav-item"}>
         <Link to={to} className="nav-link w-auto">
@@ -59,23 +60,31 @@ const NavBar = () => {
       </li>
     );
   }
-  const CustomLinkHasAction = ({ label, to, activeOnlyWhenExact, handelClick }) => {
+  const CustomLinkHasAction = ({
+    label,
+    to,
+    activeOnlyWhenExact,
+    handelClick,
+  }) => {
     let match = useRouteMatch({
       path: to,
       exact: activeOnlyWhenExact,
     });
 
-  return (
-    <li className={match ? "nav-item active" : "nav-item"}>
-      <Link to={to} onClick={handelClick} className="nav-link">
-        {label}
-      </Link>
-    </li>
-  );
-}
-const handelLogout = ()=> {
-  dispatch(logoutUserAction());
-}
+    return (
+      <li className={match ? "nav-item active" : "nav-item"}>
+        <Link to={to} onClick={handelClick} className="nav-link">
+          {label}
+        </Link>
+      </li>
+    );
+  };
+  const handelLogout = () => {
+    dispatch(logoutUserAction());
+  };
+  const handelFilterChange = (newFilter) =>{
+    console.log('SEARCH', newFilter);
+  }
   return (
     <div className="NavBar">
       <section className="ftco-section">
@@ -149,6 +158,7 @@ const handelLogout = ()=> {
                 </div>
               </div>
             </div>
+            {/* Start Search */}
             <div className="">
               <div className="search-wrapper">
                 <div className="search_box">
@@ -167,25 +177,26 @@ const handelLogout = ()=> {
                       aria-labelledby="dropdownMenuButton1"
                     >
                       {data.length > 0 &&
-                      data.map((category) => (
-                        <li
-                        className="dropdown-item"
-                        onClick={() => setDropdown(category.name)}
-                      >
-                        {category.name}
-                      </li>
-                      ))}
+                        data.map((category) => (
+                          <li
+                            className="dropdown-item"
+                            onClick={() => setDropdown(category.name)}
+                          >
+                            {category.name}
+                          </li>
+                        ))}
                     </ul>
                   </div>
 
-                  <div className="search_field">
+                  {/* <div className="search_field">
                     <input
                       type="text"
                       className="input"
                       placeholder={t("header.search")}
                     />
                     <i className="fas fa fa-search" />
-                  </div>
+                  </div> */}
+                  <SearchForm onSubmit={handelFilterChange}/>
                 </div>
               </div>
             </div>
@@ -223,12 +234,18 @@ const handelLogout = ()=> {
                   >
                     {t("header.category")}
                   </a>
-                  <div                     
-                  style={{ backgroundColor: "white" }}
-                  className="dropdown-menu" aria-labelledby="dropdown04">
+                  <div
+                    style={{ backgroundColor: "white" }}
+                    className="dropdown-menu"
+                    aria-labelledby="dropdown04"
+                  >
                     {data.length > 0 &&
                       data.map((category) => (
-                        <a className="dropdown-item" style={{ color: "black" }} href="/">
+                        <a
+                          className="dropdown-item"
+                          style={{ color: "black" }}
+                          href="/"
+                        >
                           {category.name}
                         </a>
                       ))}
@@ -245,24 +262,23 @@ const handelLogout = ()=> {
                   </a>
                 </li>
                 {isLoggedIn ? (
-                //   <li className="nav-item">
-                //   <a href="/logout" className="nav-link">
-                //     {t("header.logout")}
-                //   </a>
-                // </li>
-                <CustomLinkHasAction
-              to="/login"
-              label="Logout"
-              handelClick={handelLogout}
-            />
-                ): (
+                  //   <li className="nav-item">
+                  //   <a href="/logout" className="nav-link">
+                  //     {t("header.logout")}
+                  //   </a>
+                  // </li>
+                  <CustomLinkHasAction
+                    to="/login"
+                    label="Logout"
+                    handelClick={handelLogout}
+                  />
+                ) : (
                   <li className="nav-item">
-                  <a href="/login" className="nav-link">
-                    {t("header.login")}
-                  </a>
-                </li>
+                    <a href="/login" className="nav-link">
+                      {t("header.login")}
+                    </a>
+                  </li>
                 )}
-                
               </ul>
             </div>
           </div>

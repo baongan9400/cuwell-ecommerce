@@ -15,11 +15,6 @@ export default {
         post: "Đăng bài",
         category: "Danh mục",
         search: "Tìm kiếm sản phẩm",
-        all: {
-          food: "Đồ ăn",
-          book: "Sách",
-        },
-        books: "Sách và VPP",
       },
       lang: {
         en: "tiếng anh",
