@@ -1,8 +1,13 @@
 import * as type from "../../constants";
 
-export function register(user) {
+export function register(email, name, phone, city, district, commute) {
   return {
     type: type.USER_REGISTER_REQUESTED,
-    user,
+    email,
+    name,
+    phone,
+    city,
+    district,
+    commute,
   };
 }

@@ -1,4 +1,4 @@
-import { takeLatest, takeEvery, call, put, all } from "redux-saga/effects";
+import { takeLatest, call, put, all } from "redux-saga/effects";
 import authenApi from "api/authen/authenApi";
 import * as types from "redux/constants";
 import * as actions from "redux/actions/login/authAction";

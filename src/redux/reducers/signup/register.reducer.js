@@ -5,7 +5,7 @@ const initialState = {
   check: false
 }
 
-export default function register(state = initialState, action) {
+export const  registerReducer = (state = initialState, action) => {
   switch (action.type) {
     case type.USER_REGISTER_REQUESTED:
       return {
