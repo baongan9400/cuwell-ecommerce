@@ -44,8 +44,7 @@ const NavBar = () => {
       setTrans("en");
     }
   };
-  const dropdownSearchValue = t("header.all.food");
-  const [dropdownValue, setDropdown] = useState(dropdownSearchValue);
+  const [dropdownValue, setDropdown] = useState("All");
   function CustomLink({ label, to, activeOnlyWhenExact }) {
     let match = useRouteMatch({
       path: to,
@@ -164,33 +163,18 @@ const handelLogout = ()=> {
                       {dropdownValue}
                     </div>
                     <ul
-                      className="dropdown-menu"
+                      className="dropdown-menu category-search"
                       aria-labelledby="dropdownMenuButton1"
                     >
-                      <li
+                      {data.length > 0 &&
+                      data.map((category) => (
+                        <li
                         className="dropdown-item"
-                        onClick={() => setDropdown(dropdownValue)}
+                        onClick={() => setDropdown(category.name)}
                       >
-                        {dropdownValue}
+                        {category.name}
                       </li>
-                      <li
-                        className="dropdown-item"
-                        onClick={() => setDropdown(t("header.all.food"))}
-                      >
-                        {t("header.all.food")}
-                      </li>
-                      <li
-                        className="dropdown-item"
-                        onClick={() => setDropdown("Food")}
-                      >
-                        Plants
-                      </li>
-                      <li
-                        className="dropdown-item"
-                        onClick={() => setDropdown("Clothes")}
-                      >
-                        Clothes
-                      </li>
+                      ))}
                     </ul>
                   </div>
 
