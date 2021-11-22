@@ -11,6 +11,7 @@ import {
   getCommute,
 } from "redux/actions/signup/address.action";
 import signupBackground from "../../../assets/images/bottom-bg-signup.png";
+import { loginUserAction } from "redux/actions/login/authAction";
 
 const SignUp = () => {
   const [isShow, setIsShow] = useState(false);
