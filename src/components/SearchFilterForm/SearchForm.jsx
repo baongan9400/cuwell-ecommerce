@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 SearchForm.propTypes = {
@@ -10,14 +10,22 @@ SearchForm.defaultProps = {
 function SearchForm(props) {
     const {onSubmit} = props;
     const [searchTerm, setSearchTerm] = useState ('');
+    const typingTimeoutRef = useRef(null);
 
     function handleSearchTermChange(e){
-        setSearchTerm(e.target.value);
+        const value = e.target.value;
+        setSearchTerm(value);
         if (!onSubmit) return;
-        const formValues = {
-            searchTerm : e.target.value
-        };
-        onSubmit(formValues);
+
+        if(typingTimeoutRef.current){
+            clearTimeout(typingTimeoutRef.current);
+        }
+        typingTimeoutRef.current = setTimeout(() => {
+            const formValues = {
+                searchTerm : value
+            };
+            onSubmit(formValues);
+        },  500); 
     }
     return (
         <form action="">
