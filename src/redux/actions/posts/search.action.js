@@ -7,7 +7,7 @@ export const searchLoading = (params) => {
   }
 }
 
-export function searchComplete(data) {
+export function searchSuccess(data) {
   return {
     type: type.LOADED_POST,
     data

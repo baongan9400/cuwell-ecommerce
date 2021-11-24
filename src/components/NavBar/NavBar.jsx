@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./NavBar.scss";
-import "./Search.scss";
 import logo from "assets/images/logo.png";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -45,7 +44,6 @@ const NavBar = () => {
       setTrans("en");
     }
   };
-  const [dropdownValue, setDropdown] = useState("All");
   function CustomLink({ label, to, activeOnlyWhenExact }) {
     let match = useRouteMatch({
       path: to,
@@ -160,45 +158,7 @@ const NavBar = () => {
             </div>
             {/* Start Search */}
             <div className="">
-              <div className="search-wrapper">
-                <div className="search_box">
-                  <div className="dropdown dropdown-search">
-                    <div
-                      className="default_option dropdown-toggle"
-                      id="dropdownMenuButton1"
-                      data-bs-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      {dropdownValue}
-                    </div>
-                    <ul
-                      className="dropdown-menu category-search"
-                      aria-labelledby="dropdownMenuButton1"
-                    >
-                      {data.length > 0 &&
-                        data.map((category) => (
-                          <li
-                            className="dropdown-item"
-                            onClick={() => setDropdown(category.name)}
-                          >
-                            {category.name}
-                          </li>
-                        ))}
-                    </ul>
-                  </div>
-
-                  {/* <div className="search_field">
-                    <input
-                      type="text"
-                      className="input"
-                      placeholder={t("header.search")}
-                    />
-                    <i className="fas fa fa-search" />
-                  </div> */}
-                  <SearchForm onSubmit={handelFilterChange}/>
-                </div>
-              </div>
+                  <SearchForm onSubmit={handelFilterChange} category = {data} lang={t}/>
             </div>
           </div>
         </div>

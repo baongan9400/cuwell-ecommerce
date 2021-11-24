@@ -45,7 +45,7 @@
         list-style-type: none;
         padding-inline-start: 0px !important;
         // display: block;
-        .dropdown-item::first-letter{
+        .dropdown-item::first-letter {
           text-transform: uppercase;
         }
         &.show {
@@ -86,7 +86,33 @@
         padding-right: 38px;
         color: #6f768d;
       }
-
+      .search-result {
+        background-color: white;
+        z-index: 99999;
+        height: 170px;
+        position: absolute;
+        width: inherit;
+        border-radius: 10px;
+        font-size: 1rem;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        margin-top: 10px;
+        padding: 0.5rem 0;
+        height: fit-content;
+        ul{
+          padding-left: 0 !important;
+        }
+        li{
+          padding-bottom: 10px;
+          padding-top: 10px;
+          padding-left: 20px;
+          &:hover {
+            background: rgba(0, 179, 255, 0.144);
+            opacity: 0.5;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+          }
+        }
+      }
       .fas {
         position: absolute;
         top: 10px;
