@@ -1,6 +1,10 @@
 import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 import "./Search.scss";
+import { useDispatch } from "react-redux";
+import { searchLoading } from "redux/actions/posts/search.action";
+import { Link } from "react-router-dom";
+
 SearchForm.propTypes = {
   onSubmit: PropTypes.func,
 };
@@ -13,6 +17,7 @@ function SearchForm(props) {
   const [searchTerm, setSearchTerm] = useState("");
   const [dropdownValue, setDropdown] = useState("All");
   const [searchCat, setSearchCat] = useState("");
+  const dispatch = useDispatch();
 
   const typingTimeoutRef = useRef(null);
 
@@ -36,11 +41,33 @@ function SearchForm(props) {
     }, 300);
   };
 
+  const handleResultClick = (selectNumber) => {
+    const params = {
+      search: searchTerm,
+      category: searchCat,
+      page: 1,
+      page_size: 12,
+    };
+    dispatch(searchLoading(params));
+  };
   const listData = result?.map((element, index) => (
     <li key={index}>
-      <a className="" href="/#">
+      <Link
+        to={{
+          pathname: "/posts",
+          state: {
+            listItems: props.list,
+          },
+        }}
+        onClick={handleResultClick}
+      >
+        {" "}
         {element}
-      </a>
+      </Link>
+
+      {/* <a className="" href="/posts" onClick={handleResultClick}>
+        {element}
+      </a> */}
     </li>
   ));
 
