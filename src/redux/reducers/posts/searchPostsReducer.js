@@ -20,7 +20,6 @@ export const searchPostsReducer = (state = initialState, action) => {
       };
 
     case type.LOADED_POST:
-      //   const { count, next, previous, results } = action.data;
       return {
         ...state,
         load: false,

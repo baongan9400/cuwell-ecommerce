@@ -9,6 +9,7 @@ import { Route } from "react-router-dom";
 import Login from "../pages/Authentication/Login/Login";
 import CreatePost from "pages/CreatePost/CreatePost";
 import profile from "pages/Profile/profile";
+import CategoryPosts from "pages/CategoryPosts/index";
 export const routeConfig = [
   {
     path: "/login",
@@ -49,6 +50,12 @@ export const routeConfig = [
   {
     path: "/profile",
     component: profile,
+    isPrivate: false,
+    exact: true,
+  },
+  {
+    path: "/posts",
+    component: CategoryPosts,
     isPrivate: false,
     exact: true,
   },

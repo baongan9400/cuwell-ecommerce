@@ -27,13 +27,17 @@ export function PostDetails() {
   const listPostImage = post.images.map((item) => (
     <img src={item.url} className="mx-auto d-block" alt="..." />
   ));
-  const listBuyerImage = post.buyer && post.buyer.map((item) => (
-    <img
-      src={item.avatar ? item.avatar : "https://i.pravatar.cc/150?u=" + item.id}
-      className="buyer-img"
-      alt="..."
-    />
-  ));
+  const listBuyerImage =
+    post.buyer &&
+    post.buyer.map((item) => (
+      <img
+        src={
+          item.avatar ? item.avatar : "https://i.pravatar.cc/150?u=" + item.id
+        }
+        className="buyer-img"
+        alt="..."
+      />
+    ));
   return (
     <div>
       <NavBar />
@@ -50,7 +54,7 @@ export function PostDetails() {
                   <Slider
                     asNavFor={nav1}
                     ref={slider2}
-                    slidesToShow={2}
+                    slidesToShow={3}
                     swipeToSlide={true}
                     focusOnSelect={true}
                     className="slider-down"

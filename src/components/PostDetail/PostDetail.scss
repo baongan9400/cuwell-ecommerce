@@ -5,7 +5,7 @@
   .slick-prev:before {
     color: $color_button_submit;
   }
-  .slick-slide img{
+  .slick-slide img {
     height: 400px;
   }
   margin-top: 40px !important;
@@ -14,12 +14,14 @@
     margin-top: 30px;
     .slider-top {
       filter: drop-shadow(15px 20px 20px rgba(151, 208, 255, 0.12));
+      width: 430px;
       img {
         border-radius: 15px;
       }
     }
     .slider-down {
       margin-top: 20px;
+      width: 430px;
       img {
         padding: 10px;
         width: 100%;

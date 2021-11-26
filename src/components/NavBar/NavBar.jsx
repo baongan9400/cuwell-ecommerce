@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./NavBar.scss";
-import "./Search.scss";
 import logo from "assets/images/logo.png";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategoriesRequestAction } from "redux/actions/category/category.action";
 import { Link, useRouteMatch } from "react-router-dom";
 import { logoutUserAction } from "redux/actions/login/authAction";
+import SearchForm from "components/SearchFilterForm/SearchForm";
+import { getSearchComplete } from "api/posts/search";
 
 const NavBar = () => {
   // const { t, handleChangeLang, trans } = props;
@@ -14,6 +15,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.categoryReducer);
   const { user, isLoggedIn } = useSelector((state) => state.userReducer);
+  const [result, setResult] = useState([]);
 
   useEffect(() => {
     const lang = localStorage.getItem("lang");
@@ -44,14 +46,12 @@ const NavBar = () => {
       setTrans("en");
     }
   };
-  const dropdownSearchValue = t("header.all.food");
-  const [dropdownValue, setDropdown] = useState(dropdownSearchValue);
   function CustomLink({ label, to, activeOnlyWhenExact }) {
     let match = useRouteMatch({
       path: to,
       exact: activeOnlyWhenExact,
     });
-  
+
     return (
       <li className={match ? "nav-item active" : "nav-item"}>
         <Link to={to} className="nav-link w-auto">
@@ -60,23 +60,43 @@ const NavBar = () => {
       </li>
     );
   }
-  const CustomLinkHasAction = ({ label, to, activeOnlyWhenExact, handelClick }) => {
+  const CustomLinkHasAction = ({
+    label,
+    to,
+    activeOnlyWhenExact,
+    handelClick,
+  }) => {
     let match = useRouteMatch({
       path: to,
       exact: activeOnlyWhenExact,
     });
 
-  return (
-    <li className={match ? "nav-item active" : "nav-item"}>
-      <Link to={to} onClick={handelClick} className="nav-link">
-        {label}
-      </Link>
-    </li>
-  );
-}
-const handelLogout = ()=> {
-  dispatch(logoutUserAction());
-}
+    return (
+      <li className={match ? "nav-item active" : "nav-item"}>
+        <Link to={to} onClick={handelClick} className="nav-link">
+          {label}
+        </Link>
+      </li>
+    );
+  };
+  const handelLogout = () => {
+    dispatch(logoutUserAction());
+  };
+  const fetchSearchAutoComplete = async (newFilter) => {
+    try {
+      const titleResult = await getSearchComplete(
+        newFilter.searchTerm,
+        newFilter.searchCategory
+      );
+      setResult(titleResult);
+    } catch (error) {
+      console.log("failed to fetch api", error);
+    }
+  };
+  const handelFilterChange = (newFilter) => {
+    console.log("SEARCH", newFilter);
+    fetchSearchAutoComplete(newFilter);
+  };
   return (
     <div className="NavBar">
       <section className="ftco-section">
@@ -150,60 +170,14 @@ const handelLogout = ()=> {
                 </div>
               </div>
             </div>
+            {/* Start Search */}
             <div className="">
-              <div className="search-wrapper">
-                <div className="search_box">
-                  <div className="dropdown dropdown-search">
-                    <div
-                      className="default_option dropdown-toggle"
-                      id="dropdownMenuButton1"
-                      data-bs-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      {dropdownValue}
-                    </div>
-                    <ul
-                      className="dropdown-menu"
-                      aria-labelledby="dropdownMenuButton1"
-                    >
-                      <li
-                        className="dropdown-item"
-                        onClick={() => setDropdown(dropdownValue)}
-                      >
-                        {dropdownValue}
-                      </li>
-                      <li
-                        className="dropdown-item"
-                        onClick={() => setDropdown(t("header.all.food"))}
-                      >
-                        {t("header.all.food")}
-                      </li>
-                      <li
-                        className="dropdown-item"
-                        onClick={() => setDropdown("Food")}
-                      >
-                        Plants
-                      </li>
-                      <li
-                        className="dropdown-item"
-                        onClick={() => setDropdown("Clothes")}
-                      >
-                        Clothes
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div className="search_field">
-                    <input
-                      type="text"
-                      className="input"
-                      placeholder={t("header.search")}
-                    />
-                    <i className="fas fa fa-search" />
-                  </div>
-                </div>
-              </div>
+              <SearchForm
+                onSubmit={handelFilterChange}
+                category={data}
+                lang={t}
+                dataSearch={result}
+              />
             </div>
           </div>
         </div>
@@ -239,12 +213,18 @@ const handelLogout = ()=> {
                   >
                     {t("header.category")}
                   </a>
-                  <div                     
-                  style={{ backgroundColor: "white" }}
-                  className="dropdown-menu" aria-labelledby="dropdown04">
+                  <div
+                    style={{ backgroundColor: "white" }}
+                    className="dropdown-menu"
+                    aria-labelledby="dropdown04"
+                  >
                     {data.length > 0 &&
                       data.map((category) => (
-                        <a className="dropdown-item" style={{ color: "black" }} href="/">
+                        <a
+                          className="dropdown-item"
+                          style={{ color: "black" }}
+                          href="/"
+                        >
                           {category.name}
                         </a>
                       ))}
@@ -261,24 +241,23 @@ const handelLogout = ()=> {
                   </a>
                 </li>
                 {isLoggedIn ? (
-                //   <li className="nav-item">
-                //   <a href="/logout" className="nav-link">
-                //     {t("header.logout")}
-                //   </a>
-                // </li>
-                <CustomLinkHasAction
-              to="/login"
-              label="Logout"
-              handelClick={handelLogout}
-            />
-                ): (
+                  //   <li className="nav-item">
+                  //   <a href="/logout" className="nav-link">
+                  //     {t("header.logout")}
+                  //   </a>
+                  // </li>
+                  <CustomLinkHasAction
+                    to="/login"
+                    label="Logout"
+                    handelClick={handelLogout}
+                  />
+                ) : (
                   <li className="nav-item">
-                  <a href="/login" className="nav-link">
-                    {t("header.login")}
-                  </a>
-                </li>
+                    <a href="/login" className="nav-link">
+                      {t("header.login")}
+                    </a>
+                  </li>
                 )}
-                
               </ul>
             </div>
           </div>
