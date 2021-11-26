@@ -757,13 +757,19 @@ function Posts() {
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-12 mb-4">
-            <div className="section-heading">
-              <h2 className="blink_me text-center col-md-11">
-                LATEST ARRIVAL <span>It’s old for them but gold for you</span>
+            <div className="section-heading d-flex align-items-center">
+              <h2 className="blink_me text-center d-flex align-items-center">
+                <div>LATEST ARRIVAL</div>
+                <div className="d-none divSpan  d-md-block">
+                  It’s old for them but gold for you
+                </div>
               </h2>
-              <Link to="/best-price">
-                view all products <i className="fa fa-angle-right"></i>
-              </Link>
+
+              <div style={{ marginLeft: "auto", marginBottom: "10px" }}>
+                <Link to="/best-price" style={{ width: "100%" }} className="">
+                  view all products <i className="fa fa-angle-right"></i>
+                </Link>
+              </div>
             </div>
           </div>
           <PostList load={load} posts={data.results} />

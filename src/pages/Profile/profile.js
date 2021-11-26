@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { Redirect } from 'react-router-dom';
-import { connect } from "react-redux";
-import "./profile.css"
+import { Redirect } from "react-router-dom";
+import { connect, useSelector } from "react-redux";
+import "./profile.css";
 import { VNDformat } from "helper/utils";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import NavBar from "components/NavBar/NavBar";
 
 function ListItem({ label, src, link }) {
   const photo = require(`./img/${src}`).default;
   return (
-    <Link to={link} style={{ color: 'inherit', textDecoration: 'inherit'}} className="btn btn-outline-primary list-group-item">
+    <Link
+      to={link}
+      style={{ color: "inherit", textDecoration: "inherit" }}
+      className="btn btn-outline-primary list-group-item"
+    >
       <li className="d-flex justify-content-between align-items-center flex-wrap">
         <h6 className="mb-0">
-          <img className="feather feather-globe me-5 icon-inline" width="40" height="40" src={photo} alt={label} />
+          <img
+            className="feather feather-globe me-5 icon-inline"
+            width="40"
+            height="40"
+            src={photo}
+            alt={label}
+          />
           {label}
         </h6>
       </li>
@@ -20,13 +30,22 @@ function ListItem({ label, src, link }) {
   );
 }
 function ProgressBar({ label, width, aria_valuenow }) {
-  const styleObject = { "maxWidth": width }
+  const styleObject = { maxWidth: width };
   return (
     <div>
       <small>{label}</small>
-      <div className="progress mb-3" style={{ height: '15px' }}>
-        <div className="progress-bar progress-bar-striped bg-danger" role="progressbar" style={styleObject} aria-valuenow={{ aria_valuenow }} aria-valuemin={0} aria-valuemax={100}>
-        <span className="title text-warning">{Math.round( aria_valuenow * 100 + Number.EPSILON ) / 100}%</span>
+      <div className="progress mb-3" style={{ height: "15px" }}>
+        <div
+          className="progress-bar progress-bar-striped bg-danger"
+          role="progressbar"
+          style={styleObject}
+          aria-valuenow={{ aria_valuenow }}
+          aria-valuemin={0}
+          aria-valuemax={100}
+        >
+          <span className="title text-warning">
+            {Math.round(aria_valuenow * 100 + Number.EPSILON) / 100}%
+          </span>
         </div>
       </div>
     </div>
@@ -34,6 +53,8 @@ function ProgressBar({ label, width, aria_valuenow }) {
 }
 
 function Profile(props) {
+  const reduxUser = useSelector((state) => state.userReducer);
+  console.log(reduxUser);
   // const [total, setTotal_all_orders] = useState();
   // const [total_buy, setTotalBuy] = useState();
 
@@ -70,54 +91,98 @@ function Profile(props) {
   // }
 
   const data = {
-   user :{
-    id: 12,
-    name: "Harry Potter",
-    email: "user11@gmail.com",
-    phone: "123456789",
-    address: {
-      createdAt: "2021-06-28T13:07:55.574+00:00",
-      updatedAt: "2021-07-12T09:58:44.192+00:00",
-      id: 1,
-      commune: "Phường An Khê",
-      district: "Quận Thanh Khê",
-      city: "Hậu Giang",
+    user: {
+      id: 12,
+      name: "Harry Potter",
+      email: "user11@gmail.com",
+      phone: "123456789",
+      address: {
+        createdAt: "2021-06-28T13:07:55.574+00:00",
+        updatedAt: "2021-07-12T09:58:44.192+00:00",
+        id: 1,
+        commune: "Phường An Khê",
+        district: "Quận Thanh Khê",
+        city: "Hậu Giang",
+      },
+      auth: 1,
+      roles: ["ROLE_USER"],
+      avatar: null,
+      deletedAt: null,
     },
-    auth: 1,
-    roles: ["ROLE_USER"],
-    avatar: null,
-    deletedAt: null,
-   }
   };
 
   // if (!data) {
   //   return <Redirect to="/home" />;
-  // }// else 
+  // }// else
   return (
     <div>
       <NavBar />
-      <div className="container" style={{marginTop: "140px"}}>
+      <div className="container" style={{ marginTop: "140px" }}>
         <div className="main-body ">
           <div className="row gutters-sm ">
             <div className="col-md-4 mb-3">
               <div className="card">
                 <div className="card-body card-profile">
                   <div className="d-flex flex-column align-items-center text-center">
-                    <img src={data.user.avatar ? data.user.avatar : "https://i.pravatar.cc/150?u=" + data.user.id} alt="avatar" className="rounded-circle" width={150} height={150}/>
+                    <img
+                      src={
+                        data.user.avatar
+                          ? data.user.avatar
+                          : "https://i.pravatar.cc/150?u=" + data.user.id
+                      }
+                      alt="avatar"
+                      className="rounded-circle"
+                      width={150}
+                      height={150}
+                    />
                     <div className="mt-3">
-                      <h4>{data.user.name}</h4>
+                      <h4>{reduxUser.user.name}</h4>
                       <p className="text-secondary mb-1">Premium Member</p>
-                      <button className="btn btn-outline-primary me-2" data-toggle="modal" data-target="#exampleModal"><img className="feather feather-globe me-2 icon-inline" width="30" height="30" src={require(`./img/cart.png`).default} alt="Cart" />Cart</button>
-                      <button  className="btn btn-outline-primary"><img className="feather feather-globe me-2 icon-inline" width="30" height="30" src={require(`./img/create.png`).default} alt="Fav" />Create Post</button>
+                      <button
+                        className="btn btn-outline-primary me-2 my-2"
+                        data-toggle="modal"
+                        data-target="#exampleModal"
+                      >
+                        <img
+                          className="feather feather-globe me-2 icon-inline"
+                          width="30"
+                          height="30"
+                          src={require(`./img/cart.png`).default}
+                          alt="Cart"
+                        />
+                        Cart
+                      </button>
+                      <button className="btn btn-outline-primary">
+                        <img
+                          className="feather feather-globe me-2 icon-inline"
+                          width="30"
+                          height="30"
+                          src={require(`./img/create.png`).default}
+                          alt="Fav"
+                        />
+                        Create Post
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="card mt-3">
                 <ul className="list-group list-group-flush">
-                  <ListItem label="Profile" src='user.png' link="/edit_profile"></ListItem>
-                  <ListItem label="My Posts" src='post.png' link="/my-posts"></ListItem>
-                  <ListItem label="History" src='bill.png' link="/payment/history"></ListItem>
+                  <ListItem
+                    label="Profile"
+                    src="user.png"
+                    link="/edit_profile"
+                  ></ListItem>
+                  <ListItem
+                    label="My Posts"
+                    src="post.png"
+                    link="/my-posts"
+                  ></ListItem>
+                  <ListItem
+                    label="History"
+                    src="bill.png"
+                    link="/payment/history"
+                  ></ListItem>
                   {/* <ListItem label="Notification" src='megaphone.png' link="#"></ListItem>
                   <ListItem label="Voucher" src='voucher.png' link="#"></ListItem> */}
                 </ul>
@@ -131,7 +196,7 @@ function Profile(props) {
                       <h6 className="mb-0">Fullname</h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
-                      {data.user.name}
+                      {reduxUser.user.name}
                     </div>
                   </div>
                   <hr />
@@ -140,7 +205,7 @@ function Profile(props) {
                       <h6 className="mb-0">Email</h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
-                      {data.user.email}
+                      {reduxUser.user.email}
                     </div>
                   </div>
                   <hr />
@@ -149,7 +214,7 @@ function Profile(props) {
                       <h6 className="mb-0">Phone</h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
-                      {data.user.phone}
+                      {reduxUser.user.phone}
                     </div>
                   </div>
                   <hr />
@@ -159,13 +224,20 @@ function Profile(props) {
                       <h6 className="mb-0">Address</h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
-                      {data.user.address.commune}, {data.user.address.district}, {data.user.address.city}
+                      {reduxUser.user.address.commune},{" "}
+                      {reduxUser.user.address.district},{" "}
+                      {reduxUser.user.address.city}
                     </div>
                   </div>
                   <hr />
                   <div className="row">
                     <div className="col-sm-12">
-                    <Link className="btn btn-info" to={{ pathname: `/edit_profile`}}>Edit</Link>
+                      <Link
+                        className="btn btn-info"
+                        to={{ pathname: `/edit_profile` }}
+                      >
+                        Edit
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -212,14 +284,13 @@ function Profile(props) {
       </div>
     </div>
   );
-
 }
 
-function mapStateToProps(state) {
-  const { user } = state.userReducer;
-  return {
-    user
-  };
-}
+// function mapStateToProps(state) {
+//   const { user } = state.userReducer;
+//   return {
+//     user,
+//   };
+// }
 
 export default Profile;
