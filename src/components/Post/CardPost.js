@@ -11,12 +11,12 @@ const CardPost = (props) => {
   const { id, title, description, price, images } = props.post;
 
   return (
-    <div className="col-md-2 p-4 mt-3">
+    <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3 p-4 mt-3">
       <div className="product-item mb-3">
-        <div className="down-content">
+        <div className="down-content p-4">
           <Link to={{ pathname: `/post/${id}`, state: { post: props.post } }}>
             <img
-              className="mb-2"
+              className="mb-2 imageProduct"
               src={
                 images[0] && images[0].url
                   ? images[0].url

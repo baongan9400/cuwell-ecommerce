@@ -8,16 +8,20 @@ import bgImage from "assets/images/bg-create-post.png";
 import uploadImage from "assets/images/upload-img.png";
 
 const CreatePost = () => {
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState({
+    first: null,
+    second: null,
+    third: null,
+  });
+  const [previewImage, setPreviewImage] = useState(null);
 
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
-      description: ""
+      description: "",
     },
-    validationSchema: Yup.object({
-    }),
+    validationSchema: Yup.object({}),
     onSubmit: (values) => {
       console.log("values: ", values);
     },
@@ -27,7 +31,25 @@ const CreatePost = () => {
   const values = formik.values;
   const handleImgChange = (event) => {
     if (event.target.files[0] !== undefined) {
-      setImage(event.target.files[0]);
+      if (image.first === null || image.third) {
+        setImage({
+          ...image,
+          first: event.target.files[0],
+        });
+        setPreviewImage(event.target.files[0]);
+      } else if (image.first !== undefined && image.second === null) {
+        setImage({
+          ...image,
+          second: event.target.files[0],
+        });
+        setPreviewImage(event.target.files[0]);
+      } else if (image.second !== undefined && image.third === null) {
+        setImage({
+          ...image,
+          third: event.target.files[0],
+        });
+        setPreviewImage(event.target.files[0]);
+      }
     }
   };
   return (
@@ -112,11 +134,12 @@ const CreatePost = () => {
               <div className="img-display">
                 <img
                   src={
-                    image === null ? uploadImage : URL.createObjectURL(image)
+                    previewImage === null
+                      ? uploadImage
+                      : URL.createObjectURL(previewImage)
                   }
                   alt="preview"
                   style={{ height: "250px" }}
-
                 />
               </div>
               <label htmlFor="file" className="btn-upload">
@@ -143,9 +166,51 @@ const CreatePost = () => {
                 />
               </label>
               <div className="img-display-group row mt-5">
-                <img className="col-4" src={uploadImage}></img>
-                <img className="col-4" src={uploadImage}></img>
-                <img className="col-4" src={uploadImage}></img>
+                <img
+                  style={{ cursor: "pointer" }}
+                  className="col-4"
+                  src={
+                    image.first !== null
+                      ? URL.createObjectURL(image?.first)
+                      : uploadImage
+                  }
+                  alt="first"
+                  onClick={() => {
+                    if (image.first !== null) {
+                      setPreviewImage(image?.first);
+                    }
+                  }}
+                ></img>
+                <img
+                  style={{ cursor: "pointer" }}
+                  className="col-4"
+                  src={
+                    image.second !== null
+                      ? URL.createObjectURL(image?.second)
+                      : uploadImage
+                  }
+                  onClick={() => {
+                    if (image.second !== null) {
+                      setPreviewImage(image?.second);
+                    }
+                  }}
+                  alt="second"
+                ></img>
+                <img
+                  style={{ cursor: "pointer" }}
+                  className="col-4"
+                  src={
+                    image.third !== null
+                      ? URL.createObjectURL(image?.third)
+                      : uploadImage
+                  }
+                  onClick={() => {
+                    if (image.third !== null) {
+                      setPreviewImage(image?.third);
+                    }
+                  }}
+                  alt="third"
+                ></img>
               </div>
             </div>
             <button className="btn-create" type="submit">
