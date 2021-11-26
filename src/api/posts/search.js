@@ -11,9 +11,12 @@ export const getPostById = (pid) => {
   return axiosPostService.get(url);
 };
 export const getSearchComplete = (search, category) => {
+  console.log("search", search);
+  console.log("cate", category);
+
   const url = category
-    ? `posts/search-autocomplete/?search=${search}`
-    : `posts/search-autocomplete/?search=${search}&category=${category}`;
+    ? `posts/search-autocomplete/?search=${search}&category=${category}`
+    : `posts/search-autocomplete/?search=${search}`;
 
   return axiosPostService.get(url);
 };

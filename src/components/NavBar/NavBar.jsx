@@ -7,6 +7,7 @@ import { getAllCategoriesRequestAction } from "redux/actions/category/category.a
 import { Link, useRouteMatch } from "react-router-dom";
 import { logoutUserAction } from "redux/actions/login/authAction";
 import SearchForm from "components/SearchFilterForm/SearchForm";
+import { getSearchComplete } from "api/posts/search";
 
 const NavBar = () => {
   // const { t, handleChangeLang, trans } = props;
@@ -14,6 +15,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.categoryReducer);
   const { user, isLoggedIn } = useSelector((state) => state.userReducer);
+  const [result, setResult] = useState([]);
 
   useEffect(() => {
     const lang = localStorage.getItem("lang");
@@ -80,9 +82,21 @@ const NavBar = () => {
   const handelLogout = () => {
     dispatch(logoutUserAction());
   };
-  const handelFilterChange = (newFilter) =>{
-    console.log('SEARCH', newFilter);
-  }
+  const fetchSearchAutoComplete = async (newFilter) => {
+    try {
+      const titleResult = await getSearchComplete(
+        newFilter.searchTerm,
+        newFilter.searchCategory
+      );
+      setResult(titleResult);
+    } catch (error) {
+      console.log("failed to fetch api", error);
+    }
+  };
+  const handelFilterChange = (newFilter) => {
+    console.log("SEARCH", newFilter);
+    fetchSearchAutoComplete(newFilter);
+  };
   return (
     <div className="NavBar">
       <section className="ftco-section">
@@ -158,7 +172,12 @@ const NavBar = () => {
             </div>
             {/* Start Search */}
             <div className="">
-                  <SearchForm onSubmit={handelFilterChange} category = {data} lang={t}/>
+              <SearchForm
+                onSubmit={handelFilterChange}
+                category={data}
+                lang={t}
+                dataSearch={result}
+              />
             </div>
           </div>
         </div>

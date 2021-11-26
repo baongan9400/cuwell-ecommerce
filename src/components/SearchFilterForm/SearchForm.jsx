@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 import "./Search.scss";
-
 SearchForm.propTypes = {
   onSubmit: PropTypes.func,
 };
@@ -9,9 +8,12 @@ SearchForm.defaultProps = {
   onSubmit: null,
 };
 function SearchForm(props) {
-  const { onSubmit, category, lang } = props;
+  const { onSubmit, category, lang, dataSearch } = props;
   const [result, setResult] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [dropdownValue, setDropdown] = useState("All");
+  const [searchCat, setSearchCat] = useState("");
+
   const typingTimeoutRef = useRef(null);
 
   const handleSearchTermChange = async (e) => {
@@ -26,9 +28,10 @@ function SearchForm(props) {
     typingTimeoutRef.current = setTimeout(() => {
       const formValues = {
         searchTerm: value,
+        searchCategory: searchCat,
       };
 
-      setResult(["sale sale", "2", "3", "sale sale", "2", "3"]);
+      setResult(dataSearch);
       onSubmit(formValues);
     }, 300);
   };
@@ -40,7 +43,6 @@ function SearchForm(props) {
       </a>
     </li>
   ));
-  const [dropdownValue, setDropdown] = useState("All");
 
   return (
     <>
@@ -61,11 +63,23 @@ function SearchForm(props) {
                 className="dropdown-menu category-search"
                 aria-labelledby="dropdownMenuButton1"
               >
+                <li
+                  className="dropdown-item"
+                  onClick={() => {
+                    setDropdown("All");
+                    setSearchCat("");
+                  }}
+                >
+                  All
+                </li>
                 {category.length > 0 &&
                   category.map((item) => (
                     <li
                       className="dropdown-item"
-                      onClick={() => setDropdown(item.name)}
+                      onClick={() => {
+                        setDropdown(item.name);
+                        setSearchCat(item.id);
+                      }}
                     >
                       {item.name}
                     </li>
@@ -83,7 +97,11 @@ function SearchForm(props) {
               />
               <i className="fas fa fa-search" />
               <div
-                className={searchTerm === "" ? `search-result d-none` : `search-result d-block`}
+                className={
+                  searchTerm === ""
+                    ? `search-result d-none`
+                    : `search-result d-block`
+                }
               >
                 <ul className="" aria-labelledby="">
                   {listData}
