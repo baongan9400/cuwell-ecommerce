@@ -227,17 +227,15 @@ const NavBar = () => {
                   </div>
                 </li>
                 <CustomLink to="/create-post" label={t("header.post")} />
-                <li className="nav-item">
-                  <a href="/profile" className="nav-link">
-                    {t("header.profile")}
-                  </a>
-                </li>
                 {isLoggedIn ? (
-                  <CustomLinkHasAction
-                    to="/login"
-                    label="Logout"
-                    handelClick={handelLogout}
-                  />
+                  <>
+                    <CustomLink to="/profile" label={t("header.profile")} />
+                    <CustomLinkHasAction
+                      to="/login"
+                      label="Logout"
+                      handelClick={handelLogout}
+                    />
+                  </>
                 ) : (
                   <li className="nav-item">
                     <a href="/login" className="nav-link">
