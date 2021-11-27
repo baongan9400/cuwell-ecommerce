@@ -199,11 +199,7 @@ const NavBar = () => {
             </button>
             <div className="collapse navbar-collapse" id="ftco-nav">
               <ul className="navbar-nav m-auto">
-                <li className="nav-item active">
-                  <a href="/" className="nav-link">
-                    {t("header.home")}
-                  </a>
-                </li>
+                <CustomLink to="/home" label={t("header.home")} />
                 <li className="nav-item dropdown">
                   <a
                     className="nav-link dropdown-toggle"
@@ -230,22 +226,13 @@ const NavBar = () => {
                       ))}
                   </div>
                 </li>
-                <li className="nav-item">
-                  <a href="/create-post" className="nav-link">
-                    {t("header.post")}
-                  </a>
-                </li>
+                <CustomLink to="/create-post" label={t("header.post")} />
                 <li className="nav-item">
                   <a href="/profile" className="nav-link">
                     {t("header.profile")}
                   </a>
                 </li>
                 {isLoggedIn ? (
-                  //   <li className="nav-item">
-                  //   <a href="/logout" className="nav-link">
-                  //     {t("header.logout")}
-                  //   </a>
-                  // </li>
                   <CustomLinkHasAction
                     to="/login"
                     label="Logout"

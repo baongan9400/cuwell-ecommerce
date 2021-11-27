@@ -24,12 +24,6 @@ export const routeConfig = [
     component: SignUp,
   },
   {
-    path: "/navbar",
-    isPrivate: false,
-    exact: true,
-    component: NavBar,
-  },
-  {
     path: "/home",
     isPrivate: false,
     exact: true,
