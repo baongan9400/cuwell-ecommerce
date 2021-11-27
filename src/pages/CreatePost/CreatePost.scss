@@ -14,7 +14,8 @@
 
   display: flex;
   align-items: center;
-  input {
+  input,
+  select {
     background-color: #e8f0fe !important;
   }
   .bgImage {
@@ -26,22 +27,24 @@
   }
 
   .createPost-wrapper {
-    z-index: 9999;
+    z-index: 2;
     background: #ffffff;
     box-shadow: -10px -20px 10px rgba(7, 80, 222, 0.08),
       inset -5px -5px 10px rgba(95, 101, 255, 0.14);
     border-radius: 20px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 50px;
     width: 1227px;
     height: fit-content;
-    button, .btn-upload{
+    button,
+    .btn-upload {
       cursor: pointer;
       padding: 8px 0;
       width: 100%;
       background: #0564d5;
       filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-                  font-size: 14px;
+      font-size: 14px;
       font-weight: 400;
       text-transform: uppercase;
       color: #fff;
@@ -50,13 +53,13 @@
     }
     &-title {
       margin-left: 48px;
-      padding-top: 70px;
+      padding-top: 30px;
     }
     .createPost {
       &-title {
-        font-size: 30px;
+        font-size: 25px;
         font-weight: 900;
-        line-height: 48px;
+        line-height: 40px;
       }
       &-title {
         margin-bottom: 6px;
@@ -67,8 +70,8 @@
       }
       &-form {
         margin: 0 auto;
-        margin-top: 40px;
-        margin-bottom: 60px;
+        // margin-top: 20px;
+        margin-bottom: 10px;
         padding: 0 80px;
         .group-editor {
           padding-right: 100px;
@@ -79,7 +82,7 @@
           flex-direction: column;
         }
         &-group {
-          margin-top: 31px;
+          margin-top: 10px;
           > label {
             font-size: 16px;
             font-weight: 900;
@@ -91,7 +94,7 @@
             background-color: $bg_gray_input;
           }
           > textarea {
-            min-height: 200px;
+            min-height: 150px;
           }
         }
         &-submit {
@@ -159,8 +162,8 @@
             max-width: 200px;
           }
         }
-        .btn-create{
-          margin: 50px auto;
+        .btn-create {
+          margin: 30px auto;
           width: 300px;
         }
       }
