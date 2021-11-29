@@ -37,6 +37,11 @@
     margin-top: 50px;
     width: 1227px;
     height: fit-content;
+    .img-display-group{
+      img{
+        height: 165px !important;
+      }
+    }
     button,
     .btn-upload {
       cursor: pointer;

@@ -8,6 +8,7 @@ import { Link, useRouteMatch } from "react-router-dom";
 import { logoutUserAction } from "redux/actions/login/authAction";
 import SearchForm from "components/SearchFilterForm/SearchForm";
 import { getSearchComplete } from "api/posts/search";
+import CartBadge from "components/Cart/CartBadge";
 
 const NavBar = () => {
   // const { t, handleChangeLang, trans } = props;
@@ -129,14 +130,12 @@ const NavBar = () => {
                       <i className="sr-only">Chat</i>
                     </span>
                   </a>
-                  <a
-                    href="/home"
-                    className="d-flex align-items-center justify-content-center"
-                  >
-                    <span className="fa fa-shopping-cart">
+                  <div className="d-flex align-items-center justify-content-center btn-cart">                     
+                    {/* <span className="fa fa-shopping-cart">
                       <i className="sr-only">Shopping Cart</i>
-                    </span>
-                  </a>
+                    </span> */}
+                    <CartBadge/>
+                    </div>
                   <div className="switch-ctn">
                     <div className="jumbotron">
                       <div className="df-switch">

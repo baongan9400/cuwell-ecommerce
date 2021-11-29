@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { RemoveShoppingCart } from "@material-ui/icons";
 import { connect } from "react-redux";
-
+import { Modal, Button, Accordion } from "react-bootstrap";
 import {
   addNewToCart,
   RemoveCartItemAPIAction,
 } from "../../../redux/actions/cartAction";
 import { Link } from "react-router-dom";
-import { VNDformat } from "../../../helpers/utils";
+import { VNDformat } from "helper/utils";
 
 import "./cartPopup.css";
 
@@ -38,12 +38,12 @@ const ListPopup = (props) => {
   };
   const listItems = list.map((item) => (
     <li key={item.id} className="li-list-wrapper">
-      <div
+      {/* <div
         className="popup-sm-item p-3"
-        data-toggle="collapse"
-        data-target={`#${item.id}`}
+        data-bs-toggle="collapse"
+        data-bs-target={`#${item.id}`}
       >
-        <img src={item.image} alt="" className="popup-sm-img" />
+        <img src={item?.images[0]?.url} alt="" className="popup-sm-img" />
         <div className="popup-sm-user">
           <span className="popup-sm-username">{item.title}</span>
           <span className="popup-sm-user-price mt-2">
@@ -60,13 +60,35 @@ const ListPopup = (props) => {
       </div>
       <div
         id={item.id}
-        className="collapse"
+        className="collapse multi-collapse"
         aria-labelledby="headingThree"
         data-parent="#accordionExample"
       >
-        <span className="ml-3">{item.category}</span>
-      </div>
-      <hr className="solid" />
+        <span className="ms-3">{item.category}</span>
+      </div> */}
+      <Accordion defaultActiveKey="0">
+        <Accordion.Item eventKey={item.id}>
+          <Accordion.Header>
+            <img src={item?.images[0]?.url} alt="" className="popup-sm-img" />
+            <div className="popup-sm-user">
+              <span className="popup-sm-username">{item.title}</span>
+              <span className="popup-sm-user-price mt-2">
+                {VNDformat(item.price)}
+              </span>
+            </div>
+            <button
+              className="popup-sm-button"
+              onClick={() => handleRemovePopupItem(item)}
+            >
+              <RemoveShoppingCart className="popup-sm-icon" />
+              Remove
+            </button>
+          </Accordion.Header>
+          <Accordion.Body>
+          <span className="ms-3 text-break">{item.description}</span>
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
     </li>
   ));
 
@@ -75,61 +97,41 @@ const ListPopup = (props) => {
 
 function CartPopup(props) {
   const priceTotal = props.list.reduce((total, item) => total + item.price, 0);
+  const { show, handleClose } = props;
   return (
-    <div
-      className="modal fade cart-popup"
-      id="exampleModal"
-      tabIndex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div className="modal-dialog" role="document">
-        <div className="modal-content">
-          <div className="modal-header text-light bg-danger">
-            <h5 className="modal-title ml-4" id="exampleModalLabel">
-              Shopping Cart
-            </h5>
-            <button
-              type="button"
-              className="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div className="modal-body">
-            <ListPopup
-              list={props.list}
-              addNewToCart={props.addNewToCart}
-              removeCartItem={props.removeCartItemAPI}
-            />
-          </div>
-          <div className="row ml-5">
-            <h5 className="col-md-6">Total</h5>
-            <h6 className="row ml-4 text-info mb-3">{VNDformat(priceTotal)}</h6>
-          </div>
-          <div className="modal-footer">
-            <button type="button" className="btn" data-dismiss="modal">
-              Close
-            </button>
-            <Link
-              to={{
-                pathname: "/payment",
-                state: {
-                  listItems: props.list,
-                },
-              }}
-            >
-              <button type="button" className="btn btn-danger">
-                Checkout
-              </button>
-            </Link>
-          </div>
-        </div>
+    <Modal show={show} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title> Shopping Cart</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <ListPopup
+          list={props.list}
+          addNewToCart={props.addNewToCart}
+          removeCartItem={props.removeCartItemAPI}
+        />
+      </Modal.Body>
+      <div className="row ms-5">
+        <h5 className="col-md-6">Total</h5>
+        <h6 className="col-md-6 text-info mb-3">{VNDformat(priceTotal)}</h6>
       </div>
-    </div>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          Close
+        </Button>
+        <Link
+          to={{
+            pathname: "/payment",
+            state: {
+              listItems: props.list,
+            },
+          }}
+        >
+          <button type="button" className="btn btn-danger">
+            Checkout
+          </button>
+        </Link>
+      </Modal.Footer>
+    </Modal>
   );
 }
 

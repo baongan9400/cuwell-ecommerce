@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import bgImage from "assets/images/bg-create-post.png";
 import uploadImage from "assets/images/upload-img.png";
 import NavBar from "components/NavBar/NavBar";
+import { createPost } from "api/posts/search";
 
 const CreatePost = () => {
   const [image, setImage] = useState({
@@ -14,6 +15,7 @@ const CreatePost = () => {
     second: null,
     third: null,
   });
+
   const [previewImage, setPreviewImage] = useState(null);
   const { data } = useSelector((state) => state.categoryReducer);
 
@@ -23,12 +25,21 @@ const CreatePost = () => {
       price: "",
       description: "",
       quantity: 1,
-      category: 1,
+      category: 2,
       images: image,
     },
     validationSchema: Yup.object({}),
     onSubmit: (values) => {
-      console.log("values: ", values);
+      console.log("cat", values);
+      let formData = new FormData();
+        formData.append('title', values.title);
+        formData.append('description', values.description);
+        formData.append('price',values.price);
+        formData.append('quantity' ,values.quantity);
+        formData.append('category' ,values?.category?.toString());
+        formData.append('images' ,values.images);
+
+      callCreatePost(formData);
     },
   });
   const touched = formik.touched;
@@ -69,6 +80,14 @@ const CreatePost = () => {
   function decrementCount() {
     count = count - 1;
     setCount(count);
+  }
+  const callCreatePost = async (data) => {
+    try {
+      const result = await createPost(data);
+      console.log("result create", result);
+    } catch (error) {
+      console.log("failed to fetch list users", error);
+    }
   }
   return (
     <>
@@ -118,14 +137,14 @@ const CreatePost = () => {
                     }}
                     onChange={(e) => {
                       if (data.length > 0) {
-                        formik.setFieldValue("category", e.target.value.id);
+                        formik.setFieldValue("category", e.target.value);
                       }
                     }}
                     required
                   >
                     {data.length > 0 &&
                       data.map((value, index) => (
-                        <option value={value.name} key={value.id}>
+                        <option value={value.id} id={value.id} key={value.id}>
                           {value.name}
                         </option>
                       ))}

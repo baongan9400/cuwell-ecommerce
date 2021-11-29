@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import AddToCart from "../Cart/AddToCart";
 
 import PropTypes from "prop-types";
-// import AddToCart from "../Cart/AddToCart";
 
 import { VNDformat } from "../../helper/utils";
 import "./CardPost.scss";
@@ -31,7 +30,7 @@ const CardPost = (props) => {
           </Link>
           <div className="row d-flex justify-content-between mt-3">
             <p className="price col-md-8 me-2">{VNDformat(price)}</p>
-            <div className="ml-3 col-md-4 ">
+            <div className="ms-3 col-md-4 ">
               <AddToCart item={props.post} />
             </div>
           </div>

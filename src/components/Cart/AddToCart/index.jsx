@@ -1,15 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import React, { useState } from "react";
+
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { addNewToCart, AddToCartAPI } from '../../../redux/actions/cartAction'
+
 import "./AddToCart.scss";
+import { useDispatch } from "react-redux";
 function AddToCart(props) {
   const [actived, setActived] = useState(true);
   const { item, cartList, price } = props;
+  const dispatch = useDispatch();
 
   const handleCartItemClick = () => {
-    props.addNewToCart(item);
-    props.addToCartAPI(item.id);
+    console.log("cart", item);
+    dispatch(AddToCartAPI(item.id));
+    dispatch(addNewToCart(item));
   };
 
   return (
