@@ -30,15 +30,15 @@ const CreatePost = () => {
     },
     validationSchema: Yup.object({}),
     onSubmit: (values) => {
-      console.log("cat", values);
       let formData = new FormData();
-        formData.append('title', values.title);
-        formData.append('description', values.description);
-        formData.append('price',values.price);
-        formData.append('quantity' ,values.quantity);
-        formData.append('category' ,values?.category?.toString());
-        formData.append('images' ,values.images);
-
+      formData.append("title", values.title);
+      formData.append("description", values.description);
+      formData.append("price", values.price);
+      formData.append("quantity", values.quantity);
+      formData.append("category", values?.category);
+      formData.append("images", image?.first);
+      formData.append("images", image?.second);
+      formData.append("images", image?.third);
       callCreatePost(formData);
     },
   });
@@ -61,6 +61,7 @@ const CreatePost = () => {
         });
         setPreviewImage(event.target.files[0]);
         formik.setFieldValue("images.second", event.target.files[0]);
+        console.log("second", event.target.files[0]);
       } else if (image.second !== undefined && image.third === null) {
         setImage({
           ...image,
@@ -88,7 +89,7 @@ const CreatePost = () => {
     } catch (error) {
       console.log("failed to fetch list users", error);
     }
-  }
+  };
   return (
     <>
       <NavBar />

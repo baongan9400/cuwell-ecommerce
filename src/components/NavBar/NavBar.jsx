@@ -95,7 +95,6 @@ const NavBar = () => {
     }
   };
   const handelFilterChange = (newFilter) => {
-    console.log("SEARCH", newFilter);
     fetchSearchAutoComplete(newFilter);
   };
   return (
@@ -130,12 +129,12 @@ const NavBar = () => {
                       <i className="sr-only">Chat</i>
                     </span>
                   </a>
-                  <div className="d-flex align-items-center justify-content-center btn-cart">                     
+                  <div className="d-flex align-items-center justify-content-center btn-cart">
                     {/* <span className="fa fa-shopping-cart">
                       <i className="sr-only">Shopping Cart</i>
                     </span> */}
-                    <CartBadge/>
-                    </div>
+                    <CartBadge />
+                  </div>
                   <div className="switch-ctn">
                     <div className="jumbotron">
                       <div className="df-switch">

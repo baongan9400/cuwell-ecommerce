@@ -6,6 +6,7 @@ import "./PostDetail.scss";
 import NavBar from "components/NavBar/NavBar";
 import PostStatusSeller from "components/PostStatus/PostStatusSeller";
 import FooterWave from "components/FooterWave/FooterWave";
+import { VNDformat } from "helper/utils";
 
 export function PostDetails() {
   const location = useLocation();
@@ -117,7 +118,8 @@ export function PostDetails() {
                   </span>
                 </div>
                 <h4 className="postdetails-price">
-                  4.500.500 <span>VND</span>
+                  {VNDformat(post.price)}
+                  {/* <span>VND</span> */}
                 </h4>
                 <p className="product-description">{post.description.trim()}</p>
                 <div className="action">
