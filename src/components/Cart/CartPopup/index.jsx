@@ -126,7 +126,7 @@ function CartPopup(props) {
             },
           }}
         >
-          <button type="button" className="btn btn-danger">
+          <button type="button" className="btn btn-info">
             Checkout
           </button>
         </Link>

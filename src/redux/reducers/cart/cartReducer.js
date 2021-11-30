@@ -9,7 +9,6 @@ const initialState = cartItems
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_TO_CART': {
-      console.log("action.payload",action.payload);
       const newList = [...state.list];
 
       const newItem = newList.find(item => JSON.stringify(item) === JSON.stringify(action.payload))
