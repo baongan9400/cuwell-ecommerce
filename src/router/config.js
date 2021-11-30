@@ -1,5 +1,3 @@
-import { Create } from "@material-ui/icons";
-import NavBar from "components/NavBar/NavBar";
 import PostDetail from "components/PostDetail";
 import SignUp from "pages/Authentication/SignUp/SignUp";
 import ErrorPage from "pages/Error/ErrorPage";
@@ -10,6 +8,8 @@ import Login from "../pages/Authentication/Login/Login";
 import CreatePost from "pages/CreatePost/CreatePost";
 import profile from "pages/Profile/profile";
 import CategoryPosts from "pages/CategoryPosts/index";
+import EditUser from "components/EditUser";
+import Payment from "components/Payment";
 export const routeConfig = [
   {
     path: "/login",
@@ -50,6 +50,18 @@ export const routeConfig = [
   {
     path: "/posts",
     component: CategoryPosts,
+    isPrivate: false,
+    exact: true,
+  },
+  {
+    path: "/edit-profile",
+    component: EditUser,
+    isPrivate: false,
+    exact: true,
+  },
+  {
+    path: "/payment",
+    component: Payment,
     isPrivate: false,
     exact: true,
   },

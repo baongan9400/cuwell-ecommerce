@@ -171,7 +171,7 @@ function Profile(props) {
                   <ListItem
                     label="Profile"
                     src="user.png"
-                    link="/edit_profile"
+                    link="/edit-profile"
                   ></ListItem>
                   <ListItem
                     label="My Posts"
@@ -242,10 +242,10 @@ function Profile(props) {
                   </div>
                 </div>
               </div>
-              <div className="row gutters-sm">
+              {/*<div className="row gutters-sm">
                 <div className="col-sm-6 mb-3">
                   <div className="card h-100">
-                    {/* <div className="card-body card-statistic">
+                     <div className="card-body card-statistic">
                       <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info me-2">BUY</i>Statistics</h6>
                       {isLoading || total == null || list == [] ? (
                         <img src="https://i.pinimg.com/originals/6b/67/cb/6b67cb8a166c0571c1290f205c513321.gif" className="img-responsive" style={{ width: '100%', height: '90%' }}></img>
@@ -257,7 +257,7 @@ function Profile(props) {
                           ))}
                         </div>
                       )}
-                    </div> */}
+                    </div> 
                   </div>
                 </div>
                 <div className="col-sm-6 mb-3">
@@ -274,10 +274,10 @@ function Profile(props) {
                           ))}
                         </div>
                       )}
-                    </div> */}
+                    </div> 
                   </div>
                 </div>
-              </div>
+              </div>*/}
             </div>
           </div>
         </div>
