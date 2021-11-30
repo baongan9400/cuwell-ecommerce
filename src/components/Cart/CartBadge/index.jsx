@@ -1,15 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import { connect } from "react-redux";
 
 import { ShoppingCartOutlined } from "@material-ui/icons";
 import "./CartBadge.css";
+import CartPopup from "../CartPopup";
 
-
-// import PropTypes from 'prop-types';
-
-// CartBadge.propTypes = {
-
-// };
 
 const mapStateToProps = (state) => {
   return {
@@ -20,14 +15,19 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {};
 
 function CartBadge(props) {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <div className="card-badge order-sm-start order-lg-last">
-      <div className="cart-icon-container" data-toggle="modal" data-target="#exampleModal">
-        <ShoppingCartOutlined style={{ fontSize: 30 }} className="cart-icon" />
+      <div className="cart-icon-container" onClick = {handleShow}>
+        <ShoppingCartOutlined style={{ fontSize: 23 }} className="cart-icon" />
         <span className="badge badge-danger cart-icon-badge">
           {props.cartCount}
         </span>
-      </div>     
+      </div> 
+      <CartPopup show = {show} handleClose= {handleClose}/>    
     </div>
   );
 }

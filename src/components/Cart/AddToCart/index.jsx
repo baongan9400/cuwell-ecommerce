@@ -1,17 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { addNewToCart, AddToCartAPI } from '../../../redux/actions/cartAction'
+
 import "./AddToCart.scss";
+import { useDispatch,useSelector  } from "react-redux";
 function AddToCart(props) {
-  const [actived, setActived] = useState(true);
-  const { item, cartList, price } = props;
+  const { list, cartCount } = useSelector((state) => state.cartReducer);
+  const [actived, setActived] = useState(false);
+  const { item, price } = props;
+  const dispatch = useDispatch();
 
   const handleCartItemClick = () => {
-    props.addNewToCart(item);
-    props.addToCartAPI(item.id);
+    dispatch(AddToCartAPI(item.id));
+    dispatch(addNewToCart(item));
   };
 
+  useEffect(() => {
+
+    const newItem = list?.find(cartItem => JSON.stringify(cartItem) === JSON.stringify(item))
+    if (JSON.stringify(newItem) === JSON.stringify(item)) {
+      setActived(true);
+    } else {
+      setActived(false)
+    }
+  }, [cartCount])
   return (
     <div className="add-to-cart">
       {actived ? (
