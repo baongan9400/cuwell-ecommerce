@@ -104,7 +104,7 @@ const NavBar = () => {
           <div className="d-flex flex-wrap justify-content-center justify-content-md-between align-items-center pb-3">
             <div className="">
               <div className="social-media">
-                <p className="d-flex align-items-center">
+                <div className="d-flex align-items-center">
                   <a
                     href="/home"
                     className="d-flex align-items-center justify-content-center"
@@ -156,7 +156,7 @@ const NavBar = () => {
                       </div>
                     </div>
                   </div>
-                </p>
+                </div>
               </div>
             </div>
             <div className="">

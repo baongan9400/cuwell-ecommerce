@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { RemoveShoppingCart } from "@material-ui/icons";
 import { connect } from "react-redux";
 import { Modal, Button, Accordion } from "react-bootstrap";
@@ -38,40 +38,12 @@ const ListPopup = (props) => {
   };
   const listItems = list.map((item) => (
     <li key={item.id} className="li-list-wrapper">
-      {/* <div
-        className="popup-sm-item p-3"
-        data-bs-toggle="collapse"
-        data-bs-target={`#${item.id}`}
-      >
-        <img src={item?.images[0]?.url} alt="" className="popup-sm-img" />
-        <div className="popup-sm-user">
-          <span className="popup-sm-username">{item.title}</span>
-          <span className="popup-sm-user-price mt-2">
-            {VNDformat(item.price)}
-          </span>
-        </div>
-        <button
-          className="popup-sm-button"
-          onClick={() => handleRemovePopupItem(item)}
-        >
-          <RemoveShoppingCart className="popup-sm-icon" />
-          Remove
-        </button>
-      </div>
-      <div
-        id={item.id}
-        className="collapse multi-collapse"
-        aria-labelledby="headingThree"
-        data-parent="#accordionExample"
-      >
-        <span className="ms-3">{item.category}</span>
-      </div> */}
       <Accordion defaultActiveKey="0">
         <Accordion.Item eventKey={item.id}>
           <Accordion.Header>
             <img src={item?.images[0]?.url} alt="" className="popup-sm-img" />
             <div className="popup-sm-user">
-              <span className="popup-sm-username">{item.title}</span>
+              <span className="popup-sm-username">{item?.title}</span>
               <span className="popup-sm-user-price mt-2">
                 {VNDformat(item.price)}
               </span>
@@ -85,7 +57,7 @@ const ListPopup = (props) => {
             </button>
           </Accordion.Header>
           <Accordion.Body>
-          <span className="ms-3 text-break">{item.description}</span>
+            <span className="ms-3 text-break">{item?.description}</span>
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
@@ -96,7 +68,7 @@ const ListPopup = (props) => {
 };
 
 function CartPopup(props) {
-  const priceTotal = props.list.reduce((total, item) => total + item.price, 0);
+  const priceTotal = props.list.reduce((total, item) => total + item?.price, 0);
   const { show, handleClose } = props;
   return (
     <Modal show={show} onHide={handleClose}>

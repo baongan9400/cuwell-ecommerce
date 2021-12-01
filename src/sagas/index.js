@@ -4,6 +4,7 @@ import userSaga from "./login/userSaga";
 import searchPostsSaga from "./posts/search.saga";
 import addressSaga from "./signup/address.saga";
 import registerSaga from "./signup/register.saga";
+import addToCartSaga from "./user/addtocart.saga";
 
 export default function* rootSaga() {
   yield all([
@@ -11,6 +12,7 @@ export default function* rootSaga() {
     searchPostsSaga(),
     categorySaga(),
     addressSaga(),
-    registerSaga()
+    registerSaga(),
+    addToCartSaga(),
   ]);
 }
