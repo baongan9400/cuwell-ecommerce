@@ -13,7 +13,7 @@ function AddToCart(props) {
   const dispatch = useDispatch();
 
   const handleCartItemClick = () => {
-    dispatch(AddToCartAPI(item.id));
+    dispatch(AddToCartAPI(item.id,1));
     dispatch(addNewToCart(item));
   };
 

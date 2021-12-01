@@ -3,9 +3,9 @@ import * as type from "redux/constants";
 import userApi from "api/user/userApi";
 import * as actions from "redux/actions/cartAction";
 //ADD TO CART
-const addItemAPI = async (pid) => {
+const addItemAPI = async (pid, quantity) => {
   try {
-    const response = await userApi.addItemToCart(pid);
+    const response = await userApi.addItemToCart(pid, quantity);
     return response.data;
   } catch (e) {
     console.log(e.response.data);
@@ -15,7 +15,7 @@ const addItemAPI = async (pid) => {
 
 function* addToCart(action) {
   try {
-    const data = yield call(addItemAPI, action.post_id);
+    const data = yield call(addItemAPI, action.post_id, action.quantity);
     yield put(actions.addedToCartAction(data));
   } catch (e) {
     console.log(e.messages);

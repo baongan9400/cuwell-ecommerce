@@ -7,10 +7,11 @@ export const addNewToCart = (payload) => {
   };
 };
 
-export const AddToCartAPI = (pid) => {
+export const AddToCartAPI = (pid, quantity) => {
   return {
     type: types.ADD_TO_CART_API,
     post_id: pid,
+    quantity : quantity
   };
 };
 export const addedToCartAction = (cartItem) => {

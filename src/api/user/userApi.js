@@ -6,9 +6,14 @@ const userApi = {
     return axiosPostService.get(url);
   },
 
-  addItemToCart: (pid) => {
-    const url = `/cart/add/${pid}`;
-    return axiosPostService.post(url);
+  addItemToCart: (post, quantity) => {
+    console.log("call api", post, quantity)
+    const data = {
+      post,
+      quantity,
+    };
+    const url = `/carts/`;
+    return axiosPostService.post(url, data);
   },
   removeCartItem: (pid) => {
     const url = `/cart/delete?post_id=${pid}`;

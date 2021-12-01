@@ -12,7 +12,7 @@ function App() {
     <div className="content-wrapper">
       <BrowserRouter history={history}>
         <Switch>
-          <Route exact path="/login" component={Login} />
+          <Route exact path="/" component={Login} />
           {routeConfig.map((route, i) => (
             <RouteWithSubRoutes key={i} {...route} />
           ))}
