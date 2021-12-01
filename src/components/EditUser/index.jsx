@@ -17,7 +17,6 @@ function EditUser(props) {
   const { name, email, phone, address, avatar } = user;
   const { commune, district, city } = address;
 
-
   const {
     register,
     formState: { errors },
@@ -99,7 +98,9 @@ function EditUser(props) {
                   <div className="card-body p-5">
                     <div className="row gutters">
                       <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <h5 className="mb-2 text-primary fw-bold mb-3 mt-3">Personal Details</h5>
+                        <h5 className="mb-2 text-primary fw-bold mb-3 mt-3">
+                          Personal Details
+                        </h5>
                         {/* {checkSuccessful && <h6 className="badge badge-success" >Update successful</h6>} */}
                       </div>
                       <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -174,7 +175,7 @@ function EditUser(props) {
                               <option>{district}</option>
                             )}
                             {districts.length > 0 &&
-                              districts.map((value, index) => (
+                              districts.map((value) => (
                                 <option value={value.name} key={value.id}>
                                   {value.name}
                                 </option>
@@ -204,7 +205,7 @@ function EditUser(props) {
                             >
                               {!check.checkCity && <option>{city}</option>}
                               {cities.length > 0 &&
-                                cities.map((value, index) => (
+                                cities.map((value) => (
                                   <option value={value.name} key={value.id}>
                                     {value.name}
                                   </option>
@@ -232,7 +233,7 @@ function EditUser(props) {
                                 <option>{commune}</option>
                               )}
                               {commutes.length > 0 &&
-                                commutes.map((value, index) => (
+                                commutes.map((value) => (
                                   <option value={value.name} key={value.id}>
                                     {value.name}
                                   </option>
@@ -275,7 +276,7 @@ function EditUser(props) {
 function mapStateToProps(state) {
   const { user } = state.userReducer;
   return {
-    user
+    user,
   };
 }
 

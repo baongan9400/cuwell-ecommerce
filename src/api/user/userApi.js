@@ -7,7 +7,6 @@ const userApi = {
   },
 
   addItemToCart: (post, quantity) => {
-    console.log("call api", post, quantity)
     const data = {
       post,
       quantity,

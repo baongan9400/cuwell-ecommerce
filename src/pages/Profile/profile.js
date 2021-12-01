@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
-import { connect, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import "./profile.css";
-import { VNDformat } from "helper/utils";
 import { Link } from "react-router-dom";
 import NavBar from "components/NavBar/NavBar";
 

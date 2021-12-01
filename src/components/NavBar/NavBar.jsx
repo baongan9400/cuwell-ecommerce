@@ -15,7 +15,7 @@ const NavBar = () => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.categoryReducer);
-  const { user, isLoggedIn } = useSelector((state) => state.userReducer);
+  const { isLoggedIn } = useSelector((state) => state.userReducer);
   const [result, setResult] = useState([]);
 
   useEffect(() => {
@@ -213,11 +213,12 @@ const NavBar = () => {
                     aria-labelledby="dropdown04"
                   >
                     {data.length > 0 &&
-                      data.map((category) => (
+                      data.map((category, index) => (
                         <a
                           className="dropdown-item"
                           style={{ color: "black" }}
                           href="/"
+                          key={index}
                         >
                           {category.name}
                         </a>
