@@ -24,6 +24,5 @@ export const createPost = (data) => {
                 'Content-Type': 'multipart/form-data'
             }
         }
-  console.log("data create", data);
   return axiosPostService.post(url, data, config);
 };

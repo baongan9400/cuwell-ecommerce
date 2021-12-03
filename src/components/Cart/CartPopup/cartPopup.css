@@ -96,8 +96,7 @@ hr.solid {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  line-height: 16px;
-
+  line-height: inherit;
   /* fallback */
   max-height: 50px;
 

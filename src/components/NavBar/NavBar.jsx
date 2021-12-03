@@ -15,7 +15,7 @@ const NavBar = () => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.categoryReducer);
-  const { user, isLoggedIn } = useSelector((state) => state.userReducer);
+  const { isLoggedIn } = useSelector((state) => state.userReducer);
   const [result, setResult] = useState([]);
 
   useEffect(() => {
@@ -104,7 +104,7 @@ const NavBar = () => {
           <div className="d-flex flex-wrap justify-content-center justify-content-md-between align-items-center pb-3">
             <div className="">
               <div className="social-media">
-                <p className="d-flex align-items-center">
+                <div className="d-flex align-items-center">
                   <a
                     href="/home"
                     className="d-flex align-items-center justify-content-center"
@@ -156,7 +156,7 @@ const NavBar = () => {
                       </div>
                     </div>
                   </div>
-                </p>
+                </div>
               </div>
             </div>
             <div className="">
@@ -213,11 +213,12 @@ const NavBar = () => {
                     aria-labelledby="dropdown04"
                   >
                     {data.length > 0 &&
-                      data.map((category) => (
+                      data.map((category, index) => (
                         <a
                           className="dropdown-item"
                           style={{ color: "black" }}
                           href="/"
+                          key={index}
                         >
                           {category.name}
                         </a>

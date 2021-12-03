@@ -191,11 +191,10 @@
       // display: inline-block;
       display: flex;
       align-items: center;
-      p {
-        margin-bottom: 0px;
-      }
+      margin-bottom: 0px;
 
-      p a, .btn-cart{
+      a,
+      .btn-cart {
         border: 1px solid #e6e6e6;
         width: 40px;
         height: 40px;

@@ -10,7 +10,7 @@ const CardPost = (props) => {
   const { id, title, description, price, images } = props.post;
 
   return (
-    <div className="col-xs-12 col-sm-6 col-md-4 col-lg-2 p-4 mt-3">
+    <div className="col-xs-12 col-sm-6 col-md-4 col-lg-2 p-4 p-md-3 mt-3">
       <div className="product-item mb-3">
         <div className="down-content ">
           <Link to={{ pathname: `/post/${id}`, state: { post: props.post } }}>

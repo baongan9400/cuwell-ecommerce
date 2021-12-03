@@ -3,6 +3,7 @@ import authenApi from "api/authen/authenApi";
 import * as types from "redux/constants";
 import * as actions from "redux/actions/login/authAction";
 import jwt_decode from "jwt-decode";
+import * as cartAction from "redux/actions/cartAction";
 
 function* login({ email, password }) {
   try {
@@ -18,11 +19,8 @@ function* login({ email, password }) {
         yield put(actions.userLoggedIn(userData.payload));
 
         localStorage.setItem("user", JSON.stringify(userData.payload));
-        // console.log("role",decoded.role);
-        // if (decoded.role && decoded.role.includes("Client")) 
-        // window.location.href = "/";
-        // else 
-        window.location.href = "/home";
+
+        yield put(cartAction.loadCartAction());
       }
     }
   } catch (e) {
