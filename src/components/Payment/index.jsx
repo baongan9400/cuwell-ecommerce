@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import "./paymentStyle.css";
 // import { getCartItems } from 'redux/actions/user/payment.action'
 import { VNDformat } from "helper/utils";
@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 function CartItem({ cartItem }) {
   // console.log("cartItem", cartItem)
-  const { id, title, price, images } = cartItem;
+  const { title, price, images } = cartItem;
 
   return (
     <div className="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
@@ -42,7 +42,6 @@ function Payment(props) {
     resolver: yupResolver(PaymentSchema),
   });
   const [total, setTotal] = useState(0);
-  const dispatch = useDispatch();
 
   // const data = useSelector(state => {
   //   return state.paymentReducer.data;

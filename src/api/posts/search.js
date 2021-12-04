@@ -1,28 +1,27 @@
-import axiosPostService from "api/axiosPostService";
+import axiosConfig from "api/axiosConfig";
 
 export const getSearchPostData = (requestParams) => {
-  const url = `posts/`;
-  return axiosPostService.get(url, { params: requestParams });
+  const url = `post-service/posts/`;
+  return axiosConfig.get(url, { params: requestParams });
 };
 
 export const getPostById = (pid) => {
-  const url = `posts/${pid}`;
-  return axiosPostService.get(url);
+  const url = `post-service/posts/${pid}`;
+  return axiosConfig.get(url);
 };
 export const getSearchComplete = (search, category) => {
-
   const url = category
-    ? `posts/search-autocomplete/?search=${search}&category=${category}`
-    : `posts/search-autocomplete/?search=${search}`;
+    ? `post-service/posts/search-autocomplete/?search=${search}&category=${category}`
+    : `post-service/posts/search-autocomplete/?search=${search}`;
 
-  return axiosPostService.get(url);
+  return axiosConfig.get(url);
 };
 export const createPost = (data) => {
-  const url = `posts/`; 
-        const config = {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        }
-  return axiosPostService.post(url, data, config);
+  const url = `post-service/posts/`;
+  const config = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  };
+  return axiosConfig.post(url, data, config);
 };

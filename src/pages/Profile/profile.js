@@ -64,8 +64,8 @@ function Profile(props) {
   // const fetchStatistic = async () => {
   //   try {
   //     setIsLoading(true);
-  //     const response_sale = await userApi.statisticByPrice();
-  //     const response_buy = await userApi.statisticBuy();
+  //     const response_sale = await cartApi.statisticByPrice();
+  //     const response_buy = await cartApi.statisticBuy();
 
   //     setTotal_all_orders(response_sale[0]);
   //     setList(response_sale.slice(1, response_sale.length));
