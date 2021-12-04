@@ -10,10 +10,6 @@
   padding: 10px;
 }
 
-body {
-  background: #eee;
-}
-
 .cart {
   background: #fff;
   padding-bottom: 100px;
@@ -104,7 +100,7 @@ label.radio input + span {
 .spec {
   font-size: 15px;
 }
-.title-payment{
+.title-payment {
   font-size: 18px;
   font-weight: bold;
 }
