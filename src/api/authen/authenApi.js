@@ -8,11 +8,11 @@ const authenApi = {
         password,
       },
     };
-    const url = `auth/login`;
+    const url = `auth-service/auth/login`;
     return axiosManagement.post(url, loginData);
   },
   getUserDetail: (idUser) => {
-    const url = `users/${idUser}`;
+    const url = `auth-service/users/${idUser}`;
     return axiosManagement.get(url);
   },
   createUser: (data) => {
@@ -29,7 +29,7 @@ const authenApi = {
         },
       },
     };
-    const url = `auth/`;
+    const url = `auth-service/auth/`;
     return axiosManagement.post(url, signupData);
   },
 };

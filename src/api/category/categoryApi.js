@@ -1,10 +1,10 @@
-import axiosPostService from "api/axiosPostService";
+import axiosManagement from "../axiosAuthenService";
 
-const categoryApi = {  
-    getAllCategoriesData: () => {
-        const url = `categories/`; 
-        return axiosPostService.get(url, {});
-    }
-}
+const categoryApi = {
+  getAllCategoriesData: () => {
+    const url = `post-service/categories/`;
+    return axiosManagement.get(url, {});
+  },
+};
 
 export default categoryApi;

@@ -53,7 +53,6 @@ function* loadCart() {
   try {
     const cartItems = yield call(getCartItemsAPI);
     yield put(actions.cartLoadedAction(cartItems));
-    window.location.href = "/home";
   } catch (e) {
     console.log(e);
   }
