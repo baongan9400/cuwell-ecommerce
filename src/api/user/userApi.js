@@ -1,9 +1,9 @@
-import axiosPostService from "api/axiosPostService";
+import axiosManagement from "../axiosAuthenService";
 
 const userApi = {
   loadCart: () => {
-    const url = "/carts";
-    return axiosPostService.get(url);
+    const url = "post-service/carts/";
+    return axiosManagement.get(url);
   },
 
   addItemToCart: (post, quantity) => {
@@ -11,12 +11,12 @@ const userApi = {
       post,
       quantity,
     };
-    const url = `/carts/`;
-    return axiosPostService.post(url, data);
+    const url = `post-service/carts/`;
+    return axiosManagement.post(url, data);
   },
   removeCartItem: (pid) => {
-    const url = `/cart/delete?post_id=${pid}`;
-    return axiosPostService.delete(url);
+    const url = `post-service/cart/delete?post_id=${pid}`;
+    return axiosManagement.delete(url);
   },
 };
 
