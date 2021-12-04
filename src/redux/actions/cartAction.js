@@ -11,7 +11,7 @@ export const AddToCartAPI = (pid, quantity) => {
   return {
     type: types.ADD_TO_CART_API,
     post_id: pid,
-    quantity : quantity
+    quantity: quantity,
   };
 };
 export const addedToCartAction = (cartItem) => {
@@ -22,6 +22,7 @@ export const addedToCartAction = (cartItem) => {
 };
 
 export const RemoveCartItemAPIAction = (pid) => {
+  console.log("remove cart item act", pid);
   return {
     type: types.REMOVE_CART_ITEM_API,
     post_id: pid,

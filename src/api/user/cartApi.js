@@ -1,6 +1,6 @@
 import axiosManagement from "../axiosAuthenService";
 
-const userApi = {
+const cartApi = {
   loadCart: () => {
     const url = "post-service/carts/";
     return axiosManagement.get(url);
@@ -15,9 +15,10 @@ const userApi = {
     return axiosManagement.post(url, data);
   },
   removeCartItem: (pid) => {
-    const url = `post-service/cart/delete?post_id=${pid}`;
+    var url = `post-service​/carts​/posts​/${pid}​/`;
+    url = url.replace(/[^\x00-\x7F]/g, "");
     return axiosManagement.delete(url);
   },
 };
 
-export default userApi;
+export default cartApi;

@@ -1,11 +1,11 @@
 import { takeEvery, takeLatest, call, put, all } from "redux-saga/effects";
 import * as type from "redux/constants";
-import userApi from "api/user/userApi";
+import cartApi from "api/user/cartApi";
 import * as actions from "redux/actions/cartAction";
 //ADD TO CART
 const addItemAPI = async (pid, quantity) => {
   try {
-    const response = await userApi.addItemToCart(pid, quantity);
+    const response = await cartApi.addItemToCart(pid, quantity);
     return response.data;
   } catch (e) {
     console.log(e.response.data);
@@ -24,7 +24,7 @@ function* addToCart(action) {
 //REMOVE ITEM
 const removeItemAPI = async (pid) => {
   try {
-    const response = await userApi.removeCartItem(pid);
+    const response = await cartApi.removeCartItem(pid);
     return response.data;
   } catch (e) {
     console.log(e.response.data);
@@ -42,7 +42,7 @@ function* removeCartItem(action) {
 //LOAD CART ITEMS FROM DATABASE
 const getCartItemsAPI = async () => {
   try {
-    const response = await userApi.loadCart();
+    const response = await cartApi.loadCart();
     return response;
   } catch (e) {
     console.log(e);
@@ -53,6 +53,7 @@ function* loadCart() {
   try {
     const cartItems = yield call(getCartItemsAPI);
     yield put(actions.cartLoadedAction(cartItems));
+    window.location.href = "/home";
   } catch (e) {
     console.log(e);
   }

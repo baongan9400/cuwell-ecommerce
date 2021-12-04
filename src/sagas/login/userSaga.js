@@ -19,7 +19,6 @@ function* login({ email, password }) {
         yield put(actions.userLoggedIn(userData.payload));
 
         localStorage.setItem("user", JSON.stringify(userData.payload));
-        window.location.href = "/home";
 
         yield put(cartAction.loadCartAction());
       }
