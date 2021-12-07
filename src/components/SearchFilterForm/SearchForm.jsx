@@ -17,6 +17,8 @@ function SearchForm(props) {
   const [searchTerm, setSearchTerm] = useState("");
   const [dropdownValue, setDropdown] = useState("All");
   const [searchCat, setSearchCat] = useState("");
+  const [loading, setLoading] = useState(true);
+
   const dispatch = useDispatch();
 
   const typingTimeoutRef = useRef(null);
@@ -24,6 +26,7 @@ function SearchForm(props) {
   const handleSearchTermChange = async (e) => {
     const value = e.target.value;
     setResult([]);
+    setLoading(true);
     setSearchTerm(value);
     if (!onSubmit) return;
 
@@ -37,6 +40,7 @@ function SearchForm(props) {
       };
 
       setResult(dataSearch);
+      setLoading(false);
       onSubmit(formValues);
     }, 300);
   };
@@ -130,9 +134,25 @@ function SearchForm(props) {
                     : `search-result d-block`
                 }
               >
-                <ul className="" aria-labelledby="">
-                  {listData}
-                </ul>
+                {loading ? (
+                  <ul className="" aria-labelledby="">
+                    <img
+                      src="http://www.buydiscount.in/wp-content/themes/medical/assets/images/preloader-gif-12.gif"
+                      alt="loading"
+                    />
+                  </ul>
+                ) : (
+                  <ul className="" aria-labelledby="">
+                    {listData && listData.length > 0 ? (
+                      listData
+                    ) : (
+                      <img
+                        src="https://cdn.dribbble.com/users/1883357/screenshots/6016190/search_no_result.png"
+                        alt="No result"
+                      />
+                    )}
+                  </ul>
+                )}
               </div>
             </div>
           </div>
