@@ -65,7 +65,7 @@ function EditUser(props) {
             alt="Loading..."
           />
         </div>
-        <div className="container mt-5">
+        <div className="container mb-3">
           <div className="row gutters">
             <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 mt-5 pb-3">
               <div className="card-edit h-100">

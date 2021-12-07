@@ -22,7 +22,6 @@ export const addedToCartAction = (cartItem) => {
 };
 
 export const RemoveCartItemAPIAction = (pid) => {
-  console.log("remove cart item act", pid);
   return {
     type: types.REMOVE_CART_ITEM_API,
     post_id: pid,
