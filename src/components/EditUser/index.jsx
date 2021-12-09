@@ -9,7 +9,6 @@ import {
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import "./edituser.css";
-
 import NavBar from "components/NavBar/NavBar";
 
 function EditUser(props) {
@@ -77,7 +76,7 @@ function EditUser(props) {
                           src={
                             avatar
                               ? avatar
-                              : "https://i.pravatar.cc/150?u=" + user.id
+                              : "https://i.pravatar.cc/150?u=" + user.email
                           }
                           alt="Maxwell Admin"
                         />
