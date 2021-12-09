@@ -1,11 +1,15 @@
 import axiosManagement from "../axiosAuthenService";
 
 const userInfoApi = {
-  updateUser: ({ name, phone, city, district, commune }, idUser) => {
+  updateUser: (
+    { name, phone, city, district, commune, ratingAverage },
+    idUser
+  ) => {
     const data = {
       userData: {
         name,
         phone,
+        ratingAverage,
         address: {
           city,
           district,

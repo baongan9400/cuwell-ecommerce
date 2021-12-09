@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./CreatePost.scss";
 import { useSelector } from "react-redux";
+import { pushToast } from "components/Toast";
 
 import bgImage from "assets/images/bg-create-post.png";
 import uploadImage from "assets/images/upload-img.png";
@@ -18,6 +19,7 @@ const CreatePost = () => {
 
   const [previewImage, setPreviewImage] = useState(null);
   const { data } = useSelector((state) => state.categoryReducer);
+  const [loading, setLoading] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -84,8 +86,12 @@ const CreatePost = () => {
   }
   const callCreatePost = async (data) => {
     try {
+      setLoading(true);
       const result = await createPost(data);
-      console.log("result create", result);
+      if (result) {
+        setLoading(false);
+        pushToast("success", "Successfully posted products for sale.");
+      }
     } catch (error) {
       console.log("failed to fetch list users", error);
     }
@@ -93,6 +99,12 @@ const CreatePost = () => {
   return (
     <>
       <NavBar />
+      <div className={loading ? "loading-bg" : "loading-bg d-none"}>
+        <img
+          src="https://cutewallpaper.org/21/loading-gif-transparent-background/Free-Content-Discovery-Influencer-Marketing-Tool-Buzzsumo-.gif"
+          alt="Loading..."
+        />
+      </div>
       <div className="createPost-bgr">
         <img src={bgImage} alt="bgImage" className="bgImage" />
         <div className="createPost-wrapper">

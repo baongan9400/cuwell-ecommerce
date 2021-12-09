@@ -16,7 +16,7 @@ function* login({ email, password }) {
         var decoded = jwt_decode(token);
         var userId = decoded.user.id;
         const userData = yield call(authenApi.getUserDetail, userId);
-        yield put(actions.userLoggedIn(userData.payload));
+        yield put(actions.userLoggedIn(userData.payload, userId));
 
         localStorage.setItem("user", JSON.stringify(userData.payload));
 

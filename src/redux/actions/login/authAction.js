@@ -11,7 +11,8 @@ export const loginUserAction = (email, password) => {
  *
  * @param {email, token} user
  */
-export const userLoggedIn = (user) => {
+export const userLoggedIn = (user, id) => {
+  user.id = id;
   return {
     type: types.USER_LOGGEDIN,
     user,
