@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import ModalSucessSignup from "modals/ModalCollaborating/ModalSucessSignup";
+import useModal from "hook/useModal";
 
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
@@ -14,6 +16,8 @@ import signupBackground from "../../../assets/images/bottom-bg-signup.png";
 import { register } from "redux/actions/signup/register.action";
 
 const SignUp = () => {
+  const { isShowing, toggle } = useModal();
+
   const [check, setCheck] = useState({
     checkCity: false,
     checkDistrict: false,
@@ -53,6 +57,7 @@ const SignUp = () => {
           values.commute
         )
       );
+      toggle();
     },
   });
   const dispatch = useDispatch();
@@ -80,6 +85,12 @@ const SignUp = () => {
   return (
     <div className="signup-bgr">
       <div className={checkSignup ? "loading-bg" : "loading-bg d-none"}>
+        {!checkSignup ? (
+          <ModalSucessSignup toggle={toggle} isShowing={isShowing} />
+        ) : (
+          <></>
+        )}
+
         <img
           src="https://cutewallpaper.org/21/loading-gif-transparent-background/Free-Content-Discovery-Influencer-Marketing-Tool-Buzzsumo-.gif"
           alt="Loading..."
@@ -235,7 +246,7 @@ const SignUp = () => {
               </div>
               <p className="text-muted-1">
                 By clicking Sign Up, you agree with our{" "}
-                <span className="font-weight-bold">Privacy Policy</span>
+                <span className="fw-bold">Privacy Policy</span>
               </p>
               <div className="form-group btn-signup">
                 <button type="submit" className="btn btn-block">
@@ -245,7 +256,7 @@ const SignUp = () => {
               </div>
               <p className="text-muted-2">
                 Already have an account ?{" "}
-                <Link to="/login" className="font-weight-bold">
+                <Link to="/login" className="fw-bold">
                   Log In Here
                 </Link>
               </p>

@@ -24,7 +24,7 @@ function PostList(props) {
       search: "",
       category: "",
       page: selectNumber.selected + 1,
-      page_size: 12,
+      page_size: 24,
     };
     dispatch(searchLoading(params));
   };

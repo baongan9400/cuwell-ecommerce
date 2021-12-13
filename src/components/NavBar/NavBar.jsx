@@ -9,7 +9,27 @@ import { logoutUserAction } from "redux/actions/login/authAction";
 import SearchForm from "components/SearchFilterForm/SearchForm";
 import { getSearchComplete } from "api/posts/search";
 import CartBadge from "components/Cart/CartBadge";
-
+const CategoryItem = ({ title, src, id }) => {
+  const photo = require(`images/${src}`).default;
+  return (
+    <Link
+      to={{ pathname: `/category/${id}`, state: " " }}
+      className="dropdown-item"
+      style={{ color: "black" }}
+    >
+      <span>
+        <img
+          className="img-responsive"
+          width={20}
+          height={20}
+          src={photo}
+          alt=""
+        />
+      </span>{" "}
+      {title}
+    </Link>
+  );
+};
 const NavBar = () => {
   // const { t, handleChangeLang, trans } = props;
   const { t, i18n } = useTranslation();
@@ -214,14 +234,19 @@ const NavBar = () => {
                   >
                     {data.length > 0 &&
                       data.map((category, index) => (
-                        <a
-                          className="dropdown-item"
-                          style={{ color: "black" }}
-                          href="/"
-                          key={index}
-                        >
-                          {category.name}
-                        </a>
+                        // <a
+                        //   className="dropdown-item"
+                        //   style={{ color: "black" }}
+                        //   href="/"
+                        //   key={index}
+                        // >
+                        //   {category.name}
+                        // </a>
+                        <CategoryItem
+                          title={category.name}
+                          src={`${category.id}.svg`}
+                          id={category.id}
+                        />
                       ))}
                   </div>
                 </li>

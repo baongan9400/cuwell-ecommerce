@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
-import { useSelector, useDispatch, connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   getCities,
   getDistrict,
@@ -9,13 +9,15 @@ import {
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import "./edituser.css";
-
 import NavBar from "components/NavBar/NavBar";
-
-function EditUser(props) {
-  const { user } = props;
+import userInfoApi from "api/user/userInfoApi";
+import { pushToast } from "components/Toast";
+import * as actions from "redux/actions/login/authAction";
+function EditUser() {
+  const { user } = useSelector((state) => state.userReducer);
   const { name, email, phone, address, avatar } = user;
   const { commune, district, city } = address;
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -48,9 +50,22 @@ function EditUser(props) {
   useEffect(() => {
     dispatch(getCities());
   }, []);
-
+  const callEditProfile = async (data) => {
+    try {
+      setLoading(true);
+      data.ratingAverage = user.ratingAverage;
+      const result = await userInfoApi.updateUser(data, user.id);
+      if (result) {
+        setLoading(false);
+        pushToast("success", "Update profile successfully");
+        dispatch(actions.userLoggedIn(result.payload.result, user.id));
+      }
+    } catch (error) {
+      pushToast("error", "Failed to update profile ");
+    }
+  };
   const onSubmit = (data) => {
-    console.log("submit", data);
+    callEditProfile(data);
   };
 
   if (!user) {
@@ -59,13 +74,13 @@ function EditUser(props) {
     return (
       <div>
         <NavBar />
-        <div className={"loading-bg d-none"}>
+        <div className={loading ? "loading-bg" : "loading-bg d-none"}>
           <img
             src="https://cutewallpaper.org/21/loading-gif-transparent-background/Free-Content-Discovery-Influencer-Marketing-Tool-Buzzsumo-.gif"
             alt="Loading..."
           />
         </div>
-        <div className="container mt-5">
+        <div className="container mb-3">
           <div className="row gutters">
             <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 mt-5 pb-3">
               <div className="card-edit h-100">
@@ -77,7 +92,7 @@ function EditUser(props) {
                           src={
                             avatar
                               ? avatar
-                              : "https://i.pravatar.cc/150?u=" + user.id
+                              : "https://i.pravatar.cc/150?u=" + user.email
                           }
                           alt="Maxwell Admin"
                         />
@@ -101,7 +116,6 @@ function EditUser(props) {
                         <h5 className="mb-2 text-primary fw-bold mb-3 mt-3">
                           Personal Details
                         </h5>
-                        {/* {checkSuccessful && <h6 className="badge badge-success" >Update successful</h6>} */}
                       </div>
                       <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
@@ -156,37 +170,7 @@ function EditUser(props) {
                       </div>
                       <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                          <label htmlFor="Street">District</label>
-                          <select
-                            {...register("district")}
-                            className="form-control rounded-pill border-0 shadow-sm px-4"
-                            onChange={(e) => {
-                              if (districts.length > 0) {
-                                let district_id = findByName(
-                                  districts,
-                                  e.target.value
-                                );
-                                setCheck({ ...check, checkDistrict: true });
-                                dispatch(getCommute(district_id));
-                              }
-                            }}
-                          >
-                            {!check.checkDistrict && (
-                              <option>{district}</option>
-                            )}
-                            {districts.length > 0 &&
-                              districts.map((value) => (
-                                <option value={value.name} key={value.id}>
-                                  {value.name}
-                                </option>
-                              ))}
-                          </select>
-                        </div>
-                      </div>
-                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                        <div className="form-group">
                           <label htmlFor="ciTy">City</label>
-                          {/* <input type="name" className="form-control" id="ciTy" defaultValue={city} /> */}
                           <div className="form-group mb-3">
                             <select
                               {...register("city")}
@@ -216,11 +200,40 @@ function EditUser(props) {
                       </div>
                       <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                         <div className="form-group">
+                          <label htmlFor="Street">District</label>
+                          <select
+                            {...register("district")}
+                            className="form-control rounded-pill border-0 shadow-sm px-4"
+                            onChange={(e) => {
+                              if (districts.length > 0) {
+                                let district_id = findByName(
+                                  districts,
+                                  e.target.value
+                                );
+                                setCheck({ ...check, checkDistrict: true });
+                                dispatch(getCommute(district_id));
+                              }
+                            }}
+                          >
+                            {!check.checkDistrict && (
+                              <option>{district}</option>
+                            )}
+                            {districts.length > 0 &&
+                              districts.map((value) => (
+                                <option value={value.name} key={value.id}>
+                                  {value.name}
+                                </option>
+                              ))}
+                          </select>
+                        </div>
+                      </div>
+                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div className="form-group">
                           <label htmlFor="sTate">Commune</label>
                           {/* <input type="text" className="form-control" id="sTate" defaultValue={commune} /> */}
                           <div className="form-group mb-3">
                             <select
-                              {...register("commute")}
+                              {...register("commune")}
                               className="form-control rounded-pill border-0 shadow-sm px-4"
                               onChange={(e) => {
                                 if (commutes.length > 0) {
@@ -273,11 +286,4 @@ function EditUser(props) {
     );
 }
 
-function mapStateToProps(state) {
-  const { user } = state.userReducer;
-  return {
-    user,
-  };
-}
-
-export default connect(mapStateToProps)(EditUser);
+export default EditUser;

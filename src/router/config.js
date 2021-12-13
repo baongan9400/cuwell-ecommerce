@@ -7,9 +7,10 @@ import { Route } from "react-router-dom";
 import Login from "../pages/Authentication/Login/Login";
 import CreatePost from "pages/CreatePost/CreatePost";
 import profile from "pages/Profile/profile";
-import CategoryPosts from "pages/CategoryPosts/index";
+import SearchResult from "pages/SearchResult/index";
 import EditUser from "components/EditUser";
 import Payment from "components/Payment";
+import CategoryPosts from "pages/CategoryPosts/CategoryPosts";
 export const routeConfig = [
   {
     path: "/login",
@@ -49,7 +50,7 @@ export const routeConfig = [
   },
   {
     path: "/posts",
-    component: CategoryPosts,
+    component: SearchResult,
     isPrivate: false,
     exact: true,
   },
@@ -62,6 +63,12 @@ export const routeConfig = [
   {
     path: "/payment",
     component: Payment,
+    isPrivate: false,
+    exact: true,
+  },
+  {
+    path: "/category/:cat_id",
+    component: CategoryPosts,
     isPrivate: false,
     exact: true,
   },

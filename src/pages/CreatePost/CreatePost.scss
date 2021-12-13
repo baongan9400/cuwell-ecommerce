@@ -1,17 +1,11 @@
 @import "../../assets/scss/app.scss";
 .createPost-bgr {
-  // background-color: $color_primary !important;
-  // background-image: url(../../../assets/images/bottom-bg.png);
-  // background-repeat: no-repeat, repeat;
-  // background-position: right;
-  // background-size: cover;
   padding-left: 70px;
   padding-right: 70px;
   position: relative;
   height: 100vh;
   scroll-behavior: smooth;
-  overflow-y: scroll;
-
+  overflow-y: hidden;
   display: flex;
   align-items: center;
   input,
@@ -37,8 +31,8 @@
     margin-top: 50px;
     width: 1227px;
     height: fit-content;
-    .img-display-group{
-      img{
+    .img-display-group {
+      img {
         height: 165px !important;
       }
     }
