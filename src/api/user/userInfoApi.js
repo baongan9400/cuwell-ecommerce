@@ -17,7 +17,18 @@ const userInfoApi = {
         },
       },
     };
-    const url = `auth-service/users/${idUser}`;
+    const url = `auth-service/users/${idUser}/`;
+    return axiosManagement.put(url, data);
+  },
+  resetPassword: ({ oldPassword, newPassword }) => {
+    const data = {
+      changePasswordData: {
+        oldPassword,
+        newPassword,
+      },
+    };
+    console.log("data", data);
+    const url = `auth-service/users/password`;
     return axiosManagement.patch(url, data);
   },
 };

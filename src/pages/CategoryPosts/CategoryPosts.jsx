@@ -21,7 +21,7 @@ function CategoryPosts(props) {
       search: "",
       page: 1,
       category: cat_id,
-      page_size: 12,
+      page_size: 24,
     };
     dispatch(searchLoading(params));
   }, [cat_id]);

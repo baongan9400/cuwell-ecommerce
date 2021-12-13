@@ -9,7 +9,7 @@ import { loginUserAction } from "redux/actions/login/authAction";
 
 const Login = (props) => {
   const dispatch = useDispatch();
-  const {check} = useSelector(state => state.userReducer);
+  const { check } = useSelector((state) => state.userReducer);
   const [isShowPassword, setIsShowPassword] = React.useState(false);
 
   const formik = useFormik({
@@ -24,7 +24,6 @@ const Login = (props) => {
         .required("Required!"),
     }),
     onSubmit: (values) => {
-      console.log(values.email, values.password);
       dispatch(loginUserAction(values.email, values.password));
     },
   });
@@ -34,8 +33,11 @@ const Login = (props) => {
 
   return (
     <div className="login-bgr">
-       <div className={check ? "loading-bg" : "loading-bg d-none"}>
-        <img src="https://cutewallpaper.org/21/loading-gif-transparent-background/Free-Content-Discovery-Influencer-Marketing-Tool-Buzzsumo-.gif" alt="Loading..." />
+      <div className={check ? "loading-bg" : "loading-bg d-none"}>
+        <img
+          src="https://cutewallpaper.org/21/loading-gif-transparent-background/Free-Content-Discovery-Influencer-Marketing-Tool-Buzzsumo-.gif"
+          alt="Loading..."
+        />
       </div>
       <img src={bgImage} alt="bgImage" className="bgImage" />
       <div className="login-wrapper">

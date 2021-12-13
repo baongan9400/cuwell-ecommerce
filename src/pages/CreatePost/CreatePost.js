@@ -93,7 +93,7 @@ const CreatePost = () => {
         pushToast("success", "Successfully posted products for sale.");
       }
     } catch (error) {
-      console.log("failed to fetch list users", error);
+      pushToast("error", "Failed to create product");
     }
   };
   return (

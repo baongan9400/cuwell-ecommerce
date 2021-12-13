@@ -13,7 +13,7 @@ function Posts() {
     search: "",
     category: "",
     page: 1,
-    page_size: 12,
+    page_size: 24,
   };
   useEffect(() => {
     dispatch(searchLoading(params));

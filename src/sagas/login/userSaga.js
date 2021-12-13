@@ -4,6 +4,7 @@ import * as types from "redux/constants";
 import * as actions from "redux/actions/login/authAction";
 import jwt_decode from "jwt-decode";
 import * as cartAction from "redux/actions/cartAction";
+import { pushToast } from "components/Toast";
 
 function* login({ email, password }) {
   try {
@@ -17,14 +18,13 @@ function* login({ email, password }) {
         var userId = decoded.user.id;
         const userData = yield call(authenApi.getUserDetail, userId);
         yield put(actions.userLoggedIn(userData.payload, userId));
-
         localStorage.setItem("user", JSON.stringify(userData.payload));
 
         yield put(cartAction.loadCartAction());
       }
     }
   } catch (e) {
-    yield put({ type: types.ERROR, payload: e });
+    pushToast("error", "Login failed. Invalid password or email.");
   }
 }
 

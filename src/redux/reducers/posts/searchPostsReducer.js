@@ -5,7 +5,7 @@ const initialState = {
     search: "",
     category: "",
     page: 1,
-    page_size: 12,
+    page_size: 24,
   },
   load: true,
   data: {},

@@ -12,7 +12,7 @@ import "./edituser.css";
 import NavBar from "components/NavBar/NavBar";
 import userInfoApi from "api/user/userInfoApi";
 import { pushToast } from "components/Toast";
-
+import * as actions from "redux/actions/login/authAction";
 function EditUser() {
   const { user } = useSelector((state) => state.userReducer);
   const { name, email, phone, address, avatar } = user;
@@ -58,13 +58,13 @@ function EditUser() {
       if (result) {
         setLoading(false);
         pushToast("success", "Update profile successfully");
+        dispatch(actions.userLoggedIn(result.payload.result, user.id));
       }
     } catch (error) {
-      console.log("failed to update", error);
+      pushToast("error", "Failed to update profile ");
     }
   };
   const onSubmit = (data) => {
-    console.log("submit", data);
     callEditProfile(data);
   };
 

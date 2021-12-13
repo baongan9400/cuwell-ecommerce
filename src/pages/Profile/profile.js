@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import "./profile.css";
 import { Link } from "react-router-dom";
@@ -6,6 +6,8 @@ import NavBar from "components/NavBar/NavBar";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import userInfoApi from "api/user/userInfoApi";
+import { pushToast } from "components/Toast";
 
 function ListItem({ label, src, link }) {
   const photo = require(`./img/${src}`).default;
@@ -31,8 +33,21 @@ function ListItem({ label, src, link }) {
   );
 }
 
-function Profile(props) {
+function Profile() {
+  const [loading, setLoading] = useState(false);
   const reduxUser = useSelector((state) => state.userReducer);
+  const callResetPass = async (data) => {
+    try {
+      setLoading(true);
+      const result = await userInfoApi.resetPassword(data);
+      if (result) {
+        setLoading(false);
+        pushToast("success", "Your password was reset successfully!");
+      }
+    } catch (error) {
+      pushToast("error", "Failed to reset password");
+    }
+  };
   const formik = useFormik({
     initialValues: {
       oldPassword: "",
@@ -47,7 +62,7 @@ function Profile(props) {
         .required("Required!"),
     }),
     onSubmit: (values) => {
-      console.log(values.newPassword, values.oldPassword);
+      callResetPass(values);
     },
   });
   const touched = formik.touched;
@@ -65,6 +80,12 @@ function Profile(props) {
   return (
     <div>
       <NavBar />
+      <div className={loading ? "loading-bg" : "loading-bg d-none"}>
+        <img
+          src="https://cutewallpaper.org/21/loading-gif-transparent-background/Free-Content-Discovery-Influencer-Marketing-Tool-Buzzsumo-.gif"
+          alt="Loading..."
+        />
+      </div>
       <div className="container" style={{ marginTop: "50px" }}>
         <div className="main-body ">
           <div className="row gutters-sm ">

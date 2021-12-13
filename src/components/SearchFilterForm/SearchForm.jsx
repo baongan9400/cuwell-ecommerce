@@ -50,7 +50,7 @@ function SearchForm(props) {
       search: searchTerm,
       category: searchCat,
       page: 1,
-      page_size: 12,
+      page_size: 24,
     };
     dispatch(searchLoading(params));
   };
