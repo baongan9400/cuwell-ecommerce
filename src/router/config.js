@@ -11,6 +11,7 @@ import SearchResult from "pages/SearchResult/index";
 import EditUser from "components/EditUser";
 import Payment from "components/Payment";
 import CategoryPosts from "pages/CategoryPosts/CategoryPosts";
+import UserManagePosts from "components/UserPosts/UserManagePosts";
 export const routeConfig = [
   {
     path: "/login",
@@ -69,6 +70,12 @@ export const routeConfig = [
   {
     path: "/category/:cat_id",
     component: CategoryPosts,
+    isPrivate: false,
+    exact: true,
+  },
+  {
+    path: "/my-posts",
+    component: UserManagePosts,
     isPrivate: false,
     exact: true,
   },
