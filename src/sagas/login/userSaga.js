@@ -24,6 +24,7 @@ function* login({ email, password }) {
       }
     }
   } catch (e) {
+    yield put(actions.checkError());
     pushToast("error", "Login failed. Invalid password or email.");
   }
 }
