@@ -31,6 +31,10 @@ const userInfoApi = {
     const url = `auth-service/users/password`;
     return axiosManagement.patch(url, data);
   },
+  manageUserPosts: (requestParams, idUser) => {
+    const url = `post-service/posts/users/${idUser}/`;
+    return axiosManagement.get(url, { params: requestParams });
+  },
 };
 
 export default userInfoApi;
