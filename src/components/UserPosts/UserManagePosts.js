@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import UserPost from "./UserPost";
 import * as Loader from "../Post/CardPostLoading";
 import NavBar from "components/NavBar/NavBar";
 import "./UserManagePosts.scss";
+import userInfoApi from "api/user/userInfoApi";
+import { useSelector } from "react-redux";
 function ListCardPost(props) {
   const { posts, load, size } = props;
   if (load === true) return <Loader.PostListLoading size={size ? size : 18} />;
@@ -16,6 +18,8 @@ function ListCardPost(props) {
     );
 }
 function UserManagePosts(props) {
+  const userReducerId = useSelector((state) => state.userReducer?.user?.id);
+  const [userPosts, setUserPosts] = useState([]);
   // const { posts, load, size } = props;
   // const dispatch = useDispatch();
   // const searchParams = (selectNumber) => {
@@ -27,6 +31,23 @@ function UserManagePosts(props) {
   //   };
   //   dispatch(searchLoading(params));
   // };
+  useEffect(() => {
+    // search: "",
+    // category: "",
+    // page: selectNumber.selected + 1,
+    // page_size: 24,
+    fetchUserPost({ page: 1, page_size: 6 });
+  }, []);
+
+  const fetchUserPost = async (params) => {
+    try {
+      const res = await userInfoApi.manageUserPosts(params, userReducerId);
+      if (res) console.log(res);
+    } catch (error) {
+      console.log("failed to fetch user post with error: ", error);
+    }
+  };
+
   const posts = {
     count: 6,
     pageIndex: 1,
