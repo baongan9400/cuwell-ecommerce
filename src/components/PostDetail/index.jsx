@@ -7,8 +7,11 @@ import NavBar from "components/NavBar/NavBar";
 import PostStatusSeller from "components/PostStatus/PostStatusSeller";
 import FooterWave from "components/FooterWave/FooterWave";
 import { VNDformat } from "helper/utils";
+import ReportModal from "../../modals/ReportModal/ReportModal";
+import useModal from "hook/useModal";
 
 export function PostDetails() {
+  const { isShowing, toggle } = useModal();
   const location = useLocation();
   const post = location.state.post;
 
@@ -127,9 +130,18 @@ export function PostDetails() {
                     <span className="fas fa-cart-plus"></span>
                     add to cart
                   </button>
-                  <button className="like btn btn-default" type="button">
-                    <span className="fa fa-heart"></span>
+                  <button
+                    onClick={toggle}
+                    className="like btn btn-danger"
+                    type="button"
+                  >
+                    <span className="fa fa-exclamation-circle fa-lg"></span>
                   </button>
+                  <ReportModal
+                    postId={post?.id}
+                    handleClose={toggle}
+                    isShowing={isShowing}
+                  />
                 </div>
               </div>
             </div>
