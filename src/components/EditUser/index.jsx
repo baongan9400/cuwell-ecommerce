@@ -73,38 +73,15 @@ function EditUser() {
   } else
     return (
       <div>
-        <NavBar />
         <div className={loading ? "loading-bg" : "loading-bg d-none"}>
           <img
             src="https://cutewallpaper.org/21/loading-gif-transparent-background/Free-Content-Discovery-Influencer-Marketing-Tool-Buzzsumo-.gif"
             alt="Loading..."
           />
         </div>
-        <div className="container mb-3">
+        <div className="mb-3">
           <div className="row gutters">
-            <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 mt-5 pb-3">
-              <div className="card-edit h-100">
-                <div className="card-body">
-                  <div className="account-settings">
-                    <div className="user-profile">
-                      <div className="user-avatar">
-                        <img
-                          src={
-                            avatar
-                              ? avatar
-                              : "https://i.pravatar.cc/150?u=" + user.email
-                          }
-                          alt="Maxwell Admin"
-                        />
-                      </div>
-                      <h4 className="user-name">{name}</h4>
-                      <h5 className="user-email">{email}</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-5">
+            <div className="col">
               <form
                 onSubmit={handleSubmit(onSubmit)}
                 encType="multipart/form-data"
@@ -113,7 +90,7 @@ function EditUser() {
                   <div className="card-body p-5">
                     <div className="row gutters">
                       <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <h5 className="mb-2 text-primary fw-bold mb-3 mt-3">
+                        <h5 className="mb-2 text-primary fw-bold mb-3">
                           Personal Details
                         </h5>
                       </div>

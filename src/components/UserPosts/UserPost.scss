@@ -1,0 +1,32 @@
+.userPost {
+  .text-break {
+    word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 18px;
+    font-size: 14px;
+    /* fallback */
+    max-height: 50px;
+
+    /* fallback */
+    -webkit-line-clamp: 2;
+
+    /* number of lines to show */
+    -webkit-box-orient: vertical;
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: bold;
+  }
+  .card-body {
+    padding: 0.5rem 0.5rem !important;
+  }
+  .btn-group-custom {
+    display: flex;
+    margin-left: auto;
+  }
+  .text-end {
+    display: contents;
+  }
+}

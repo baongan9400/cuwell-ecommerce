@@ -36,3 +36,8 @@ export const checkJWTExpAction = () => {
     type: types.CHECK_JWT_EXP,
   };
 };
+export const checkError = () => {
+  return {
+    type: types.ERROR,
+  };
+};
