@@ -10,7 +10,17 @@ import SearchForm from "components/SearchFilterForm/SearchForm";
 import { getSearchComplete } from "api/posts/search";
 import CartBadge from "components/Cart/CartBadge";
 const CategoryItem = ({ title, src, id }) => {
-  const photo = require(`images/${src}`).default;
+  // const photo = require(`images/${src}`).default;
+  // const photo = "";
+
+  const tryRequire = (src) => {
+    try {
+      return require(`images/${src}`).default;
+    } catch (err) {
+      return null;
+    }
+  };
+  console.log(src);
   return (
     <Link
       to={{ pathname: `/category/${id}`, state: " " }}
@@ -22,10 +32,10 @@ const CategoryItem = ({ title, src, id }) => {
           className="img-responsive"
           width={20}
           height={20}
-          src={photo}
+          src={tryRequire(src)}
           alt=""
         />
-      </span>{" "}
+      </span>
       {title}
     </Link>
   );
@@ -107,7 +117,7 @@ const NavBar = () => {
     try {
       const titleResult = await getSearchComplete(
         newFilter.searchTerm,
-        newFilter.searchCategory
+        newFilter.searchCategory,
       );
       setResult(titleResult);
     } catch (error) {
@@ -243,9 +253,9 @@ const NavBar = () => {
                         //   {category.name}
                         // </a>
                         <CategoryItem
-                          title={category.name}
-                          src={`${category.id}.svg`}
-                          id={category.id}
+                          title={category?.name}
+                          src={`${category?.id}.svg`}
+                          id={category?.id}
                         />
                       ))}
                   </div>
