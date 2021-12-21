@@ -17,10 +17,9 @@ const CategoryItem = ({ title, src, id }) => {
     try {
       return require(`images/${src}`).default;
     } catch (err) {
-      return null;
+      return require(`images/0.svg`).default;
     }
   };
-  console.log(src);
   return (
     <Link
       to={{ pathname: `/category/${id}`, state: " " }}
@@ -65,9 +64,7 @@ const NavBar = () => {
   const [trans, setTrans] = useState("");
   const handleChangeLang = () => {
     const lang = localStorage.getItem("lang");
-    console.log(lang);
     if (lang === "en") {
-      console.log(true);
       localStorage.setItem("lang", "vi");
       i18n.changeLanguage("vi");
       setTrans("vi");
@@ -117,7 +114,7 @@ const NavBar = () => {
     try {
       const titleResult = await getSearchComplete(
         newFilter.searchTerm,
-        newFilter.searchCategory,
+        newFilter.searchCategory
       );
       setResult(titleResult);
     } catch (error) {

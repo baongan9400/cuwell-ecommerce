@@ -27,7 +27,6 @@ const userInfoApi = {
         newPassword,
       },
     };
-    console.log("data", data);
     const url = `auth-service/users/password`;
     return axiosManagement.patch(url, data);
   },
