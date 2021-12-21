@@ -31,7 +31,7 @@ const userInfoApi = {
     return axiosManagement.patch(url, data);
   },
   manageUserPosts: (requestParams, idUser) => {
-    const url = `post-service/posts/users/${idUser}/`;
+    const url = `post-service/posts/users/${idUser}`;
     return axiosManagement.get(url, { params: requestParams });
   },
 };
