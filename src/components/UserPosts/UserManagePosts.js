@@ -7,7 +7,6 @@ import userInfoApi from "api/user/userInfoApi";
 import { useSelector } from "react-redux";
 function ListCardPost(props) {
   const { posts, load, size } = props;
-  console.log("posts ", posts);
   if (load === true) return <Loader.PostListLoading size={size ? size : 18} />;
   else
     return (

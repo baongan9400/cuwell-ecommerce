@@ -8,12 +8,14 @@ import "./AddToCart.scss";
 import { useDispatch, useSelector } from "react-redux";
 function AddToCart(props) {
   const { list } = useSelector((state) => state.cartReducer);
+  const { user } = useSelector((state) => state.userReducer);
+
   const [actived, setActived] = useState(false);
   const { item } = props;
   const dispatch = useDispatch();
 
   const handleCartItemClick = () => {
-    dispatch(AddToCartAPI(item.id, 1));
+    dispatch(AddToCartAPI(item.id, 1, user.paypalEmail));
     dispatch(addNewToCart(item));
   };
 

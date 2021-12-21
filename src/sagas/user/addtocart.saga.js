@@ -2,23 +2,29 @@ import { takeEvery, takeLatest, call, put, all } from "redux-saga/effects";
 import * as type from "redux/constants";
 import cartApi from "api/user/cartApi";
 import * as actions from "redux/actions/cartAction";
+import { pushToast } from "components/Toast";
+
 //ADD TO CART
-const addItemAPI = async (pid, quantity) => {
+const addItemAPI = async (pid, quantity, payee_email) => {
   try {
-    const response = await cartApi.addItemToCart(pid, quantity);
+    const response = await cartApi.addItemToCart(pid, quantity, payee_email);
     return response.data;
   } catch (e) {
-    console.log(e.response.data);
-    return e.response.data;
+    pushToast("error", "You can't add your product to cart.");
   }
 };
 
 function* addToCart(action) {
   try {
-    const data = yield call(addItemAPI, action.post_id, action.quantity);
+    const data = yield call(
+      addItemAPI,
+      action.post_id,
+      action.quantity,
+      action.payee_email
+    );
     yield put(actions.addedToCartAction(data));
   } catch (e) {
-    console.log(e.messages);
+    pushToast("error", "You can't add your own product to cart.");
   }
 }
 //REMOVE ITEM

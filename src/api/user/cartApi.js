@@ -6,10 +6,11 @@ const cartApi = {
     return axiosManagement.get(url);
   },
 
-  addItemToCart: (post, quantity) => {
+  addItemToCart: (post, quantity, payee_email) => {
     const data = {
       post,
       quantity,
+      payee_email,
     };
     const url = `post-service/carts/`;
     return axiosManagement.post(url, data);
