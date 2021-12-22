@@ -19,22 +19,15 @@ function ListCardPost(props) {
 function UserManagePosts(props) {
   const userReducerId = useSelector((state) => state.userReducer?.user?.id);
   const [userPosts, setUserPosts] = useState();
-  // const { posts, load, size } = props;
-  // const dispatch = useDispatch();
-  // const searchParams = (selectNumber) => {
-  //   const params = {
-  //     search: "",
-  //     category: "",
-  //     page: selectNumber.selected + 1,
-  //     page_size: 24,
-  //   };
-  //   dispatch(searchLoading(params));
-  // };
+  const searchParams = (selectNumber) => {
+    const params = {
+      page: selectNumber.selected + 1,
+      page_size: 6,
+    };
+    fetchUserPost(params);
+  };
+
   useEffect(() => {
-    // search: "",
-    // category: "",
-    // page: selectNumber.selected + 1,
-    // page_size: 24,
     fetchUserPost({ page: 1, page_size: 6 });
   }, []);
 
@@ -54,7 +47,7 @@ function UserManagePosts(props) {
         <div className="pagination-custom">
           <nav aria-label="Page navigation example">
             <ReactPaginate
-              pageCount={10}
+              pageCount={5}
               pageRange={1}
               marginPagesDisplayed={1}
               containerClassName={"pagination"}
@@ -64,6 +57,7 @@ function UserManagePosts(props) {
               pageLinkClassName={"page-link"}
               disabledClassName={""}
               activeLinkClassName={"page-link"}
+              onPageChange={searchParams}
             />
           </nav>
         </div>
