@@ -1,0 +1,90 @@
+.itemBuy {
+  .card {
+    width: 100%;
+    border-radius: 5px !important;
+    box-shadow: none !important;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+
+  //   .set-p {
+  //     padding-left: 15px;
+  //     padding-right: 15px;
+  //   }
+
+  .image {
+    object-fit: initial;
+    width: 80px;
+    height: 150px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .rating {
+    background-color: #3d5afe;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  .grade {
+    font-size: 18px;
+  }
+
+  .line {
+    height: 1px;
+    background-color: #e0e0e0;
+  }
+
+  @media screen and (max-width: 575px) {
+    .image {
+      height: auto;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 0px;
+      border-top-right-radius: 10px;
+    }
+  }
+
+  .rating-start {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+  }
+
+  .rating-start > input {
+    display: none;
+  }
+
+  .rating-start > label {
+    position: relative;
+    width: 1em;
+    font-size: 30px;
+    font-weight: 300;
+    color: #ffd600;
+    cursor: pointer;
+  }
+
+  .rating-start > label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0;
+  }
+
+  .rating-start > label:hover:before,
+  .rating-start > label:hover ~ label:before {
+    opacity: 1 !important;
+  }
+
+  .rating-start > input:checked ~ label:before {
+    opacity: 1;
+  }
+
+  .rating-start:hover > input:checked ~ label:before {
+    opacity: 0.4;
+  }
+}

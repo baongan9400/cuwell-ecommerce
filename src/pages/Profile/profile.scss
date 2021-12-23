@@ -57,4 +57,64 @@
       opacity: 1;
     }
   }
+  .card-profile {
+    .rate {
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+    .card {
+      width: 350px;
+      border: none;
+      box-shadow: 5px 6px 6px 2px #e9ecef;
+      border-radius: 12px;
+    }
+
+    .circle-image img {
+      border: 6px solid #fff;
+      border-radius: 100%;
+      padding: 0px;
+      top: -28px;
+      position: relative;
+      width: 120px;
+      height: 120px;
+      border-radius: 100%;
+      z-index: 1;
+      background: #e7d184;
+      cursor: pointer;
+    }
+
+    .dot {
+      height: 18px;
+      width: 18px;
+      background-color: green;
+      border-radius: 50%;
+      display: inline-block;
+      position: relative;
+      border: 3px solid #fff;
+      top: -48px;
+      left: 186px;
+      z-index: 1000;
+    }
+
+    .name {
+      margin-top: -21px;
+      font-size: 18px;
+    }
+
+    .fw-500 {
+      font-weight: 500 !important;
+    }
+
+    .start {
+      color: green;
+    }
+
+    .stop {
+      color: red;
+    }
+
+    .checked {
+      color: orange;
+    }
+  }
 }
