@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./ItemSold.scss";
+import { convertStatus } from "helper/utils";
 const ItemSold = (props) => {
   const {
     post,
@@ -72,6 +73,9 @@ const ItemSold = (props) => {
                   &#160;&#160;&#160; Delivery date &#160;
                   {delivery_day}
                 </p>
+              </div>
+              <div className="row px-3 mt-1">
+                {convertStatus(status)}
               </div>
               <div className="row px-3">
                 <h5 className="text-success mb-2 fw-bold mt-2">${price}</h5>
