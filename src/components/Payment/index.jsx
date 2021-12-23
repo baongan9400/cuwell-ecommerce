@@ -4,12 +4,12 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSelector, useDispatch } from "react-redux";
 import "./paymentStyle.css";
-// import { getCartItems } from 'redux/actions/user/payment.action'
 import { VNDformat } from "helper/utils";
 import { Link } from "react-router-dom";
+import paymentApi from "api/user/paymentApi";
+import { pushToast } from "components/Toast";
 
 function CartItem({ cartItem }) {
-  // console.log("cartItem", cartItem)
   const { id, title, price, images } = cartItem;
 
   return (
@@ -30,7 +30,10 @@ function CartItem({ cartItem }) {
 }
 
 const PaymentSchema = yup.object().shape({
-  description: yup.string().required("Description is required"),
+  street: yup.string().required("No. Street is required!"),
+  commune: yup.string().required("Commune is required!"),
+  district: yup.string().required("District is required!"),
+  city: yup.string().required("City is required!"),
 });
 
 function Payment(props) {
@@ -41,27 +44,29 @@ function Payment(props) {
   } = useForm({
     resolver: yupResolver(PaymentSchema),
   });
+  const [loading, setLoading] = useState(false);
+
   const [total, setTotal] = useState(0);
-  const dispatch = useDispatch();
-
-  // const data = useSelector(state => {
-  //   return state.paymentReducer.data;
-  // });
-
-  // const check = useSelector(state => {
-  //   return state.paymentReducer.check;
-  // });
-
+  const { user } = useSelector((state) => state.userReducer);
+  const callPayment = async (data) => {
+    try {
+      setLoading(true);
+      data.ratingAverage = user.ratingAverage;
+      const result = await paymentApi.checkout(data);
+      if (result) {
+        setLoading(false);
+        window.open(result?.auth_url);
+      }
+    } catch (error) {
+      pushToast("error", "Error checkout your cart! ");
+    }
+  };
   const listItems = useSelector((state) => {
     return state.cartReducer.list;
   });
-  // const checkFailed = useSelector(state => {
-  //   return state.paymentReducer.checkFailed;
-  // })
 
   const onSubmit = (data) => {
-    console.log("payment data", data);
-    // dispatch(pay(data))
+    callPayment(data);
   };
 
   useEffect(() => {
@@ -70,13 +75,15 @@ function Payment(props) {
       total_ = total_ + element.price;
     });
     setTotal(total_);
-    // dispatch(getCartItems());
   }, []);
 
   return (
     <div>
-      <div className="loading-bg d-none">
-        <img src="{loading}" alt="Loading..." />
+      <div className={loading ? "loading-bg" : "loading-bg d-none"}>
+        <img
+          src="https://cutewallpaper.org/21/loading-gif-transparent-background/Free-Content-Discovery-Influencer-Marketing-Tool-Buzzsumo-.gif"
+          alt="Loading..."
+        />
       </div>
       <div
         className="container pt-5 rounded cart"
@@ -104,13 +111,13 @@ function Payment(props) {
             </div>
           </div>
           <div className="col-md-4">
-            <div className="payment-info">
+            <div className="payment-info" style={{ marginTop: -40 }}>
               <div className="d-flex justify-content-between align-items-center">
                 <span className="title-payment">Payment Information</span>
                 <img
                   className="rounded"
-                  src="https://i.imgur.com/WU501C8.jpg"
-                  width="30"
+                  src={"https://i.pravatar.cc/150?u=" + user?.id}
+                  width="40"
                   alt=""
                 />
               </div>
@@ -131,35 +138,69 @@ function Payment(props) {
                   <label className="credit-card-label">Currency</label>
                   <select className="form-control" {...register("currency")}>
                     <option value="USD">United States dollar (USD)</option>
-                    <option value="THB">Thai baht (THB)</option>
-                    <option value="RUB">Russian ruble (RUB)</option>
                   </select>
                 </div>
                 <div className="mt-3">
-                  <label className="credit-card-label">Description</label>
+                  <label className="credit-card-label">Address</label>
+                  {errors.street && (
+                    <p className="badge text-danger">{errors.street.message}</p>
+                  )}
+                  {errors.commune && (
+                    <p className="badge text-danger">
+                      {errors.commune.message}
+                    </p>
+                  )}
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      className="form-control"
+                      {...register("street")}
+                      name="street"
+                      placeholder="No. Street"
+                    />
+
+                    <input
+                      type="text"
+                      className="form-control"
+                      {...register("commune")}
+                      name="commune"
+                      defaultValue={user.address.commune}
+                      placeholder="Commune"
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-3">
+                  <label className="credit-card-label">District</label>
                   <input
                     type="text"
                     className="form-control"
-                    {...register("description")}
+                    {...register("district")}
+                    defaultValue={user.address.district}
+                    name="district"
                   />
-                  {errors.description && (
-                    <p className="badge badge-danger">
-                      {errors.description.message}
-                    </p>
+                  {errors.district && (
+                    <p className="badge bg-danger">{errors.district.message}</p>
+                  )}
+                </div>
+                <div className="mt-3">
+                  <label className="credit-card-label">City</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    {...register("city")}
+                    defaultValue={user.address.city}
+                    name="city"
+                  />
+                  {errors.city && (
+                    <p className="badge bg-danger">{errors.city.message}</p>
                   )}
                 </div>
                 <div>
                   <input type="text" hidden {...register("price")} value="" />
                 </div>
-                {/* <div className="row">
-              <div className="col-md-6"><label className="credit-card-label">Date</label><input type="text" className="form-control credit-inputs" placeholder="12/24" /></div>
-              <div className="col-md-6"><label className="credit-card-label">CVV</label><input type="text" className="form-control credit-inputs" placeholder="342" /></div>
-            </div> */}
-                {/* <hr className="line"> */}
-                {/* <div className="d-flex justify-content-between information"><span>Subtotal</span><span>$3000.00</span></div> */}
-                {/* <div className="d-flex justify-content-between information"><span>Shipping</span><span>$20.00</span></div> */}
                 <div className="d-flex justify-content-between information mt-3">
-                  <span>Total(Incl. taxes)</span>
+                  <span>Total</span>
                   <span>{VNDformat(total)} </span>
                 </div>
                 {/* {checkFailed && <div>

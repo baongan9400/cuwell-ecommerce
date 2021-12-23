@@ -9,13 +9,12 @@ import {
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import "./edituser.css";
-import NavBar from "components/NavBar/NavBar";
 import userInfoApi from "api/user/userInfoApi";
 import { pushToast } from "components/Toast";
 import * as actions from "redux/actions/login/authAction";
 function EditUser() {
   const { user } = useSelector((state) => state.userReducer);
-  const { name, email, phone, address, avatar } = user;
+  const { name, email, phone, address } = user;
   const { commune, district, city } = address;
   const [loading, setLoading] = useState(false);
 
