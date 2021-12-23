@@ -8,6 +8,11 @@
 
 .product-details {
   padding: 10px;
+  img {
+    width: 80px;
+    min-width: 80px;
+    height: 80px;
+  }
 }
 
 .cart {

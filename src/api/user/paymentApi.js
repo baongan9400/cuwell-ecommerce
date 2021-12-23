@@ -8,7 +8,6 @@ const paymentApi = {
       city,
     };
     const url = `post-service/buyer/checkout/`;
-    console.log(data);
     return axiosManagement.post(url, data);
   },
   loadBuyOrder: () => {

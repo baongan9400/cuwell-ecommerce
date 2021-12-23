@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useSelector, useDispatch } from "react-redux";
-import "./paymentStyle.css";
+import { useSelector } from "react-redux";
+import "./paymentStyle.scss";
 import { VNDformat } from "helper/utils";
 import { Link } from "react-router-dom";
 import paymentApi from "api/user/paymentApi";
@@ -14,13 +14,7 @@ function CartItem({ cartItem }) {
 
   return (
     <div className="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-      <img
-        src={images[0].url}
-        alt=""
-        className="rounded"
-        width="80"
-        height="65"
-      />
+      <img src={images[0].url} alt="" className="rounded" />
       <div className="d-flex col-12 ms-2">
         <span className="col-6 pl-1 post-title">{title}</span>
         <span className="col-4 text-danger pl-1">{VNDformat(price)}</span>
