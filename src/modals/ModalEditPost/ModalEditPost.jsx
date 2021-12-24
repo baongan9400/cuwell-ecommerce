@@ -14,7 +14,7 @@ import { pushToast } from "components/Toast";
 
 import "./style.scss";
 const ModalEditPost = ({ isShowing, handleClose, post }) => {
-  let { id, title, description, price, images, sell, stock, quantity} = post;
+  let { id, title, description, price, images, sell, stock, quantity } = post;
   const [validated, setValidated] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -29,21 +29,28 @@ const ModalEditPost = ({ isShowing, handleClose, post }) => {
 
     setValidated(true);
   };
- const handleEdit = () => {
-  callEditPost();
- }
- const callEditPost = async () => {
-  try {
-    setLoading(true);
-    const result = await editPost({id,title, description, price, quantity});
-    if (result) {
+  const handleEdit = () => {
+    callEditPost();
+  };
+  const callEditPost = async () => {
+    try {
+      setLoading(true);
+      const result = await editPost({
+        id,
+        title,
+        description,
+        price,
+        quantity,
+      });
+      if (result) {
+        setLoading(false);
+        pushToast("success", "Update post successfully");
+      }
+    } catch (error) {
       setLoading(false);
-      pushToast("success", "Update post successfully");
+      pushToast("error", "Failed to update post ");
     }
-  } catch (error) {
-    pushToast("error", "Failed to update post ");
-  }
-};
+  };
   return (
     <Modal
       show={isShowing}

@@ -1,7 +1,7 @@
 export const VNDformat = (money) => {
   return money
-    ? money.toLocaleString("it-IT", { style: "currency", currency: "VND" })
-    : "0VND";
+    ? money.toLocaleString("it-IT", { style: "currency", currency: "USD" })
+    : "0USB";
 };
 export const convertStatus = (status) => {
   switch (status) {

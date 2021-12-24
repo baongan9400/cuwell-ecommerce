@@ -60,6 +60,7 @@ function EditUser() {
         dispatch(actions.userLoggedIn(result.payload.result, user.id));
       }
     } catch (error) {
+      setLoading(false);
       pushToast("error", "Failed to update profile ");
     }
   };
@@ -92,7 +93,9 @@ function EditUser() {
                           <div class="col mt-2">
                             {" "}
                             <div className="form-group">
-                              <label htmlFor="fullName" className="fw-bold">Full Name</label>
+                              <label htmlFor="fullName" className="fw-bold">
+                                Full Name
+                              </label>
                               <input
                                 {...register("name")}
                                 type="text"
@@ -105,7 +108,9 @@ function EditUser() {
                           </div>
                           <div class="col mt-2">
                             <div className="form-group">
-                              <label htmlFor="eMail" className="fw-bold">Email</label>
+                              <label htmlFor="eMail" className="fw-bold">
+                                Email
+                              </label>
                               <input
                                 {...register("email")}
                                 type="email"
@@ -118,7 +123,9 @@ function EditUser() {
 
                           <div class="col mt-3">
                             <div className="form-group">
-                              <label htmlFor="phone" className="fw-bold">Phone</label>
+                              <label htmlFor="phone" className="fw-bold">
+                                Phone
+                              </label>
                               {errors.phone && (
                                 <p
                                   className="ml-2 text-danger mt-1"
@@ -138,8 +145,10 @@ function EditUser() {
                             </div>
                           </div>
                           <div class="col mt-3">
-                          <div className="form-group">
-                              <label htmlFor="paypalEmail" className="fw-bold">Paypal email</label>
+                            <div className="form-group">
+                              <label htmlFor="paypalEmail" className="fw-bold">
+                                Paypal email
+                              </label>
                               {errors.paypalEmail && (
                                 <p
                                   className="ml-2 text-danger mt-1"
@@ -163,11 +172,15 @@ function EditUser() {
                     </div>
                     <div className="row gutters">
                       <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <h5 className="mt-3 mb-2 text-primary fw-bold" >Address</h5>
+                        <h5 className="mt-3 mb-2 text-primary fw-bold">
+                          Address
+                        </h5>
                       </div>
                       <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                          <label htmlFor="ciTy" className="fw-bold">City</label>
+                          <label htmlFor="ciTy" className="fw-bold">
+                            City
+                          </label>
                           <div className="form-group mb-3">
                             <select
                               {...register("city")}
@@ -197,7 +210,9 @@ function EditUser() {
                       </div>
                       <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                         <div className="form-group">
-                          <label htmlFor="Street" className="fw-bold">District</label>
+                          <label htmlFor="Street" className="fw-bold">
+                            District
+                          </label>
                           <select
                             {...register("district")}
                             className="form-control rounded-pill border-0 shadow-sm px-4"
@@ -226,7 +241,9 @@ function EditUser() {
                       </div>
                       <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                         <div className="form-group">
-                          <label htmlFor="sTate" className="fw-bold">Commune</label>
+                          <label htmlFor="sTate" className="fw-bold">
+                            Commune
+                          </label>
                           {/* <input type="text" className="form-control" id="sTate" defaultValue={commune} /> */}
                           <div className="form-group mb-3">
                             <select
