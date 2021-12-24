@@ -65,10 +65,10 @@ function Payment(props) {
   };
   const callPayByOffline = async (data) => {
     try {
-      const result = await paymentApi.checkout(data);
+      const result = await paymentApi.checkoutByCash(data);
       if (result) {
         setIsPay(true);
-        // loadCartAction();
+        loadCartAction();
       }
     } catch (error) {
       pushToast("error", "Error checkout your cart! ");

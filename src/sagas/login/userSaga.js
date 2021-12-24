@@ -22,6 +22,7 @@ function* login({ email, password }) {
 
         yield put(cartAction.loadCartAction());
       }
+        window.location.href = "/home";
     }
   } catch (e) {
     yield put(actions.checkError());

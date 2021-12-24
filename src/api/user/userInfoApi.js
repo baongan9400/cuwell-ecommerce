@@ -2,7 +2,7 @@ import axiosManagement from "../axiosAuthenService";
 
 const userInfoApi = {
   updateUser: (
-    { name, phone, city, district, commune, ratingAverage },
+    { name, phone, city, district, commune, ratingAverage, paypalEmail },
     idUser
   ) => {
     const data = {
@@ -15,6 +15,7 @@ const userInfoApi = {
           district,
           commune,
         },
+        paypalEmail
       },
     };
     const url = `auth-service/users/${idUser}/`;

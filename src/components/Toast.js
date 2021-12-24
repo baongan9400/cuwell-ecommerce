@@ -6,7 +6,7 @@ const pushToast = (type, message) => {
   switch (type) {
     case "success":
       toast.success(message, {
-        position: toast.POSITION.TOP_CENTER,
+        position: toast.POSITION.TOP_RIGHT,
       });
       break;
     case "error":
