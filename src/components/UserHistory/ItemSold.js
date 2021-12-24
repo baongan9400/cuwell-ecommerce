@@ -89,7 +89,89 @@ const ItemSold = (props) => {
                   </p>
                 </div>
               )}
-              <div className="row px-3 mt-1">{convertStatus(status)}</div>
+              <div className="row px-3 mt-1">
+                <div
+                  className="accordion accordion-flush bg-"
+                  id={"accordionFlushExample" + id}
+                >
+                  <div className="accordion-item">
+                    <h2
+                      className="accordion-header bg-light"
+                      id={"flush-heading" + id}
+                    >
+                      <button
+                        className="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target={"#flush-collapse" + id}
+                        aria-expanded="false"
+                        aria-controls={"flush-collapse" + id}
+                      >
+                        {convertStatus(status)}
+                      </button>
+                    </h2>
+                    <div
+                      id={"flush-collapse" + id}
+                      className="accordion-collapse collapse"
+                      aria-labelledby={"flush-heading" + id}
+                      data-bs-parent={"#accordionFlushExample" + id}
+                    >
+                      <div className="accordion-body">
+                        <div className="form-check">
+                          <input
+                            className="form-check-input"
+                            type="radio"
+                            name="flexRadioDefault"
+                            id="flexRadioDefault1"
+                          />
+                          <label
+                            className="form-check-label"
+                            for="flexRadioDefault1"
+                          >
+                            Accepted
+                          </label>
+                        </div>
+                        <div className="form-check">
+                          <input
+                            className="form-check-input"
+                            type="radio"
+                            name="flexRadioDefault"
+                            id="flexRadioDefault1"
+                          />
+                          <label
+                            className="form-check-label"
+                            for="flexRadioDefault1"
+                          >
+                            Deliveried
+                          </label>
+                        </div>
+                        <div className="form-check">
+                          <input
+                            className="form-check-input"
+                            type="radio"
+                            name="flexRadioDefault"
+                            id="flexRadioDefault2"
+                            checked
+                          />
+                          <label
+                            className="form-check-label"
+                            for="flexRadioDefault2"
+                          >
+                            Cancel
+                          </label>
+                        </div>
+                        <button
+                          type="button"
+                          class="btn btn-outline-info"
+                          style={{ float: "right" }}
+                        >
+                          Update status
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div className="row px-3">
                 <h5 className="text-success mb-2 fw-bold mt-2">${price}</h5>
               </div>
