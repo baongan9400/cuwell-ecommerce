@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import ModalSucessSignup from "modals/ModalCollaborating/ModalSucessSignup";
+import ModalSucessSignup from "modals/ModalSignup/ModalSucessSignup";
 import useModal from "hook/useModal";
 
 import { Link } from "react-router-dom";

@@ -36,7 +36,7 @@ const CreatePost = () => {
       formData.append("title", values.title);
       formData.append("description", values.description);
       formData.append("price", values.price);
-      formData.append("quantity", values.quantity);
+      formData.append("quantity", count);
       formData.append("category", values?.category);
       formData.append("images", image?.first);
       formData.append("images", image?.second);
@@ -63,7 +63,6 @@ const CreatePost = () => {
         });
         setPreviewImage(event.target.files[0]);
         formik.setFieldValue("images.second", event.target.files[0]);
-        console.log("second", event.target.files[0]);
       } else if (image.second !== undefined && image.third === null) {
         setImage({
           ...image,

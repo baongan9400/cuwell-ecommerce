@@ -3,11 +3,11 @@ import React from "react";
 import "./ModalSucessSignup.scss";
 import { Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
-const ModalSucessSignup = ({ isShowing, handleClose }) => {
+const ModalSucessSignup = ({ isShowing, toggle }) => {
   return (
     <Modal
       show={isShowing}
-      onHide={handleClose}
+      onHide={toggle}
       dialogClassName="modal-collaborating"
       centered
     >

@@ -18,6 +18,15 @@ const paymentApi = {
     const url = "post-service/seller/orders/";
     return axiosManagement.get(url);
   },
+  checkoutByCash: ({ street, commune, district, city }) => {
+    const data = {
+      street: street + " " + commune,
+      district,
+      city,
+    };
+    const url = `post-service/buyer/orders/`;
+    return axiosManagement.post(url, data);
+  },
 };
 
 export default paymentApi;

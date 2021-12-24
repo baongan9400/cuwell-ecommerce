@@ -1,0 +1,24 @@
+@import "../../assets/scss/app.scss";
+
+.modal-payment {
+  max-width: 500px !important;
+  .modal-content {
+    background: white;
+    border: none;
+    min-height: 378px !important;
+  }
+  .modal-header {
+    display: block;
+    color: #fff;
+    background-color: white;
+    img {
+      width: 100%;
+      height: 230px;
+    }
+    .btn-close {
+      position: relative;
+      top: -220px;
+      left: 470px;
+    }
+  }
+}

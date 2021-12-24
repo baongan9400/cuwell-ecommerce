@@ -22,7 +22,7 @@ export const convertStatus = (status) => {
               fill="#6100FF"
             />
           </svg>
-          &#160;&#160;&#160; Status &middot;  Deliveried &#160;
+          &#160;&#160;&#160; Status &middot; Deliveried &#160;
         </p>
       );
     case 2:
@@ -59,8 +59,8 @@ export const convertStatus = (status) => {
       return (
         <p className="text-muted mb-1">
           <svg
-            width="21"
-            height="21"
+            width="24"
+            height="24"
             viewBox="0 0 21 21"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +82,7 @@ export const convertStatus = (status) => {
               </clipPath>
             </defs>
           </svg>
-          &#160;&#160;&#160; Status &middot;  Accepted &#160;
+          &#160;&#160;&#160; Status &middot; Accepted &#160;
         </p>
       );
     case 4:
@@ -112,7 +112,7 @@ export const convertStatus = (status) => {
               </clipPath>
             </defs>
           </svg>
-          &#160;&#160;&#160; Status &middot;  Cancel &#160;
+          &#160;&#160;&#160; Status &middot; Cancel &#160;
         </p>
       );
     default:
@@ -142,7 +142,7 @@ export const convertStatus = (status) => {
               </clipPath>
             </defs>
           </svg>
-          &#160;&#160;&#160; Status &middot;  No Status &#160;
+          &#160;&#160;&#160; Status &middot; No Status &#160;
         </p>
       );
   }

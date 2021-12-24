@@ -1,13 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./UserPost.scss";
+import useModal from "hook/useModal";
+import ModalEditPost from "modals/ModalEditPost/ModalEditPost";
+
 const UserPost = (props) => {
+  const { isShowing, toggle } = useModal();
+
   const { id, title, description, price, images, sell, stock } = props.post;
   return (
     <div
       className="userPost card col-xs-12 col-sm-6 col-md-4 col-lg-2 p-4 p-md-3 mt-3 m-4"
       style={{ width: "15rem" }}
     >
+      <ModalEditPost
+        post={props.post}
+        handleClose={toggle}
+        isShowing={isShowing}
+      />
       <img
         src={
           images[0] && images[0].url ? (
@@ -33,7 +43,7 @@ const UserPost = (props) => {
         }
         className="card-img-top"
         alt="..."
-        style={{ height: "150px" }}
+        style={{ height: "170px" }}
       />
       <div className="card-body">
         <h5 className="card-title">{title}</h5>
@@ -97,7 +107,7 @@ const UserPost = (props) => {
         </li>
       </ul>
       <div className="card-body btn-group-custom mt-2">
-        <div className="mx-2">
+        <div style={{ cursor: "pointer" }} className="mx-2" onClick={toggle}>
           <svg
             width="19"
             height="19"
@@ -125,7 +135,7 @@ const UserPost = (props) => {
             />
           </svg>
         </div>
-        <div className="mx-2">
+        <div style={{ cursor: "pointer" }} className="mx-2">
           <svg
             width="30"
             height="30"
