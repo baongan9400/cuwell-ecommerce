@@ -1,4 +1,4 @@
-import reportApi from "api/report/reportApi";
+import { editPost } from "api/posts/search";
 import React, { useEffect, useState } from "react";
 import {
   Button,
@@ -10,13 +10,40 @@ import {
   Container,
   Image,
 } from "react-bootstrap";
+import { pushToast } from "components/Toast";
+
 import "./style.scss";
 const ModalEditPost = ({ isShowing, handleClose, post }) => {
-  const { id, title, description, price, images, sell, stock } = post;
-  const handleEditPost = (data) => {
-    console.log(data);
-  };
+  let { id, title, description, price, images, sell, stock, quantity} = post;
+  const [validated, setValidated] = useState(false);
+  const [loading, setLoading] = useState(false);
 
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    } else {
+      event.preventDefault();
+    }
+
+    setValidated(true);
+  };
+ const handleEdit = () => {
+  callEditPost();
+ }
+ const callEditPost = async () => {
+  try {
+    setLoading(true);
+    const result = await editPost({id,title, description, price, quantity});
+    if (result) {
+      setLoading(false);
+      pushToast("success", "Update post successfully");
+    }
+  } catch (error) {
+    pushToast("error", "Failed to update post ");
+  }
+};
   return (
     <Modal
       show={isShowing}
@@ -24,7 +51,7 @@ const ModalEditPost = ({ isShowing, handleClose, post }) => {
       size="lg"
       dialogClassName="modal-edit-post"
     >
-      <Form>
+      <Form noValidate validated={validated} onSubmit={handleSubmit}>
         <Modal.Header closeButton>
           <Modal.Title>Edit Post</Modal.Title>
         </Modal.Header>
@@ -36,10 +63,18 @@ const ModalEditPost = ({ isShowing, handleClose, post }) => {
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Title</Form.Label>
                   <Form.Control
-                    type="text"
+                    required
+                    as="textarea"
                     placeholder="Enter title"
-                    value={title}
+                    defaultValue={title}
+                    style={{ height: 70 }}
+                    onChange={(e) => {
+                      title = e.target.value;
+                    }}
                   />
+                  <Form.Control.Feedback type="invalid">
+                    Please enter title.
+                  </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group
                   className="mb-3"
@@ -47,10 +82,35 @@ const ModalEditPost = ({ isShowing, handleClose, post }) => {
                 >
                   <Form.Label>Price</Form.Label>
                   <Form.Control
+                    required
                     type="number"
                     placeholder="Enter price"
-                    value={price}
+                    defaultValue={price}
+                    onChange={(e) => {
+                      price = e.target.value;
+                    }}
                   />
+                  <Form.Control.Feedback type="invalid">
+                    Please enter price.
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Label>Quantity</Form.Label>
+                  <Form.Control
+                    required
+                    type="number"
+                    placeholder="Enter quantity"
+                    defaultValue={quantity}
+                    onChange={(e) => {
+                      quantity = e.target.value;
+                    }}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Please enter quantity.
+                  </Form.Control.Feedback>
                 </Form.Group>
                 <Row className="mb-3">
                   <Form.Group as={Col}>
@@ -72,11 +132,18 @@ const ModalEditPost = ({ isShowing, handleClose, post }) => {
                     label="Description"
                   >
                     <Form.Control
+                      required
                       as="textarea"
                       placeholder="Leave a description here"
                       style={{ height: 150 }}
-                      value={description}
+                      defaultValue={description}
+                      onChange={(e) => {
+                        description = e.target.value;
+                      }}
                     />
+                    <Form.Control.Feedback type="invalid">
+                      Please enter description.
+                    </Form.Control.Feedback>
                   </FloatingLabel>
                 </Form.Group>
                 <Form.Label>Images</Form.Label>
@@ -97,7 +164,7 @@ const ModalEditPost = ({ isShowing, handleClose, post }) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button type="submit" variant="primary" onClick={handleEditPost}>
+          <Button type="submit" variant="primary" onClick={handleEdit}>
             Save
           </Button>
         </Modal.Footer>

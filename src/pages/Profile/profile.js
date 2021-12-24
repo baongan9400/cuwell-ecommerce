@@ -368,7 +368,7 @@ function Profile() {
               {component === "/my-profile" && <ProfileDetail />}
               {component === "/payment/history" && <UserBuyHistory />}
               {component === "/sale" && <UserSaleHistory />}
-              {component === "" && <ProfileDetail />}
+              {component === "" && <UserManagePosts />}
             </div>
           </div>
         </div>

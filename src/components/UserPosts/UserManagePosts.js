@@ -19,6 +19,8 @@ function ListCardPost(props) {
 function UserManagePosts(props) {
   const userReducerId = useSelector((state) => state.userReducer?.user?.id);
   const [userPosts, setUserPosts] = useState();
+  const [pageNumber, setPageNumber] = useState(5);
+
   const searchParams = (selectNumber) => {
     const params = {
       page: selectNumber.selected + 1,
@@ -34,7 +36,10 @@ function UserManagePosts(props) {
   const fetchUserPost = async (params) => {
     try {
       const res = await userInfoApi.manageUserPosts(params, userReducerId);
-      if (res) setUserPosts(res);
+      if (res) {
+        setUserPosts(res);
+        setPageNumber(res?.pageNumber)
+      }
     } catch (error) {
       console.log("failed to fetch user post with error: ", error);
     }
@@ -47,7 +52,7 @@ function UserManagePosts(props) {
         <div className="pagination-custom">
           <nav aria-label="Page navigation example">
             <ReactPaginate
-              pageCount={5}
+              pageCount={pageNumber}
               pageRange={1}
               marginPagesDisplayed={1}
               containerClassName={"pagination"}
