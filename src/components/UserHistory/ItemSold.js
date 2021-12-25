@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./ItemSold.scss";
 import { convertStatus } from "helper/utils";
+import paymentApi from "api/user/paymentApi";
+import { pushToast } from "components/Toast";
+
 const ItemSold = (props) => {
   const {
     post,
@@ -14,8 +17,32 @@ const ItemSold = (props) => {
     street,
     city,
     district,
+    id,
   } = props.history;
-  const { id, title, description, images, sell, stock } = post;
+  const [updateStatus, setUpdateStatus] = useState(3);
+  const [loading, setLoading] = useState(false);
+
+  const { title, description, images, sell, stock } = post;
+  const callUpdateSellerOrder = async ({ id, updateStatus }) => {
+    try {
+      setLoading(true);
+      const result = await paymentApi.updateSellerOrder(id, updateStatus.value);
+      if (result) {
+        setLoading(false);
+        pushToast("success", "Update status of sales order successfully");
+      }
+    } catch (error) {
+      setLoading(false);
+      pushToast("error", "Failed to update status of sales order profile ");
+    }
+  };
+  const handleUpdateStatus = (event) => {
+    event.preventDefault();
+    callUpdateSellerOrder({ id, updateStatus });
+  };
+  const handleChange = (event) => {
+    setUpdateStatus({ value: event.target.value });
+  };
   return (
     <div className="itemBuy container-fluid mx-auto ms-5 me-5">
       <div className="row d-flex justify-content-center">
@@ -117,56 +144,65 @@ const ItemSold = (props) => {
                       data-bs-parent={"#accordionFlushExample" + id}
                     >
                       <div className="accordion-body">
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="radio"
-                            name="flexRadioDefault"
-                            id="flexRadioDefault1"
-                          />
-                          <label
-                            className="form-check-label"
-                            for="flexRadioDefault1"
+                        <form>
+                          <div className="form-check">
+                            <input
+                              className="form-check-input"
+                              type="radio"
+                              name="flexRadioDefault"
+                              id="flexRadioDefault1"
+                              value="3"
+                              onChange={handleChange}
+                            />
+                            <label
+                              className="form-check-label"
+                              for="flexRadioDefault1"
+                            >
+                              Accepted
+                            </label>
+                          </div>
+                          <div className="form-check">
+                            <input
+                              className="form-check-input"
+                              type="radio"
+                              name="flexRadioDefault"
+                              id="flexRadioDefault2"
+                              value="1"
+                              onChange={handleChange}
+                            />
+                            <label
+                              className="form-check-label"
+                              for="flexRadioDefault2"
+                            >
+                              Deliveried
+                            </label>
+                          </div>
+                          <div className="form-check">
+                            <input
+                              className="form-check-input"
+                              type="radio"
+                              name="flexRadioDefault"
+                              id="flexRadioDefault3"
+                              value="4"
+                              onChange={handleChange}
+                            />
+                            <label
+                              className="form-check-label"
+                              for="flexRadioDefault3"
+                            >
+                              Cancel
+                            </label>
+                          </div>
+
+                          <button
+                            type="submit"
+                            class="btn btn-outline-info"
+                            style={{ float: "right" }}
+                            onClick={handleUpdateStatus}
                           >
-                            Accepted
-                          </label>
-                        </div>
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="radio"
-                            name="flexRadioDefault"
-                            id="flexRadioDefault1"
-                          />
-                          <label
-                            className="form-check-label"
-                            for="flexRadioDefault1"
-                          >
-                            Deliveried
-                          </label>
-                        </div>
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="radio"
-                            name="flexRadioDefault"
-                            id="flexRadioDefault2"
-                            checked
-                          />
-                          <label
-                            className="form-check-label"
-                            for="flexRadioDefault2"
-                          >
-                            Cancel
-                          </label>
-                        </div>
-                        <button
-                          type="button"
-                          class="btn btn-outline-info"
-                          style={{ float: "right" }}
-                        >
-                          Update status
-                        </button>
+                            Update status
+                          </button>
+                        </form>
                       </div>
                     </div>
                   </div>

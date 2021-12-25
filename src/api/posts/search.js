@@ -25,14 +25,17 @@ export const createPost = (data) => {
   };
   return axiosManagement.post(url, data, config);
 };
-export const editPost = ({id, title, description, price, quantity}) => {
-  const data = {
-    id,
-    title,
-    description,
-    price,
-    quantity
+export const editPost = ({ id, title, description, price, quantity }) => {
+  let formData = new FormData();
+  formData.append("title", title);
+  formData.append("description", description);
+  formData.append("price", price);
+  formData.append("quantity", quantity);
+  const config = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
   };
   const url = `post-service/posts/${id}/`;
-  return axiosManagement.put(url, data);
+  return axiosManagement.patch(url, formData, config);
 };

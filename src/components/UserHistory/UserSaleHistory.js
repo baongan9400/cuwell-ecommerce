@@ -12,7 +12,10 @@ function UserSaleHistory(props) {
   const fetchUserPost = async () => {
     try {
       const res = await paymentApi.loadSoldOrder();
-      if (res) setUserPosts(res);
+      if (res) {
+        setUserPosts(res);
+        console.log("user", userPosts);
+      }
     } catch (error) {
       console.log("failed to fetch user sale with error: ", error);
     }

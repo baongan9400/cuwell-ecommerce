@@ -24,14 +24,17 @@ const ModalEditPost = ({ isShowing, handleClose, post }) => {
       event.preventDefault();
       event.stopPropagation();
     } else {
+      callEditPost();
       event.preventDefault();
     }
 
     setValidated(true);
   };
-  const handleEdit = () => {
-    callEditPost();
-  };
+  // const handleEdit = () => {
+  //   if (validated){
+  //     callEditPost();
+  //   }
+  // };
   const callEditPost = async () => {
     try {
       setLoading(true);
@@ -85,12 +88,12 @@ const ModalEditPost = ({ isShowing, handleClose, post }) => {
                 </Form.Group>
                 <Form.Group
                   className="mb-3"
-                  controlId="exampleForm.ControlInput1"
+                  controlId="exampleForm.ControlInputPrice"
                 >
                   <Form.Label>Price</Form.Label>
                   <Form.Control
                     required
-                    type="number"
+                    type="text"
                     placeholder="Enter price"
                     defaultValue={price}
                     onChange={(e) => {
@@ -98,7 +101,7 @@ const ModalEditPost = ({ isShowing, handleClose, post }) => {
                     }}
                   />
                   <Form.Control.Feedback type="invalid">
-                    Please enter price.
+                    Price is not valid.
                   </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group
@@ -171,7 +174,7 @@ const ModalEditPost = ({ isShowing, handleClose, post }) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button type="submit" variant="primary" onClick={handleEdit}>
+          <Button type="submit" variant="primary">
             Save
           </Button>
         </Modal.Footer>

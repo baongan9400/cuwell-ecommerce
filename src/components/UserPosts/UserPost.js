@@ -11,7 +11,7 @@ const UserPost = (props) => {
   return (
     <div
       className="userPost card col-xs-12 col-sm-6 col-md-4 col-lg-2 p-4 p-md-3 mt-3 m-4"
-      style={{ width: "15rem" }}
+      style={{ width: "18rem" }}
     >
       <ModalEditPost
         post={props.post}

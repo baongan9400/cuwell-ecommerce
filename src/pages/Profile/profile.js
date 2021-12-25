@@ -300,7 +300,7 @@ function Profile() {
       >
         <div className="main-body px-3 ">
           <div className="row gutters-sm ">
-            <div className="col-md-4">
+            <div className="col-md-3">
               <div className="card">
                 <div className="card-body card-profile">
                   <div className="container justify-content-center mt-5">
@@ -372,7 +372,7 @@ function Profile() {
                 </ul>
               </div>
             </div>
-            <div className="col-md-8">
+            <div className="col-md-9">
               {component === "/edit-profile" && <EditUser />}
               {component === "/my-posts" && <UserManagePosts />}
               {component === "/my-profile" && <ProfileDetail />}
