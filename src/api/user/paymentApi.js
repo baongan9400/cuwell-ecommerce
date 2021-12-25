@@ -27,6 +27,13 @@ const paymentApi = {
     const url = `post-service/buyer/orders/`;
     return axiosManagement.post(url, data);
   },
+  updateSellerOrder: (id, status) => {
+    const data = {
+      status,
+    };
+    const url = `post-service/seller/orders/${id}/`;
+    return axiosManagement.patch(url, data);
+  },
 };
 
 export default paymentApi;

@@ -92,6 +92,7 @@ const CreatePost = () => {
         pushToast("success", "Successfully posted products for sale.");
       }
     } catch (error) {
+      setLoading(false);
       pushToast("error", "Failed to create product");
     }
   };

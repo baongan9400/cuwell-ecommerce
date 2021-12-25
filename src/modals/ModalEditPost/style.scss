@@ -1,11 +1,15 @@
 .modal-edit-post {
   .modal-content {
-    width: 100% !important;
+    width: 110% !important;
   }
   .modal-body {
     width: 100%;
   }
   .img-thumbnail {
-    height: 100px;
+    height: 140px;
+    min-width: 140px;
+  }
+  .container {
+    padding-left: 0 !important;
   }
 }

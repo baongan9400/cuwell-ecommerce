@@ -237,10 +237,10 @@ function Profile() {
   const StartRating = ({ rating }) => {
     var rows = [];
     for (var i = 0; i < rating; i++) {
-      rows.push(<span class="fa fa-star checked"></span>);
+      rows.push(<span className="fa fa-star checked start-check"></span>);
     }
     for (var j = 0; j < 5 - rating; j++) {
-      rows.push(<span class="fa fa-star"></span>);
+      rows.push(<span className="fa fa-star start-uncheck"></span>);
     }
     return rows;
   };
@@ -300,10 +300,10 @@ function Profile() {
       >
         <div className="main-body px-3 ">
           <div className="row gutters-sm ">
-            <div className="col-md-4">
+            <div className="col-md-3">
               <div className="card">
                 <div className="card-body card-profile">
-                  <div className="container d-flex justify-content-center mt-5">
+                  <div className="container justify-content-center mt-5">
                     <div className="text-center mb-5">
                       <div className="circle-image">
                         {" "}
@@ -315,15 +315,15 @@ function Profile() {
                           width="50"
                         />{" "}
                       </div>{" "}
-                      <span className="dot"></span>{" "}
-                      <span className="name mb-1 fw-500">
+                      {/* <span className="dot"></span>{" "} */}
+                      <span className="name mb-1 fw-bold fs-4">
                         {reduxUser.user.name}
                       </span>{" "}
-                      <small className="text-black-50">Tata Ace</small>{" "}
+                      {/* <small className="text-black-50">Tata Ace</small>{" "}
                       <small className="text-black-50 font-weight-bold">
                         QP09AA9090
-                      </small>
-                      <div className="location mt-4">
+                      </small> */}
+                      {/* <div className="location mt-4">
                         {" "}
                         <span className="d-block">
                           <i className="fa fa-map-marker start"></i>{" "}
@@ -337,13 +337,23 @@ function Profile() {
                             Mandir Road, Mayur vihar, new delhi
                           </small>{" "}
                         </span>{" "}
-                      </div>
-                      <div className="rate bg-primary py-3 text-white mt-3">
-                        <h6 className="mb-0">Rating Average</h6>
-                        <div className="rating">
-                          <StartRating
-                            rating={Math.floor(reduxUser.user.ratingAverage)}
-                          />
+                      </div> */}
+                      <div className="rate py-3 mt-3">
+                        <div className="row">
+                          <div className="col">
+                            <h5 className="mb-0">
+                              Rate {reduxUser.user.ratingAverage}/5
+                            </h5>
+                          </div>
+                          <div className="col">
+                            <div className="rating">
+                              <StartRating
+                                rating={Math.floor(
+                                  reduxUser.user.ratingAverage
+                                )}
+                              />
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -362,13 +372,13 @@ function Profile() {
                 </ul>
               </div>
             </div>
-            <div className="col-md-8">
+            <div className="col-md-9">
               {component === "/edit-profile" && <EditUser />}
               {component === "/my-posts" && <UserManagePosts />}
               {component === "/my-profile" && <ProfileDetail />}
               {component === "/payment/history" && <UserBuyHistory />}
               {component === "/sale" && <UserSaleHistory />}
-              {component === "" && <ProfileDetail />}
+              {component === "" && <UserManagePosts />}
             </div>
           </div>
         </div>

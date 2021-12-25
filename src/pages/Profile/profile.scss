@@ -18,13 +18,11 @@
   }
   .card-profile {
     background: #ffffff;
-    box-shadow: -10px -20px 10px rgba(7, 80, 222, 0.08),
-      inset -5px -5px 10px rgba(95, 101, 255, 0.14);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   }
   .card {
     border: 1.5px solid rgba(52, 173, 253, 0.267) !important;
-    box-shadow: -5px -10px 5px rgba(7, 80, 222, 0.08),
-      inset -5px -5px 10px rgba(95, 101, 255, 0.14) !important;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   }
   .card-statistic {
     -webkit-border-radius: 5px;
@@ -116,5 +114,11 @@
     .checked {
       color: orange;
     }
+  }
+  .start-check {
+    color: orange;
+  }
+  .start-uncheck {
+    color: gray;
   }
 }

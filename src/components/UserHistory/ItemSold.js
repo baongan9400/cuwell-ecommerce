@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./ItemSold.scss";
 import { convertStatus } from "helper/utils";
+import paymentApi from "api/user/paymentApi";
+import { pushToast } from "components/Toast";
+
 const ItemSold = (props) => {
   const {
     post,
@@ -14,8 +17,32 @@ const ItemSold = (props) => {
     street,
     city,
     district,
+    id,
   } = props.history;
-  const { id, title, description, images, sell, stock } = post;
+  const [updateStatus, setUpdateStatus] = useState(3);
+  const [loading, setLoading] = useState(false);
+
+  const { title, description, images, sell, stock } = post;
+  const callUpdateSellerOrder = async ({ id, updateStatus }) => {
+    try {
+      setLoading(true);
+      const result = await paymentApi.updateSellerOrder(id, updateStatus.value);
+      if (result) {
+        setLoading(false);
+        pushToast("success", "Update status of sales order successfully");
+      }
+    } catch (error) {
+      setLoading(false);
+      pushToast("error", "Failed to update status of sales order profile ");
+    }
+  };
+  const handleUpdateStatus = (event) => {
+    event.preventDefault();
+    callUpdateSellerOrder({ id, updateStatus });
+  };
+  const handleChange = (event) => {
+    setUpdateStatus({ value: event.target.value });
+  };
   return (
     <div className="itemBuy container-fluid mx-auto ms-5 me-5">
       <div className="row d-flex justify-content-center">
@@ -89,7 +116,98 @@ const ItemSold = (props) => {
                   </p>
                 </div>
               )}
-              <div className="row px-3 mt-1">{convertStatus(status)}</div>
+              <div className="row px-3 mt-1">
+                <div
+                  className="accordion accordion-flush bg-"
+                  id={"accordionFlushExample" + id}
+                >
+                  <div className="accordion-item">
+                    <h2
+                      className="accordion-header bg-light"
+                      id={"flush-heading" + id}
+                    >
+                      <button
+                        className="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target={"#flush-collapse" + id}
+                        aria-expanded="false"
+                        aria-controls={"flush-collapse" + id}
+                      >
+                        {convertStatus(status)}
+                      </button>
+                    </h2>
+                    <div
+                      id={"flush-collapse" + id}
+                      className="accordion-collapse collapse"
+                      aria-labelledby={"flush-heading" + id}
+                      data-bs-parent={"#accordionFlushExample" + id}
+                    >
+                      <div className="accordion-body">
+                        <form>
+                          <div className="form-check">
+                            <input
+                              className="form-check-input"
+                              type="radio"
+                              name="flexRadioDefault"
+                              id="flexRadioDefault1"
+                              value="3"
+                              onChange={handleChange}
+                            />
+                            <label
+                              className="form-check-label"
+                              for="flexRadioDefault1"
+                            >
+                              Accepted
+                            </label>
+                          </div>
+                          <div className="form-check">
+                            <input
+                              className="form-check-input"
+                              type="radio"
+                              name="flexRadioDefault"
+                              id="flexRadioDefault2"
+                              value="1"
+                              onChange={handleChange}
+                            />
+                            <label
+                              className="form-check-label"
+                              for="flexRadioDefault2"
+                            >
+                              Deliveried
+                            </label>
+                          </div>
+                          <div className="form-check">
+                            <input
+                              className="form-check-input"
+                              type="radio"
+                              name="flexRadioDefault"
+                              id="flexRadioDefault3"
+                              value="4"
+                              onChange={handleChange}
+                            />
+                            <label
+                              className="form-check-label"
+                              for="flexRadioDefault3"
+                            >
+                              Cancel
+                            </label>
+                          </div>
+
+                          <button
+                            type="submit"
+                            class="btn btn-outline-info"
+                            style={{ float: "right" }}
+                            onClick={handleUpdateStatus}
+                          >
+                            Update status
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div className="row px-3">
                 <h5 className="text-success mb-2 fw-bold mt-2">${price}</h5>
               </div>
