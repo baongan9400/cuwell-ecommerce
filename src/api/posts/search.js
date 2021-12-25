@@ -6,7 +6,8 @@ export const getSearchPostData = (requestParams) => {
 };
 
 export const getPostById = (pid) => {
-  const url = `post-service/posts/${pid}`;
+  console.log("call api");
+  const url = `post-service/posts/${pid}/`;
   return axiosManagement.get(url);
 };
 export const getSearchComplete = (search, category) => {
