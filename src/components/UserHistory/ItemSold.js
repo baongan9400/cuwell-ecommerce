@@ -4,6 +4,7 @@ import "./ItemSold.scss";
 import { convertStatus } from "helper/utils";
 import paymentApi from "api/user/paymentApi";
 import { pushToast } from "components/Toast";
+import moment from "moment";
 
 const ItemSold = (props) => {
   const {
@@ -89,7 +90,8 @@ const ItemSold = (props) => {
                       fill="#26aa99"
                     />
                   </svg>
-                  &#160;&#160;&#160; Payment &#160;&#160;&#160;{created_at}
+                  &#160;&#160;&#160; Payment &#160;&#160;&#160;
+                  {moment(created_at).format("MMMM Do YYYY, h:mm:ss a")}
                 </h6>
               </div>
               {status === 3 ? (

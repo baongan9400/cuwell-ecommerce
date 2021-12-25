@@ -11,6 +11,7 @@ import ReportModal from "../../modals/ReportModal/ReportModal";
 import useModal from "hook/useModal";
 import { getPostById } from "api/posts/search";
 import ContentLoader from "react-content-loader";
+import moment from "moment";
 
 const MyLoader = (props) => (
   <ContentLoader
@@ -78,10 +79,44 @@ const MyLoader = (props) => (
     <rect x="923" y="757" rx="0" ry="0" width="331" height="12" />
   </ContentLoader>
 );
+
+const PreviewSlider = ({ listPostImage }) => {
+  const [nav1, setNav1] = useState(null);
+  const [nav2, setNav2] = useState(null);
+  const slider1 = useRef(null);
+  const slider2 = useRef(null);
+
+  useEffect(() => {
+    setNav1(slider1.current);
+    setNav2(slider2.current);
+  }, []);
+
+  return (
+    <div className="postdetails-img-group col-6">
+      <Slider asNavFor={nav2} ref={slider1} className="slider-top">
+        {listPostImage}
+      </Slider>
+
+      <Slider
+        asNavFor={nav1}
+        ref={slider2}
+        slidesToShow={3}
+        swipeToSlide={true}
+        focusOnSelect={true}
+        className="slider-down"
+      >
+        {listPostImage}
+      </Slider>
+    </div>
+  );
+};
+
 export function PostDetails() {
-  const { isShowing, toggle } = useModal();
   const location = useLocation();
   const post = location.state.post;
+
+  const { isShowing, toggle } = useModal();
+
   const [loading, setLoading] = useState(false);
   const [userPosts, setUserPosts] = useState({
     user: {
@@ -109,6 +144,16 @@ export function PostDetails() {
     stock,
   } = post;
 
+  useEffect(() => {
+    fetchUserPost();
+  }, []);
+
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
+
   const fetchUserPost = async () => {
     try {
       setLoading(true);
@@ -122,23 +167,7 @@ export function PostDetails() {
       console.log("failed to fetch user buy with error: ", error);
     }
   };
-  useEffect(() => {
-    fetchUserPost();
-  }, []);
 
-  const [nav1, setNav1] = useState(null);
-  const [nav2, setNav2] = useState(null);
-  const slider1 = useRef(null);
-  const slider2 = useRef(null);
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: "smooth",
-  });
-  useEffect(() => {
-    setNav1(slider1.current);
-    setNav2(slider2.current);
-  }, []);
   const listPostImage = post.images.map((item) => (
     <img src={item.url} className="mx-auto d-block" alt="..." />
   ));
@@ -166,26 +195,7 @@ export function PostDetails() {
             <div className="container-fliud">
               <div className="wrapper row">
                 <div className="preview col-md-6">
-                  <div className="postdetails-img-group col-6">
-                    <Slider
-                      asNavFor={nav2}
-                      ref={slider1}
-                      className="slider-top"
-                    >
-                      {listPostImage}
-                    </Slider>
-
-                    <Slider
-                      asNavFor={nav1}
-                      ref={slider2}
-                      slidesToShow={3}
-                      swipeToSlide={true}
-                      focusOnSelect={true}
-                      className="slider-down"
-                    >
-                      {listPostImage}
-                    </Slider>
-                  </div>
+                  <PreviewSlider listPostImage={listPostImage} />
                   <div className="postdetails-buyer">
                     {listBuyerImage}
                     {/* <span>{listBuyerImage.length} other people bought it</span> */}
@@ -194,7 +204,10 @@ export function PostDetails() {
                 <div className="details col-md-6">
                   <h3 className="product-title">{title}</h3>
                   <div className="rating">
-                    <span className="review-no">
+                    <span
+                      style={{ alignItems: "center" }}
+                      className="review-no d-flex"
+                    >
                       <span className="m-2">
                         <svg
                           width="20"
@@ -237,7 +250,11 @@ export function PostDetails() {
                           />
                         </svg>
                       </span>
-                      {userPosts.created_at}
+                      <div className="">
+                        {moment(userPosts.created_at).format(
+                          "MMMM Do YYYY, h:mm:ss a"
+                        )}
+                      </div>
                     </span>
                   </div>
                   <h4 className="postdetails-price">
